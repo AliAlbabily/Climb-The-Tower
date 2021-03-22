@@ -20,7 +20,7 @@ import view.MainFrame;
 
         startGame();
     }
-
+//testKommentar från hanis
     private void startGame() {
         int choice = view.showMenu();
 

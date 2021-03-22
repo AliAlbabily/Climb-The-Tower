@@ -2,7 +2,7 @@ package control;
 
 import model.GameManager;
 import view.MainFrame;
-
+//Mads test kommentar.
     public class Controller {
 
     private MainFrame view;

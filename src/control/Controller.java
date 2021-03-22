@@ -22,7 +22,7 @@ import view.MainFrame;
 
     private void startGame() {
         int choice = view.showMenu();
-
+//test HanisTestKommentar!
         switch(choice) {
             case 1:
                 model.startLevels();

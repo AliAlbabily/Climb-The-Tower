@@ -2,7 +2,7 @@ package model;
 
 public class Monster extends Character {
 
-    public Monster(int hitPoints) {
-        super(hitPoints);
+    public Monster(String name, int hitPoints) {
+        super(name, hitPoints);
     }
 }

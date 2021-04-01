@@ -3,8 +3,10 @@ package model;
 public class Character {
 
     private int hitPoints = 0;
+    private String name;
 
-    public Character(int hitPoints) {
+    public Character(String name, int hitPoints) {
+        this.name = name;
         this.hitPoints = hitPoints;
     }
 
@@ -24,5 +26,9 @@ public class Character {
 
     public int getHitPoints() {
         return hitPoints;
+    }
+
+    public String getName() {
+        return name;
     }
 }

@@ -30,6 +30,10 @@ public class Controller {
             case 2:
                 System.out.println("Don't be a noob!");
                 break;
+            case 3:
+                System.out.println("Exiting the game");
+                System.exit(0);
+                break;
             default:
                 System.out.println("default");
                 break;

@@ -11,10 +11,11 @@ public class MainFrame {
 
         System.out.println("1. Play");
         System.out.println("2. Tutorial");
+        System.out.println("3. Exit");
         Utilities.padChars('*', 40);
         System.out.println(); // ny rad
 
-        choice = Utilities.getInteger(1, 2);
+        choice = Utilities.getInteger(1, 3);
         return choice;
     }
 }

@@ -15,7 +15,7 @@ public class Level1 extends Level {
     }
 
     @Override
-    public int generateMathQuestion() {
+    public double generateMathQuestion() {
         int a, b = 0;
         a = (int)(Math.random() * 10 + 1); // generera ett tal från 1 - 10
         b = (int)(Math.random() * 10 + 1); // generera ett tal från 1 - 10

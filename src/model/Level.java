@@ -16,7 +16,7 @@ public abstract class Level {
         this.lvlName = lvlName;
     }
 
-    public abstract int generateMathQuestion();
+    public abstract double generateMathQuestion();
 
     public void newLvlMessage(String lvlName, String monsterName) {
         String mess = String.format("\n********** You entered %s, %s approaches! **********", lvlName, monsterName);

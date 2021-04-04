@@ -14,6 +14,7 @@ import java.util.Scanner;
  * @author Hanis Saley
  * version 1.1
  */
+
 public class Level5 extends Level {
 
     private HashMap <String, Integer> map = new HashMap<>();
@@ -36,6 +37,7 @@ public class Level5 extends Level {
             int answer = Integer.parseInt(mathProblemsLevel5.get(i).substring(mathProblemsLevel5.get(i).indexOf('=')+ 2));
             map.put(question,answer);
         }
+
         String question = generateRandomQuestion();
         System.out.println(question+ " = ?");
         return map.get(question);

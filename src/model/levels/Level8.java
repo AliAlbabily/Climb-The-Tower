@@ -10,6 +10,11 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 
+
+/**
+ * @version 1.0
+ * @author Ardian Glamniki
+ */
 public class Level8 extends Level {
     private ArrayList<String> mathProblems = new ArrayList<>();
     private HashMap<String, String> mathSolutions = new HashMap<>();

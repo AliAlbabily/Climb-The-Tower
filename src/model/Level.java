@@ -1,6 +1,7 @@
 package model;
 
 import javax.swing.*;
+import java.io.FileNotFoundException;
 
 /**
  * @author Ali A
@@ -16,7 +17,7 @@ public abstract class Level {
         this.lvlName = lvlName;
     }
 
-    public abstract double generateMathQuestion();
+    public abstract double generateMathQuestion() throws FileNotFoundException;
 
     public void newLvlMessage(String lvlName, String monsterName) {
         String mess = String.format("\n********** You entered %s, %s approaches! **********", lvlName, monsterName);

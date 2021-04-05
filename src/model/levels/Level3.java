@@ -15,7 +15,7 @@ public class Level3 extends Level {
     }
 
     @Override
-    public int generateMathQuestion() {
+    public double generateMathQuestion() {
         int a, b, c, firstOperator, secondOperator;
         char char_firstOperator, char_secondOperator;
         a = (int)(Math.random() * 10 + 1); // generera ett tal från 1 - 10

@@ -1,9 +1,6 @@
 package model;
 
-import model.levels.Level1;
-import model.levels.Level4;
-import model.levels.Level5;
-import model.levels.Level6;
+import model.levels.*;
 
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -16,13 +13,13 @@ public class GameManager {
     private Monster currentMonster = null;
 
     public GameManager() {
-        lvls.addFirst(new Level1("Level 1"));
+//        lvls.addFirst(new Level1("Level 1"));
 //        lvls.addFirst(new Level2("Level 2"));
 //        lvls.addFirst(new Level3("Level 3"));
-        lvls.addFirst(new Level4("Level 4"));
-        lvls.addFirst(new Level5("Level 5"));
-        lvls.addFirst(new Level6("Level 6"));
-//        lvls.addFirst(new Level7("Level 7"));
+//        lvls.addFirst(new Level4("Level 4"));
+//        lvls.addFirst(new Level5("Level 5"));
+//        lvls.addFirst(new Level6("Level 6"));
+        lvls.addFirst(new Level7("Level 7"));
 //        lvls.addFirst(new Level8("Level 8"));
 //        lvls.addFirst(new Level9("Level 9"));
 //        lvls.addFirst(new Level10("Level 10"));

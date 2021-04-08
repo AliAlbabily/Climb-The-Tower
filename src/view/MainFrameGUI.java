@@ -59,11 +59,11 @@ public class MainFrameGUI
 
     public void SouthPanel()
     {
-        pnlNorth = new JPanel();
-        pnlNorth.setPreferredSize(new Dimension(1000,200));
-        pnlNorth.setBackground(Color.BLACK);
-        pnlNorth.setVisible(true);
-        pnlNorth.setLayout(null);
+        pnlSouth = new JPanel();
+        pnlSouth.setPreferredSize(new Dimension(1000,200));
+        pnlSouth.setBackground(Color.BLACK);
+        pnlSouth.setVisible(true);
+        pnlSouth.setLayout(null);
 
         frame.add(pnlSouth, BorderLayout.SOUTH);
         frame.pack();

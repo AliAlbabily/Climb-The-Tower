@@ -2,6 +2,7 @@ package model;
 
 import model.levels.*;
 
+import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -13,14 +14,14 @@ public class GameManager {
     private Monster currentMonster = null;
 
     public GameManager() {
-//        lvls.addFirst(new Level1("Level 1"));
+        lvls.addFirst(new Level1("Level 1"));
 //        lvls.addFirst(new Level2("Level 2"));
 //        lvls.addFirst(new Level3("Level 3"));
-//        lvls.addFirst(new Level4("Level 4"));
-//        lvls.addFirst(new Level5("Level 5"));
-//        lvls.addFirst(new Level6("Level 6"));
-        lvls.addFirst(new Level7("Level 7"));
-//        lvls.addFirst(new Level8("Level 8"));
+        lvls.addFirst(new Level4("Level 4"));
+        lvls.addFirst(new Level5("Level 5"));
+        lvls.addFirst(new Level6("Level 6"));
+//        lvls.addFirst(new Level7("Level 7"));
+        lvls.addFirst(new Level8("Level 8"));
 //        lvls.addFirst(new Level9("Level 9"));
 //        lvls.addFirst(new Level10("Level 10"));
     }
@@ -36,8 +37,12 @@ public class GameManager {
             System.out.println("\n" + hero.getName() + "'s hp: " + hero.getHitPoints());
             System.out.println(currentMonster.getName() + "'s hp: " + currentMonster.getHitPoints() +"\n");
 
-            answer = currentLevel.generateMathQuestion();
+            try {
+                answer = currentLevel.generateMathQuestion();
 
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
             System.out.println("\nAttack the enemy by entering the right number: ");
             int yourAnswer = getInteger(-1000, 1000);
 

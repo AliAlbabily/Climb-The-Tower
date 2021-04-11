@@ -12,12 +12,10 @@ import java.util.Scanner;
 
 /**
  * @author Hanis Saley
- * version 1.0
+ * version 1.1
  */
 public class Level6 extends Level {
 
-    private HashMap<String, Integer> map = new HashMap<>();
-    private ArrayList<String> mathProblemsLevel6;
 
     public Level6(String lvlName) {
         super(lvlName);
@@ -26,28 +24,16 @@ public class Level6 extends Level {
 
     @Override
     public double generateMathQuestion() {
-        int a, b, c;
-        a = (int)(Math.random() * 10 +1);
-        b = (int)(Math.random() * 10 +1);
-        c = (int)(Math.random() * 10 +1);
+        int a, b, c, d;
+        a = (int) (Math.random() * 5 + 1);
+        c = (int) (Math.random() * 9 + 1);
+        d = (int) (Math.random() * 10 + 1);
+        b = a * c * d;
 
-        if(a * b > c){ // fixa så att man skriver in double?? eller läsa från fil?
-            System.out.println(a + " * " + b + "/" + c);
-            System.out.println(a*b/c);
-            System.out.println("round down the answer första if satsen");
-            return a*b/c;
-        }
-        else if(a * b < c){
-            System.out.println(c + " * " + b + "/" +a);
-            System.out.println(c*b/a);
-            System.out.println("round down the answer if else satsen");
-            return c*b/a;
-        }
-        else{
-            System.out.println(c + " * " + a + "/" +b);
-            System.out.println(c*a/b);
-            System.out.println("round down the answer else satsen");
-            return c*a/b;
-        }
+
+            System.out.println(a + " * " + b + "/" + c+ "= ?");
+            System.out.println(a * b / c);
+            return a * b / c;
+
     }
 }

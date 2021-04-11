@@ -32,17 +32,17 @@ public class Level9 extends Level {
 
         double answer = 0;
 
-        int placeholder = random.nextInt(100);
+        int rand = random.nextInt(100);
 
-        if (placeholder < 16) {
+        if (rand < 16) {
             answer = generateAdditionQuestion();
-        } else if (placeholder < 32) {
+        } else if (rand < 32) {
             answer = generateSubtractionQuestion();
-        } else if (placeholder < 48) {
+        } else if (rand < 48) {
             answer = generateMultiplicationQuestion();
-        } else if (placeholder < 64) {
+        } else if (rand < 64) {
             answer = generateDivisionQuestion();
-        } else if (placeholder < 80) {
+        } else if (rand < 80) {
             answer = generateSqrQuestion();
         } else {
             answer = generateEquationQuestion();
@@ -60,8 +60,12 @@ public class Level9 extends Level {
         double answer = 0;
 
         if(number1 % number2 == 0) {
-            System.out.println(number1 + " / " + number2 + " = ?");
-            answer = number1 / number2;
+            if (number2 != 1 && number1 != number2) {
+                System.out.println(number1 + " / " + number2 + " = ?");
+                answer = number1 / number2;
+            } else {
+                answer = generateDivisionQuestion();
+            }
         }
         else {
             answer = generateDivisionQuestion();
@@ -89,11 +93,14 @@ public class Level9 extends Level {
     }
 
 
-    // Genererar additionsfrågor där både talen är mellan 1 - 100.
+    // Genererar additionsfrågor där talen är mellan 1 - 100.
     private double generateAdditionQuestion() {
+        Random random = new Random();
         int a, b = 0;
         a = (int)(Math.random() * 100 + 1);
-        b = (int)(Math.random() * 100 + 1);
+        int low = 10;
+        int high = 100;
+        b = random.nextInt(high-low) + low;
         System.out.println(a + " + " + b + " = ?");
         return a + b;
     }
@@ -108,9 +115,12 @@ public class Level9 extends Level {
     }
     // Genererar multiplikationsfrågor där både talen är mellan 5 - 14.
     private double generateMultiplicationQuestion() {
+        Random random = new Random();
         int a, b;
-        a = (int)(Math.random() * 10 + 5);
-        b = (int)(Math.random() * 10 + 5);
+        int low = 10;
+        int high = 15;
+        a = (int)(Math.random() * 10 + 1);
+        b = random.nextInt(high - low) + low;
         System.out.println(a + " * " + b + " = ?");
         return a * b;
     }
@@ -123,4 +133,5 @@ public class Level9 extends Level {
         System.out.println("What's the square root of "+ squareroot + " ?");
         return a;
     }
+
 }

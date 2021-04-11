@@ -23,7 +23,7 @@ public class GameManager {
 //        lvls.addFirst(new Level7("Level 7"));
 //        lvls.addFirst(new Level8("Level 8"));
         lvls.addFirst(new Level9("Level 9"));
-//        lvls.addFirst(new Level10("Level 10"));
+        lvls.addFirst(new Level10("Level 10"));
     }
 
     public void startLevels() {

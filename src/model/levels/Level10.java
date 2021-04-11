@@ -53,24 +53,18 @@ public class Level10 extends Level {
 
     // Genererar division fråga med tre termer
     private static double generateDivisionQuestion() {
-        int number1 = (int)(Math.random() * 100 + 1);
-        int number2 = (int)(Math.random() * 100 + 2);
-        int number3 = (int)(Math.random() * 100 + 2);
+        int number1 = (int)(Math.random() * 10 + 1);
+        int placeholder = (int)(Math.random() * 10 + 1);
+        int number2 = number1*placeholder;
 
-        double answer = 0;
+        int answer = number2/number1;
+        int placeholder1 = (int)(Math.random() * 10 + 1);
 
-        if(number1 % number2 == 0) {
-            if ((number1 / number2) % number3 == 0) {
-                System.out.println("(" + number1 + " / " + number2 + ") " + "/ " + number3 +  " = ?");
-                answer = (number1 / number2) / number3;
-            } else {
-                answer = generateDivisionQuestion();
-            }
-        }
-        else {
-            answer = generateDivisionQuestion();
-        }
-        return answer;
+        int number3 = answer*placeholder1;
+
+
+        System.out.println(number3 + " / " + "(" + number2 + " / " + number1 + ")" + " = ?");
+        return number3/(number2/number1);
     }
     // Genererar additionsfråga med tre termer
     private static double generateAdditionQuestion() {
@@ -125,4 +119,10 @@ public class Level10 extends Level {
         return questionToAnswer.get(question);
     }
 
+    public static void main(String[] args) {
+        Random random = new Random();
+        for (int i = 0; i < 100; i++) {
+            System.out.println(generateDivisionQuestion());
+        }
+    }
 }

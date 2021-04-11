@@ -52,7 +52,7 @@ public class Level10 extends Level {
     }
 
     // Genererar division fråga med tre termer
-    private static double generateDivisionQuestion() {
+    private double generateDivisionQuestion() {
         int number1 = (int)(Math.random() * 10 + 1);
         int placeholder = (int)(Math.random() * 10 + 1);
         int number2 = number1*placeholder;
@@ -67,7 +67,7 @@ public class Level10 extends Level {
         return number3/(number2/number1);
     }
     // Genererar additionsfråga med tre termer
-    private static double generateAdditionQuestion() {
+    private double generateAdditionQuestion() {
         Random random = new Random();
         int a, b, c = 0;
         a = (int)(Math.random() * 100 + 1);
@@ -79,7 +79,7 @@ public class Level10 extends Level {
         return a + b + c;
     }
     // Genererar subtraktionsfråga med tre temer
-    private static double generateSubtractionQuestion() {
+    private double generateSubtractionQuestion() {
         int a, b, c;
         a = (int)(Math.random() * 100 + 1);
         b = (int)(Math.random() * 100 + 1);
@@ -89,7 +89,7 @@ public class Level10 extends Level {
     }
 
     // Genererar multiplikationsfråga med tre termer
-    private static double generateMultiplicationQuestion() {
+    private double generateMultiplicationQuestion() {
         Random random = new Random();
         int a, b, c;
         a = (int)(Math.random() * 10 + 1);
@@ -101,7 +101,7 @@ public class Level10 extends Level {
     }
 
     // Denna metod genererar ekvationsfrågor från en fil och är en svårare variant än frågorna som förekommer i level 8.
-    private static double generateEquationQuestion() throws FileNotFoundException {
+    private double generateEquationQuestion() throws FileNotFoundException {
         ArrayList<String> questions = MathUtilities.getMathProblems("files/MathProblemLevel10.txt");
         HashMap<String, Double> questionToAnswer = new HashMap<>();
         for (int i = 0; i < questions.size(); i++) {
@@ -119,10 +119,4 @@ public class Level10 extends Level {
         return questionToAnswer.get(question);
     }
 
-    public static void main(String[] args) {
-        Random random = new Random();
-        for (int i = 0; i < 100; i++) {
-            System.out.println(generateDivisionQuestion());
-        }
-    }
 }

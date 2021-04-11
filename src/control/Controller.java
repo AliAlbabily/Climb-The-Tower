@@ -1,15 +1,22 @@
 package control;
 
 import model.GameManager;
+import view.ButtonType;
+import view.GameGUI;
 import view.MainFrame;
+import view.StartMenuGUI;
+
+import javax.swing.*;
 
 public class Controller {
 
     private MainFrame view;
     private GameManager model;
+    private StartMenuGUI startMenuGUI;
+    private GameGUI gameGUI;
 
     public Controller() {
-
+        startMenuGUI = new StartMenuGUI(this);
         init(); // kan bytas mot startNewGame()
     }
 
@@ -37,6 +44,20 @@ public class Controller {
             default:
                 System.out.println("default");
                 break;
+        }
+    }
+
+    public void buttonPressed(ButtonType button)
+    {
+        switch (button)
+        {
+            case Play:
+                gameGUI = new GameGUI(this);
+                startMenuGUI.closeClientConnectionWindow();
+                break;
+
+            default:
+                JOptionPane.showMessageDialog(null,"Error");
         }
     }
 }

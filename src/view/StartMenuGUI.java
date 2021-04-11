@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class StartMenuGUI extends JPanel implements ActionListener
+public class StartMenuGUI extends JPanel
 {
     //en instans av controller
     private Controller controller;
@@ -23,7 +23,7 @@ public class StartMenuGUI extends JPanel implements ActionListener
    // private Image pic;
 //    private Image img = Toolkit.getDefaultToolkit().getImage("files/towers.png");
 
-    public StartMenuGUI()
+    public StartMenuGUI(Controller controller)
     {
         //this.controller = controller;
         createMenuBox();
@@ -66,6 +66,7 @@ public class StartMenuGUI extends JPanel implements ActionListener
 
         playBtn = new JButton("PLAY");
         playBtn.setBounds(75, 225, 150, 50);
+
         infoBtn = new JButton("?");
         infoBtn.setBounds(15, 2, 40,40);
         infoBtn.setFont(new Font("", Font.BOLD, 10));
@@ -88,17 +89,36 @@ public class StartMenuGUI extends JPanel implements ActionListener
         mainPanel.add(playBtn);
 
         frame.setVisible(true);
+        addListeners();
     }
 
-    public static void main(String[] args)
+    private void addListeners()
     {
-        StartMenuGUI startMenu = new StartMenuGUI();
+        ActionListener listener = new ButtonActionListeners();
+
+        playBtn.addActionListener(listener);
     }
 
+    class ButtonActionListeners implements ActionListener
+    {
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
+        public void actionPerformed(ActionEvent e)
+        {
+            if (e.getSource() == playBtn)
+            {
+                controller.buttonPressed(ButtonType.Play);
+            }
+        }
     }
+
+    public void closeClientConnectionWindow() {
+        frame.setVisible(false); // hide window
+        frame.dispose(); // Destroy the JFrame object, (close window)
+    }
+
+//    public static void main(String[] args)
+//    {
+//        StartMenuGUI startMenu = new StartMenuGUI();
+//    }
 }
 

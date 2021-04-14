@@ -21,7 +21,7 @@ public class GameGUI
 
     private JTextField answerTextField;
     private JButton submitButton;
-    
+
     private JLabel timer;
     private JLabel enemyHealth;
     private JLabel playerHealth;

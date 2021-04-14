@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.util.LinkedList;
 
 /**
- * @author
+ * @author Ali-A
  * @version 1.2
  */
 public class GameManager {

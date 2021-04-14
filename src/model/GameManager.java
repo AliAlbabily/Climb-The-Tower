@@ -9,7 +9,7 @@ import java.util.LinkedList;
  * @author Ali-A
  * @version 1.2
  */
-public class GameManager {
+public class GameManager implements TimerCallback{
 
     private Player player;
     private LinkedList<Level> lvls = new LinkedList<>(); // ska fungera enligt (First In First Out)
@@ -24,7 +24,7 @@ public class GameManager {
         // fill levels-list with new levels
         lvls.addFirst(new Level1("Level 1", this));
         lvls.addFirst(new Level2("Level 2", this));
- //       lvls.addFirst(new Level3("Level 3", this));
+        //       lvls.addFirst(new Level3("Level 3", this));
         lvls.addFirst(new Level4("Level 4", this));
         lvls.addFirst(new Level5("Level 5", this));
         lvls.addFirst(new Level6("Level 6", this));
@@ -59,10 +59,11 @@ public class GameManager {
         return currentLevel.generateMathQuestion();
     }
 
+
     public boolean handleUserAnswer(double userAnswer, double currentCorrectAnswer) {
         int damage = 0;
         boolean ifCharacterIsDead = false;
-      //  boolean gameHasEnded = false;
+        //  boolean gameHasEnded = false;
 
         boolean userAnswerIsCorrect = checkUserAnswer(currentCorrectAnswer, userAnswer);
 
@@ -121,5 +122,16 @@ public class GameManager {
 
     public void setCurrentMathQuestion(String currentMathQuestion) {
         this.currentMathQuestion = currentMathQuestion;
+    }
+
+    @Override
+    public void timesUp() {
+        player.takeDamage(10);
+        System.out.println("Times up! You need to be faster than that!");
+        try {
+            getNewMathQuestion();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

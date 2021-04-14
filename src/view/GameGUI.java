@@ -22,7 +22,7 @@ public class GameGUI
     private JTextField answerTextField;
     private JButton submitButton;
 
-    private JLabel timer;
+    private static JLabel timer;
     private JLabel enemyHealth;
     private JLabel playerHealth;
     private JLabel lblQuestion;
@@ -187,6 +187,10 @@ public class GameGUI
 
     public void updateMonsterNameGUI(String currentMonsterName) {
         enemyName.setText(currentMonsterName);
+    }
+
+    public JLabel getTimer() {
+        return timer;
     }
 }
 

@@ -1,7 +1,9 @@
 package control;
 
 import model.GameManager;
+import model.GameTimer;
 import model.Player;
+import model.TimerCallback;
 import view.ButtonType;
 import view.GameGUI;
 import view.StartMenuGUI;
@@ -13,11 +15,12 @@ import java.io.FileNotFoundException;
  * @author
  * @version 1.2
  */
-public class Controller {
+public class Controller implements TimerCallback {
 
     private GameManager model;
     private StartMenuGUI startMenuGUI;
     private GameGUI gameGUI;
+    private GameTimer timer;
 
     private double currentCorrectAnswer = 0;
     private boolean gameHasEnded = false;
@@ -55,6 +58,10 @@ public class Controller {
         // generate a math question
         try {
             currentCorrectAnswer = model.getNewMathQuestion();
+            timer = new GameTimer();
+            timer.addListener(model);
+            timer.addListener(this);
+            setTimer(model.getCurrentLevel().getLvlName());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -73,6 +80,9 @@ public class Controller {
                 String playerName = startMenuGUI.getPlayerName();
                 Player player = new Player(playerName, 100,0);
                 model = new GameManager(player);
+                timer = new GameTimer();
+                timer.addListener(model);
+                timer.addListener(this);
 
                 model.startAtFirstLevel();
                 gameGUI = new GameGUI(this); // start the gameplay with a GUI
@@ -83,6 +93,7 @@ public class Controller {
             case SubmitAnswer:
                 double userAnswer = gameGUI.getUserAnswer();
                 gameHasEnded = model.handleUserAnswer(userAnswer, currentCorrectAnswer);
+                timer.stopTimer();
 
                 if(gameHasEnded) {
                     System.out.println("\nGame Over!");
@@ -95,6 +106,37 @@ public class Controller {
             default:
                 JOptionPane.showMessageDialog(null,"Error");
         }
+    }
+
+    private void setTimer(String lvl) {
+        timer.setTimeLeftLbl(gameGUI.getTimer());
+        switch (lvl) {
+            case "Level 1":
+            case "Level 2":
+            case "Level 3":
+            case "Level 4":
+                timer.setSeconds(10);
+                break;
+            case "Level 5":
+            case "Level 6":
+            case "Level 7":
+                timer.setSeconds(20);
+                break;
+            default:
+                timer.setSeconds(60);
+
+        }
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                timer.start();
+            }
+        });
+    }
+
+    @Override
+    public void timesUp() {
+        updateGamePlayInformation();
     }
 
 //    private void checkIfGameHasEnded(){

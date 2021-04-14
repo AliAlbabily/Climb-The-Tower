@@ -11,6 +11,21 @@ public class GameGUI
     private JFrame frame;
     private JPanel pnlNorth;
     private JPanel pnlSouth;
+    private JLabel lblQuestion;
+    private JTextField answerTextField;
+
+    private JLabel timeLeft;
+    private JLabel timer;
+    private JLabel lblenemy;
+    private JLabel lblplayer;
+    private JLabel enemyHealth;
+    private JLabel playerHealth;
+    private JLabel lblLevel;
+    private JLabel lblEnemyName;
+    private JLabel enemyName;
+
+
+
     Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 24);
 
 
@@ -47,12 +62,12 @@ public class GameGUI
         pnlNorth.setVisible(true);
         pnlNorth.setLayout(null);
 
-        JLabel lblQuestion = new JLabel("35 + 11 = ?");
+        lblQuestion = new JLabel("35 + 11 = ?");
         lblQuestion.setForeground(Color.white);
         lblQuestion.setFont(new Font(Font.SANS_SERIF,Font.PLAIN, 30));
         lblQuestion.setBounds(100, 125, 200, 50);
 
-        JTextField answerTextField = new JTextField();
+        answerTextField = new JTextField();
         answerTextField.setBounds(75,175,200, 25);
 
         pnlNorth.add(lblQuestion);
@@ -73,47 +88,47 @@ public class GameGUI
         //Labels för tiden som tickar neråt
         //TODO - timern bytar färg enligt vad tiden ligger på
         //TODO - till exempel ifall tiden ligger mellan 6-10 så är det grönt, 4-5 orange och 0-3 rött.
-        JLabel timeLeft = new JLabel("Time left:");
+        timeLeft = new JLabel("Time left:");
         timeLeft.setForeground(Color.white);
         timeLeft.setFont(font);
         timeLeft.setBounds(25, 50, 100, 50);
 
-        JLabel timer = new JLabel("10");
+        timer = new JLabel("10");
         timer.setForeground(Color.green);
         timer.setFont(font);
         timer.setBounds(130, 50, 50, 50);
 
-        JLabel lblenemy = new JLabel("Enemy:");
+        lblenemy = new JLabel("Enemy:");
         lblenemy.setForeground(Color.white);
         lblenemy.setFont(font);
         lblenemy.setBounds(750,50, 100, 50);
 
-        JLabel lblplayer = new JLabel("You:");
+        lblplayer = new JLabel("You:");
         lblplayer.setForeground(Color.white);
         lblplayer.setFont(font);
         lblplayer.setBounds(750,90, 100, 50);
 
-        JLabel enemyHealth = new JLabel("100/100");
+        enemyHealth = new JLabel("100/100");
         enemyHealth.setForeground(Color.white);
         enemyHealth.setFont(font);
         enemyHealth.setBounds(850,50, 100, 50);
 
-        JLabel playerHealth = new JLabel("100/100");
+        playerHealth = new JLabel("100/100");
         playerHealth.setForeground(Color.white);
         playerHealth.setFont(font);
         playerHealth.setBounds(850,90, 100, 50);
 
-        JLabel lblLevel = new JLabel("Level 1");
+        lblLevel = new JLabel("Level 1");
         lblLevel.setForeground(Color.white);
         lblLevel.setFont(font);
         lblLevel.setBounds(433,85, 100, 50);
 
-        JLabel lblEnemyName = new JLabel("Enemy:");
+        lblEnemyName = new JLabel("Enemy:");
         lblEnemyName.setForeground(Color.white);
         lblEnemyName.setFont(font);
         lblEnemyName.setBounds(380,120, 100, 50);
 
-        JLabel enemyName = new JLabel("Chimera");
+        enemyName = new JLabel("Chimera");
         enemyName.setForeground(Color.white);
         enemyName.setFont(font);
         enemyName.setBounds(470,120, 100, 50);

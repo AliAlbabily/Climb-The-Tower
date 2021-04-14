@@ -53,7 +53,7 @@ public class StartMenuGUI extends JPanel
         Border blackline = BorderFactory.createLineBorder(Color.black);
 
         JPanel mainPanel = new JPanel();
-        mainPanel.setPreferredSize(new Dimension(300, 350));
+        mainPanel.setPreferredSize(new Dimension(300, 400));
         mainPanel.setLayout(null);
 
 

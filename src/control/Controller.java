@@ -71,7 +71,7 @@ public class Controller {
         switch (button) {
             case Play:
                 String playerName = startMenuGUI.getPlayerName();
-                Player player = new Player(playerName, 100);
+                Player player = new Player(playerName, 100,0);
                 model = new GameManager(player);
 
                 model.startAtFirstLevel();
@@ -96,4 +96,9 @@ public class Controller {
                 JOptionPane.showMessageDialog(null,"Error");
         }
     }
+
+//    private void checkIfGameHasEnded(){
+//        boolean gameHasEnded =
+//    }
+
 }

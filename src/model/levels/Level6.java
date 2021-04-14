@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 /**
  * @author Hanis Saley
- * version 1.1
+ * @version 1.2
  */
 public class Level6 extends Level {
 
@@ -32,8 +32,8 @@ public class Level6 extends Level {
         b = a * c * d;
 
 
-            System.out.println(a + " * " + b + "/" + c+ "= ?");
-            System.out.println(a * b / c);
+            String mathQuestionStr = a + " * " + b + "/" + c+ "= ?";
+            getGameManager().setCurrentMathQuestion(mathQuestionStr); // save math question in GameManager
             return a * b / c;
 
     }

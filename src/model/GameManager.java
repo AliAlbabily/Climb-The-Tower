@@ -16,6 +16,7 @@ public class GameManager {
     private Level currentLevel = null;
     private Monster currentMonster = null;
     private String currentMathQuestion;
+    private boolean gameHasEnded = false;
 
     public GameManager(Player player) {
         this.player = player;
@@ -23,10 +24,10 @@ public class GameManager {
         // fill levels-list with new levels
         lvls.addFirst(new Level1("Level 1", this));
         lvls.addFirst(new Level2("Level 2", this));
-//        lvls.addFirst(new Level3("Level 3", this));
-//        lvls.addFirst(new Level4("Level 4", this));
-//        lvls.addFirst(new Level5("Level 5", this));
-//        lvls.addFirst(new Level6("Level 6", this));
+ //       lvls.addFirst(new Level3("Level 3", this));
+        lvls.addFirst(new Level4("Level 4", this));
+        lvls.addFirst(new Level5("Level 5", this));
+        lvls.addFirst(new Level6("Level 6", this));
 //        lvls.addFirst(new Level7("Level 7", this));
 //        lvls.addFirst(new Level8("Level 8", this));
 //        lvls.addFirst(new Level9("Level 9", this));
@@ -61,7 +62,7 @@ public class GameManager {
     public boolean handleUserAnswer(double userAnswer, double currentCorrectAnswer) {
         int damage = 0;
         boolean ifCharacterIsDead = false;
-        boolean gameHasEnded = false;
+      //  boolean gameHasEnded = false;
 
         boolean userAnswerIsCorrect = checkUserAnswer(currentCorrectAnswer, userAnswer);
 
@@ -95,6 +96,10 @@ public class GameManager {
             }
         }
 
+        return gameHasEnded;
+    }
+
+    public boolean isGameHasEnded(){
         return gameHasEnded;
     }
 

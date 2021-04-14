@@ -2,7 +2,11 @@ package model;
 
 public class Player extends Character {
 
-    public Player(String name, int hitPoints) {
+    private int points;
+
+    public Player(String name, int hitPoints, int points) {
         super(name, hitPoints);
     }
+
+
 }

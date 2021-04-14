@@ -9,7 +9,7 @@ import model.Monster;
 
 /**
  * @author Hanis Saley
- * version 1.2
+ * @version 1.3
  */
 
 public class Level5 extends Level {
@@ -28,8 +28,14 @@ public class Level5 extends Level {
         a = (int)(Math.random() * 10 + 1);
         c = (int)(Math.random() * 10 + 1);
         b = a * c;
-        System.out.println(b+"/"+a + "= ?");
-        return a/b ;
+
+
+        String mathQuestionStr = b+"/"+a + "= ?";
+        getGameManager().setCurrentMathQuestion(mathQuestionStr); // save math question in GameManager
+
+        return b/a ;
+
+
     }
 
 }

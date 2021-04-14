@@ -21,14 +21,12 @@ public class GameGUI
 
     private JTextField answerTextField;
     private JButton submitButton;
-
+    
+    private JLabel timer;
     private JLabel enemyHealth;
     private JLabel playerHealth;
-
     private JLabel lblQuestion;
-
     private JLabel lblLevel;
-
     private JLabel enemyName;
 
 
@@ -107,7 +105,7 @@ public class GameGUI
         timeLeft.setFont(font);
         timeLeft.setBounds(25, 50, 100, 50);
 
-        JLabel timer = new JLabel("---");
+        timer = new JLabel("---");
         timer.setForeground(Color.green);
         timer.setFont(font);
         timer.setBounds(130, 50, 50, 50);

@@ -86,7 +86,7 @@ public class Controller {
 
                 if(gameHasEnded) {
                     System.out.println("\nGame Over!");
-                    // FIXME : ska ändras mot "öppna highscore-list"
+                    // FIXME : ska ändras mot "öppna highscore-view"
                     System.exit(0); // terminate program
                 }
 

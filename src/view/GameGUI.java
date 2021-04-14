@@ -168,6 +168,7 @@ public class GameGUI
     // parse value from string to double and return it
     public double getUserAnswer() {
         String answerStr = answerTextField.getText();
+        answerTextField.setText("");
         return Double.parseDouble(answerStr);
     }
 

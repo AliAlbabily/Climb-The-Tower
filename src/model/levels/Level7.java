@@ -1,11 +1,12 @@
 package model.levels;
 
+import model.GameManager;
 import model.Level;
 import model.Monster;
 
 public class Level7 extends Level {
-    public Level7(String lvlName) {
-        super(lvlName);
+    public Level7(String lvlName, GameManager gameManager) {
+        super(lvlName, gameManager);
         setMonster(new Monster("Berry The Cherry", 140));
     }
 

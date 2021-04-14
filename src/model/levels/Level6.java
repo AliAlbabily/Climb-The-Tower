@@ -1,5 +1,6 @@
 package model.levels;
 
+import model.GameManager;
 import model.Level;
 import model.Monster;
 
@@ -17,8 +18,8 @@ import java.util.Scanner;
 public class Level6 extends Level {
 
 
-    public Level6(String lvlName) {
-        super(lvlName);
+    public Level6(String lvlName, GameManager gameManager) {
+        super(lvlName, gameManager);
         setMonster(new Monster("Vorkath", 160));
     }
 

@@ -5,7 +5,13 @@ import control.Controller;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+/**
+ * @author
+ * @version 1.1
+ */
 public class GameGUI
 {
     private JFrame frame;
@@ -13,11 +19,30 @@ public class GameGUI
     private JPanel pnlSouth;
     Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 24);
 
+    private JTextField answerTextField;
+    private JButton submitButton;
+
+    private JLabel enemyHealth;
+    private JLabel playerHealth;
+
+    private JLabel lblQuestion;
+
+    private JLabel lblLevel;
+
+    private JLabel enemyName;
 
 
     public GameGUI(Controller controller)
     {
         InitializePanels();
+
+        // add action listener to submit button
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.buttonPressed(ButtonType.SubmitAnswer);
+            }
+        });
     }
 
 
@@ -47,16 +72,20 @@ public class GameGUI
         pnlNorth.setVisible(true);
         pnlNorth.setLayout(null);
 
-        JLabel lblQuestion = new JLabel("35 + 11 = ?");
+        lblQuestion = new JLabel();
         lblQuestion.setForeground(Color.white);
         lblQuestion.setFont(new Font(Font.SANS_SERIF,Font.PLAIN, 30));
         lblQuestion.setBounds(100, 125, 200, 50);
 
-        JTextField answerTextField = new JTextField();
+        answerTextField = new JTextField();
         answerTextField.setBounds(75,175,200, 25);
+
+        submitButton = new JButton("Submit Answer");
+        submitButton.setBounds(75,225,130, 25);
 
         pnlNorth.add(lblQuestion);
         pnlNorth.add(answerTextField);
+        pnlNorth.add(submitButton);
 
         frame.add(pnlNorth, BorderLayout.NORTH);
         frame.pack();
@@ -78,7 +107,7 @@ public class GameGUI
         timeLeft.setFont(font);
         timeLeft.setBounds(25, 50, 100, 50);
 
-        JLabel timer = new JLabel("10");
+        JLabel timer = new JLabel("---");
         timer.setForeground(Color.green);
         timer.setFont(font);
         timer.setBounds(130, 50, 50, 50);
@@ -93,17 +122,17 @@ public class GameGUI
         lblplayer.setFont(font);
         lblplayer.setBounds(750,90, 100, 50);
 
-        JLabel enemyHealth = new JLabel("100/100");
+        enemyHealth = new JLabel();
         enemyHealth.setForeground(Color.white);
         enemyHealth.setFont(font);
         enemyHealth.setBounds(850,50, 100, 50);
 
-        JLabel playerHealth = new JLabel("100/100");
+        playerHealth = new JLabel();
         playerHealth.setForeground(Color.white);
         playerHealth.setFont(font);
         playerHealth.setBounds(850,90, 100, 50);
 
-        JLabel lblLevel = new JLabel("Level 1");
+        lblLevel = new JLabel();
         lblLevel.setForeground(Color.white);
         lblLevel.setFont(font);
         lblLevel.setBounds(433,85, 100, 50);
@@ -113,7 +142,7 @@ public class GameGUI
         lblEnemyName.setFont(font);
         lblEnemyName.setBounds(380,120, 100, 50);
 
-        JLabel enemyName = new JLabel("Chimera");
+        enemyName = new JLabel();
         enemyName.setForeground(Color.white);
         enemyName.setFont(font);
         enemyName.setBounds(470,120, 100, 50);
@@ -136,9 +165,29 @@ public class GameGUI
         frame.pack();
     }
 
-//    public static void main(String[] args)
-//    {
-//        GameGUI mainFrameGUI = new GameGUI(this);
-//    }
+    // parse value from string to double and return it
+    public double getUserAnswer() {
+        String answerStr = answerTextField.getText();
+        return Double.parseDouble(answerStr);
+    }
+
+    public void updateCharactersHPGUI(int playerHP, int enemyHP) {
+        String playerHPStr = Integer.toString(playerHP);
+        String enemyHPStr = Integer.toString(enemyHP);
+        playerHealth.setText(playerHPStr);
+        enemyHealth.setText(enemyHPStr);
+    }
+
+    public void updateMathQuestionGUI(String mathQuestionStr) {
+        lblQuestion.setText(mathQuestionStr);
+    }
+
+    public void updateLevelNameGUI(String levelName) {
+        lblLevel.setText(levelName);
+    }
+
+    public void updateMonsterNameGUI(String currentMonsterName) {
+        enemyName.setText(currentMonsterName);
+    }
 }
 

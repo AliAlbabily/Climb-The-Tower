@@ -1,5 +1,6 @@
 package model.levels;
 
+import model.GameManager;
 import model.Level;
 import model.Monster;
 
@@ -19,8 +20,8 @@ public class Level8 extends Level {
     private ArrayList<String> mathProblems = new ArrayList<>();
     private final static String file = "files/MathProblemLevel8.txt";
 
-    public Level8(String lvlName) {
-        super(lvlName);
+    public Level8(String lvlName, GameManager gameManager) {
+        super(lvlName, gameManager);
         setMonster(new Monster("Nosferatu Zodd", 200));
     }
 

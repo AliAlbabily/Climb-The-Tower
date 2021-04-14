@@ -8,6 +8,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @author
+ * @version 1.1
+ */
 public class StartMenuGUI extends JPanel
 {
     //en instans av controller
@@ -25,7 +29,8 @@ public class StartMenuGUI extends JPanel
 
     public StartMenuGUI(Controller controller)
     {
-        //this.controller = controller;
+        this.controller = controller;
+
         createMenuBox();
         //ImageIcon obj = new ImageIcon("files/towers.png");
         //pic = obj.getImage();
@@ -111,14 +116,15 @@ public class StartMenuGUI extends JPanel
         }
     }
 
-    public void closeClientConnectionWindow() {
+    public void closeStartMenuGUIWindow() {
         frame.setVisible(false); // hide window
         frame.dispose(); // Destroy the JFrame object, (close window)
     }
 
-//    public static void main(String[] args)
-//    {
-//        StartMenuGUI startMenu = new StartMenuGUI();
-//    }
+    // get player name from user input (userTextField)
+    public String getPlayerName() {
+        String playerName = userTextField.getText();
+        return playerName;
+    }
 }
 

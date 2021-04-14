@@ -1,5 +1,6 @@
 package model.levels;
 
+import model.GameManager;
 import model.Level;
 import model.Monster;
 import model.MathUtilities;
@@ -17,8 +18,8 @@ import java.util.Random;
  */
 public class Level9 extends Level {
 
-    public Level9(String lvlName) {
-        super(lvlName);
+    public Level9(String lvlName, GameManager gameManager) {
+        super(lvlName, gameManager);
         setMonster(new Monster("Chrollo", 140));
     }
 

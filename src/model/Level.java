@@ -5,16 +5,18 @@ import java.io.FileNotFoundException;
 
 /**
  * @author Ali A
- * @version 1.0
+ * @version 1.1
  */
 public abstract class Level {
 
     private ImageIcon image;
     private String lvlName;
     private Monster monster;
+    private GameManager gameManager;
 
-    public Level(String lvlName) {
+    public Level(String lvlName, GameManager gameManager) {
         this.lvlName = lvlName;
+        this.gameManager = gameManager;
     }
 
     public abstract double generateMathQuestion() throws FileNotFoundException;
@@ -34,5 +36,9 @@ public abstract class Level {
 
     public String getLvlName() {
         return lvlName;
+    }
+
+    public GameManager getGameManager() {
+        return gameManager;
     }
 }

@@ -1,5 +1,6 @@
 package model.levels;
 
+import model.GameManager;
 import model.Level;
 import model.Monster;
 
@@ -14,8 +15,8 @@ import model.Monster;
 public class Level5 extends Level {
 
 
-    public Level5(String lvlName) {
-        super(lvlName);
+    public Level5(String lvlName, GameManager gameManager) {
+        super(lvlName, gameManager);
         setMonster(new Monster("Valyei",140));
     }
 

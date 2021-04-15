@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * @author Hanis and Ali
+ * @version 1.0
+ */
 public class Player extends Character {
 
     private int points;

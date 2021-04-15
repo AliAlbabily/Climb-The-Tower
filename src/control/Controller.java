@@ -9,8 +9,8 @@ import javax.swing.*;
 import java.io.FileNotFoundException;
 
 /**
- * @author
- * @version 1.2
+ * @author Ali, Hanis and Ardian
+ * @version 1.3
  */
 public class Controller implements TimerCallback {
 
@@ -170,9 +170,6 @@ public class Controller implements TimerCallback {
     }
 
     private void moveElementsToRight(int index, Player[] listOfObjects){
-//        for(int i = index+1; i< listOfObjects.length; i++){
-//            listOfObjects[i-1] = listOfObjects[i];
-//        }
         for(int i = listOfObjects.length-2; i >=index; i--){
             listOfObjects[i+1] = listOfObjects[i];
         }

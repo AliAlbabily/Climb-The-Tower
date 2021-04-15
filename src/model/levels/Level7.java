@@ -4,6 +4,11 @@ import model.GameManager;
 import model.Level;
 import model.Monster;
 
+/**
+ * @author Mads Nörklit Johansen
+ * @version 1.2
+ */
+
 public class Level7 extends Level {
     public Level7(String lvlName, GameManager gameManager) {
         super(lvlName, gameManager);

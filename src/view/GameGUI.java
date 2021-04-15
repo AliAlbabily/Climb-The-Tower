@@ -28,7 +28,7 @@ public class GameGUI
     private JLabel lblQuestion;
     private JLabel lblLevel;
     private JLabel enemyName;
-
+    private JLabel lblplayer;
 
     public GameGUI(Controller controller)
     {
@@ -42,7 +42,6 @@ public class GameGUI
             }
         });
     }
-
 
     public void InitializePanels()
     {
@@ -115,20 +114,20 @@ public class GameGUI
         lblenemy.setFont(font);
         lblenemy.setBounds(750,50, 100, 50);
 
-        JLabel lblplayer = new JLabel("You:");
+        lblplayer = new JLabel(); //Ändra detta till You: ifall du vill att det ska visas på GUI istället.
         lblplayer.setForeground(Color.white);
         lblplayer.setFont(font);
-        lblplayer.setBounds(750,90, 100, 50);
+        lblplayer.setBounds(750,90, 150, 50); //
 
         enemyHealth = new JLabel();
         enemyHealth.setForeground(Color.white);
         enemyHealth.setFont(font);
-        enemyHealth.setBounds(850,50, 100, 50);
+        enemyHealth.setBounds(860,50, 100, 50);
 
         playerHealth = new JLabel();
         playerHealth.setForeground(Color.white);
         playerHealth.setFont(font);
-        playerHealth.setBounds(850,90, 100, 50);
+        playerHealth.setBounds(860,90, 100, 50);
 
         lblLevel = new JLabel();
         lblLevel.setForeground(Color.white);
@@ -144,10 +143,6 @@ public class GameGUI
         enemyName.setForeground(Color.white);
         enemyName.setFont(font);
         enemyName.setBounds(470,120, 100, 50);
-
-
-
-
 
         pnlSouth.add(timeLeft);
         pnlSouth.add(timer);
@@ -191,6 +186,11 @@ public class GameGUI
 
     public JLabel getTimer() {
         return timer;
+    }
+
+    public void setName(String name)
+    {
+        lblplayer.setText(name+": ");
     }
 }
 

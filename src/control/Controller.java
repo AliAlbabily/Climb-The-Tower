@@ -33,8 +33,10 @@ public class Controller implements TimerCallback {
 
     // update gameplay info on both GUI & console
     public void updateGamePlayInformation() {
-        String  currentLevelName;
+        String currentLevelName;
         String currentMonsterName;
+        String currentPlayerName;
+
         int playerHP = model.getPlayer().getHitPoints();
         int monsterHP = model.getCurrentMonster().getHitPoints();
         String mathQuestionStr;
@@ -46,6 +48,10 @@ public class Controller implements TimerCallback {
         // update monster name on GUI
         currentMonsterName = model.getCurrentMonster().getName();
         gameGUI.updateMonsterNameGUI(currentMonsterName);
+
+        //update player name on GUI
+        currentPlayerName = model.getPlayer().getName();
+        gameGUI.setName(currentPlayerName);
 
         // update characters HP on console
         System.out.println("\n" + model.getPlayer().getName() + "'s hp: " + playerHP);

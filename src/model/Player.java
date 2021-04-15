@@ -17,6 +17,10 @@ public class Player extends Character {
         points +=10;
     }
 
+    public void increasePoints(int bonuspoints){
+        points += bonuspoints;                      //Bonuspoäng som läggs till för x antal korrekta svar i rad.
+    }
+
     public int getPoints() {
         return points;
     }

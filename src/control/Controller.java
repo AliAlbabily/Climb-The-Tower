@@ -97,7 +97,7 @@ public class Controller implements TimerCallback {
                     System.out.println("\nGame Over!");
 
                     Player[] tempList = playersList.getHighScoreList();
-                    int points = model.getPlayer().getPoints();
+                    int points = model.getPoints();
                     System.out.println("players points "+ model.getPlayer().getName()+model.getPlayer().getPoints());
                     int worstResult = tempList[9].getPoints();
 

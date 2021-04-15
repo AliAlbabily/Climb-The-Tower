@@ -173,14 +173,10 @@ public class Controller implements TimerCallback {
 //        for(int i = index+1; i< listOfObjects.length; i++){
 //            listOfObjects[i-1] = listOfObjects[i];
 //        }
-        for(int i = listOfObjects.length +1; i <=index; i++){
+        for(int i = listOfObjects.length-2; i >=index; i--){
             listOfObjects[i+1] = listOfObjects[i];
         }
     }
-
-
-
-
 
     @Override
     public void timesUp() {

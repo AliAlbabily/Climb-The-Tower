@@ -42,17 +42,7 @@ public class PlayersList {
 
         return ItemToString;
     }
-//    public String[] convertObjListToStringList(Player[] listOfObjects){
-//        String[] itemToString = new String[10];
-//
-//        for(int i = 0; i < listOfObjects.length; i++){
-//            if(listOfObjects[i] != null){
-//                itemToString[i] = listOfObjects[i].toString();
-//            }else
-//                break;
-//        }
-//        return itemToString;
-//    }
+
 
     public void printStringList(String[] stringList){
         for (String s : stringList) {
@@ -61,5 +51,4 @@ public class PlayersList {
         System.out.println();
     }
 
-    // här ska vi spara Highscore relaterade data
-}
+ }

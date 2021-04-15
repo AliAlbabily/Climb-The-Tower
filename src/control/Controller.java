@@ -1,9 +1,6 @@
 package control;
 
-import model.GameManager;
-import model.GameTimer;
-import model.Player;
-import model.TimerCallback;
+import model.*;
 import view.ButtonType;
 import view.GameGUI;
 import view.StartMenuGUI;
@@ -12,8 +9,8 @@ import javax.swing.*;
 import java.io.FileNotFoundException;
 
 /**
- * @author
- * @version 1.2
+ * @author Ali, Hanis and Ardian
+ * @version 1.3
  */
 public class Controller implements TimerCallback {
 
@@ -21,6 +18,7 @@ public class Controller implements TimerCallback {
     private StartMenuGUI startMenuGUI;
     private GameGUI gameGUI;
     private GameTimer timer;
+    private final PlayersList playersList = new PlayersList();
 
     private double currentCorrectAnswer = 0;
     private boolean gameHasEnded = false;
@@ -97,6 +95,15 @@ public class Controller implements TimerCallback {
 
                 if(gameHasEnded) {
                     System.out.println("\nGame Over!");
+
+                    Player[] tempList = playersList.getHighScoreList();
+                    int points = model.getPoints();
+                    int worstResult = tempList[9].getPoints();
+
+                    tempList = checkIfPointsQualified(tempList, points, worstResult);
+                    playersList.setHighScoreList(tempList);
+                    updateHighscoreListGUI(tempList);
+
                     // FIXME : ska ändras mot "öppna highscore-view"
                     System.exit(0); // terminate program
                 }
@@ -107,7 +114,7 @@ public class Controller implements TimerCallback {
                 JOptionPane.showMessageDialog(null,"Error");
         }
     }
-
+    
     // Initializes the timer by setting the contents and starting the countdown thread.
     private void setTimer(String lvl) {
         timer.setTimeLeftLbl(gameGUI.getTimer());
@@ -135,14 +142,42 @@ public class Controller implements TimerCallback {
         });
     }
 
+    public void updateHighscoreListGUI(Player [] highscoreList){
+        String [] list = playersList.convertObjListToStringList(highscoreList);
+        playersList.printStringList(list);
+    }
+
+
+    public Player[] checkIfPointsQualified(Player[] listOfPlayers, int points, int worstResult){
+
+        if(points > worstResult){
+            for(int i = 0; i < listOfPlayers.length; i++){
+                int playerPoints = listOfPlayers[i].getPoints();
+
+                if(points > playerPoints){
+                    moveElementsToRight(i,listOfPlayers);
+
+                    String playerName = startMenuGUI.getPlayerName();
+                    listOfPlayers[i] = new Player(playerName, 100, points);
+                    System.out.println();
+                    break;
+                }
+            }
+        }
+        return listOfPlayers;
+    }
+
+    private void moveElementsToRight(int index, Player[] listOfObjects){
+        for(int i = listOfObjects.length-2; i >=index; i--){
+            listOfObjects[i+1] = listOfObjects[i];
+        }
+    }
+
     @Override
     // Callback function that is invoked when the countdown timer is finished.
     public void timesUp() {
         updateGamePlayInformation();
     }
 
-//    private void checkIfGameHasEnded(){
-//        boolean gameHasEnded =
-//    }
 
 }

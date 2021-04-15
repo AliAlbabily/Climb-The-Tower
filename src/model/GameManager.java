@@ -24,7 +24,7 @@ public class GameManager implements TimerCallback{
         // fill levels-list with new levels
         lvls.addFirst(new Level1("Level 1", this));
         lvls.addFirst(new Level2("Level 2", this));
-        //       lvls.addFirst(new Level3("Level 3", this));
+ //       lvls.addFirst(new Level3("Level 3", this));
         lvls.addFirst(new Level4("Level 4", this));
         lvls.addFirst(new Level5("Level 5", this));
         lvls.addFirst(new Level6("Level 6", this));
@@ -63,12 +63,13 @@ public class GameManager implements TimerCallback{
     public boolean handleUserAnswer(double userAnswer, double currentCorrectAnswer) {
         int damage = 0;
         boolean ifCharacterIsDead = false;
-        //  boolean gameHasEnded = false;
 
         boolean userAnswerIsCorrect = checkUserAnswer(currentCorrectAnswer, userAnswer);
 
         if(userAnswerIsCorrect) {
             damage = 30;
+            player.increasePoints();
+            System.out.println("points"+player.getPoints());
             currentMonster.takeDamage(damage);
             System.out.println("You dealt " + damage +" damage to the monster!");
             ifCharacterIsDead = currentMonster.checkIfAlive();
@@ -100,9 +101,6 @@ public class GameManager implements TimerCallback{
         return gameHasEnded;
     }
 
-    public boolean isGameHasEnded(){
-        return gameHasEnded;
-    }
 
     public Player getPlayer() {
         return player;
@@ -122,6 +120,10 @@ public class GameManager implements TimerCallback{
 
     public void setCurrentMathQuestion(String currentMathQuestion) {
         this.currentMathQuestion = currentMathQuestion;
+    }
+
+    public int getPoints(){
+        return player.getPoints();
     }
 
     @Override

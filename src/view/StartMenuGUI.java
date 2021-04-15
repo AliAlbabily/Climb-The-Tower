@@ -23,6 +23,8 @@ public class StartMenuGUI extends JPanel
     private JPanel panel = new JPanel();
     private JButton playBtn = new JButton();
     private JButton infoBtn = new JButton();
+    private String  playerName;
+
 
    // private Image pic;
 //    private Image img = Toolkit.getDefaultToolkit().getImage("files/towers.png");
@@ -123,7 +125,7 @@ public class StartMenuGUI extends JPanel
 
     // get player name from user input (userTextField)
     public String getPlayerName() {
-        String playerName = userTextField.getText();
+        playerName = userTextField.getText();
         return playerName;
     }
 }

@@ -6,8 +6,8 @@ import java.io.FileNotFoundException;
 import java.util.LinkedList;
 
 /**
- * @author Ali-A
- * @version 1.2
+ * @author Ali-A, Ardian Glamniki
+ * @version 1.3
  */
 public class GameManager implements TimerCallback{
 
@@ -125,6 +125,10 @@ public class GameManager implements TimerCallback{
     }
 
     @Override
+    /*
+     * This callback function is invoked when the countdown timer is finished,
+     * which punishes the player by reducing hitpoints.
+     */
     public void timesUp() {
         player.takeDamage(10);
         System.out.println("Times up! You need to be faster than that!");

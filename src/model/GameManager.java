@@ -23,11 +23,11 @@ public class GameManager implements TimerCallback{
 
         // fill levels-list with new levels
         lvls.addFirst(new Level1("Level 1", this));
-        lvls.addFirst(new Level2("Level 2", this));
+ //       lvls.addFirst(new Level2("Level 2", this));
         //       lvls.addFirst(new Level3("Level 3", this));
-        lvls.addFirst(new Level4("Level 4", this));
-        lvls.addFirst(new Level5("Level 5", this));
-        lvls.addFirst(new Level6("Level 6", this));
+//        lvls.addFirst(new Level4("Level 4", this));
+//       lvls.addFirst(new Level5("Level 5", this));
+//        lvls.addFirst(new Level6("Level 6", this));
 //        lvls.addFirst(new Level7("Level 7", this));
 //        lvls.addFirst(new Level8("Level 8", this));
 //        lvls.addFirst(new Level9("Level 9", this));
@@ -69,6 +69,8 @@ public class GameManager implements TimerCallback{
 
         if(userAnswerIsCorrect) {
             damage = 30;
+            player.increasePoints();
+            System.out.println("points"+player.getPoints());
             currentMonster.takeDamage(damage);
             System.out.println("You dealt " + damage +" damage to the monster!");
             ifCharacterIsDead = currentMonster.checkIfAlive();
@@ -100,9 +102,32 @@ public class GameManager implements TimerCallback{
         return gameHasEnded;
     }
 
-    public boolean isGameHasEnded(){
-        return gameHasEnded;
-    }
+//    public boolean isGameHasEnded(){
+//        return gameHasEnded;
+//    }
+
+//    public Player[] checkIfPointsQualified(Player[] listOfPlayers, int points, int worstResult){
+//        if(points > worstResult){
+//           for(int i = 0; i < listOfPlayers.length; i++){
+//               int playerPoints = listOfPlayers[i].getPoints();
+//
+//               if(points < playerPoints){
+//                   moveElementsToRight(i,listOfPlayers);
+//
+//                   String playerName =
+//                   listOfPlayers[i] = new Player(playerName, 100, points);
+//                   break;
+//               }
+//           }
+//        }
+//        return listOfPlayers;
+//    }
+
+//    private void moveElementsToRight(int index, Player[] listOfObjects){
+//        for(int i = listOfObjects.length -2; i >=index; i--){
+//            listOfObjects[i+1] = listOfObjects[i];
+//        }
+//    }
 
     public Player getPlayer() {
         return player;
@@ -122,6 +147,10 @@ public class GameManager implements TimerCallback{
 
     public void setCurrentMathQuestion(String currentMathQuestion) {
         this.currentMathQuestion = currentMathQuestion;
+    }
+
+    public int getPoints(){
+        return player.getPoints();
     }
 
     @Override

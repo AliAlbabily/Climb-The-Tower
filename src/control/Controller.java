@@ -120,9 +120,8 @@ public class Controller implements TimerCallback {
                 JOptionPane.showMessageDialog(null,"Error");
         }
     }
-
-
-
+    
+    // Initializes the timer by setting the contents and starting the countdown thread.
     private void setTimer(String lvl) {
         timer.setTimeLeftLbl(gameGUI.getTimer());
         switch (lvl) {
@@ -181,6 +180,7 @@ public class Controller implements TimerCallback {
     }
 
     @Override
+    // Callback function that is invoked when the countdown timer is finished.
     public void timesUp() {
         updateGamePlayInformation();
     }

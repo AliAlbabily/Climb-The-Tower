@@ -1,6 +1,7 @@
 package model;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.LinkedList;
 
 public class GameTimer extends Thread {
@@ -38,7 +39,9 @@ public class GameTimer extends Thread {
     public void stopTimer() {
         this.interrupt();
     }
-    public void setTimeLeftLbl(JLabel timeLeftLbl) {
+
+    public void setTimeLeftLbl(JLabel timeLeftLbl)
+    {
         this.timeLeftLbl = timeLeftLbl;
     }
 
@@ -56,6 +59,20 @@ public class GameTimer extends Thread {
         @Override
         public void run() {
             timeLeftLbl.setText(String.valueOf(timeLeft));
+            if (timeLeft <= 7)
+            {
+                timeLeftLbl.setForeground(Color.orange);
+            }
+
+            if (timeLeft <= 4)
+            {
+                timeLeftLbl.setForeground(Color.red);
+            }
+
+            if (timeLeft >= 8)
+            {
+                timeLeftLbl.setForeground(Color.green);
+            }
         }
     }
 }

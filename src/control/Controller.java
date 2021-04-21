@@ -125,15 +125,15 @@ public class Controller implements TimerCallback {
             case "Level 2":
             case "Level 3":
             case "Level 4":
-                timer.setSeconds(10);
+                timer.setSeconds(11);
                 break;
             case "Level 5":
             case "Level 6":
             case "Level 7":
-                timer.setSeconds(20);
+                timer.setSeconds(21);
                 break;
             default:
-                timer.setSeconds(60);
+                timer.setSeconds(61);
 
         }
         SwingUtilities.invokeLater(new Runnable() {

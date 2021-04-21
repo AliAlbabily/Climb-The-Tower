@@ -2,7 +2,10 @@ package model;
 
 import model.levels.*;
 
+import javax.sound.sampled.*;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.LinkedList;
 
 /**
@@ -23,10 +26,10 @@ public class GameManager implements TimerCallback{
 
         // fill levels-list with new levels
         lvls.addFirst(new Level1("Level 1", this));
- //       lvls.addFirst(new Level2("Level 2", this));
-        //       lvls.addFirst(new Level3("Level 3", this));
+//        lvls.addFirst(new Level2("Level 2", this));
+//        lvls.addFirst(new Level3("Level 3", this));
 //        lvls.addFirst(new Level4("Level 4", this));
-//       lvls.addFirst(new Level5("Level 5", this));
+//        lvls.addFirst(new Level5("Level 5", this));
 //        lvls.addFirst(new Level6("Level 6", this));
 //        lvls.addFirst(new Level7("Level 7", this));
 //        lvls.addFirst(new Level8("Level 8", this));
@@ -71,6 +74,12 @@ public class GameManager implements TimerCallback{
             damage = 30;
             player.increasePoints();
             System.out.println("points"+player.getPoints());
+            try
+            {
+                playSound("files/minecraft_hit.wav");
+            } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+                e.printStackTrace();
+            }
             currentMonster.takeDamage(damage);
             System.out.println("You dealt " + damage +" damage to the monster!");
             ifCharacterIsDead = currentMonster.checkIfAlive();
@@ -90,6 +99,12 @@ public class GameManager implements TimerCallback{
         } else {
             damage = 10;
             player.takeDamage(damage);
+            try
+            {
+                playSound("files/runescape-hit.wav");
+            } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+                e.printStackTrace();
+            }
             System.out.println("Oh no, the monster dealt " + damage +" damage to you!");
             ifCharacterIsDead = player.checkIfAlive();
             if (ifCharacterIsDead) {
@@ -162,5 +177,15 @@ public class GameManager implements TimerCallback{
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void playSound(String fileName) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
+        File url = new File(fileName);
+        Clip clip = AudioSystem.getClip();
+
+        AudioInputStream ais = AudioSystem.
+                getAudioInputStream( url );
+        clip.open(ais);
+        clip.start();
     }
 }

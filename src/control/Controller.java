@@ -51,7 +51,7 @@ public class Controller implements TimerCallback {
 
         //update player name on GUI
         currentPlayerName = model.getPlayer().getName();
-        gameGUI.setName(currentPlayerName);
+//        gameGUI.setName(currentPlayerName);
 
         // update characters HP on console
         System.out.println("\n" + model.getPlayer().getName() + "'s hp: " + playerHP);

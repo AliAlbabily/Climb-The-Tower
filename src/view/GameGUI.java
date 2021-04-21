@@ -114,7 +114,7 @@ public class GameGUI
         lblenemy.setFont(font);
         lblenemy.setBounds(750,50, 100, 50);
 
-        lblplayer = new JLabel(); //Ändra detta till You: ifall du vill att det ska visas på GUI istället.
+        lblplayer = new JLabel("You:");
         lblplayer.setForeground(Color.white);
         lblplayer.setFont(font);
         lblplayer.setBounds(782,90, 100, 50);
@@ -216,9 +216,5 @@ public class GameGUI
         return timer;
     }
 
-    public void setName(String name)
-    {
-        lblplayer.setText(name+": ");
-    }
 }
 

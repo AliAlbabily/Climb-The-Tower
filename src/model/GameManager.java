@@ -17,6 +17,7 @@ public class GameManager implements TimerCallback{
     private Monster currentMonster = null;
     private String currentMathQuestion;
     private boolean gameHasEnded = false;
+    int streak = 0;
 
     public GameManager(Player player) {
         this.player = player;
@@ -68,26 +69,48 @@ public class GameManager implements TimerCallback{
 
         if(userAnswerIsCorrect) {
             damage = 30;
+            streak++;
             player.increasePoints();
-            System.out.println("points"+player.getPoints());
+            System.out.println("Amount of points: "+player.getPoints());
+            if (streak==5) //Hade kunnat ändra till streak > 2 eller något för att alltid ge bonus poäng.
+            {
+                player.increasePoints();
+                System.out.println("You're on a 5x streak! Keep going! \n10 bonus points added!");
+
+            } else if (streak == 10)
+            {
+                player.increasePoints(20);
+                System.out.println("You're on a 10x streak! \n20 bonus points added!");
+            }
+            else if (streak ==15)
+            {
+                player.increasePoints(30);
+                System.out.println("Are you cheating? On a 15x stream! \n30 bonus points awarded!");
+            }
+            System.out.println("Current points: "+player.getPoints());
+            System.out.println("Amount of correct in a row: " + streak);
             currentMonster.takeDamage(damage);
             System.out.println("You dealt " + damage +" damage to the monster!");
             ifCharacterIsDead = currentMonster.checkIfAlive();
             if (ifCharacterIsDead) {
                 System.out.println("You defeated: " + currentMonster.getName());
 
+                System.out.println("20 bonus points for completing " + currentLevel.getLvlName()); //20 bonus poäng för att klara en level.
                 lvls.removeLast();
                 nextLevel();
 
                 // when there are no more levels available in the lvls-list
                 if(lvls.isEmpty()) {
                     System.out.println("\nYou won!");
+                    System.out.println("A final reward of 100 bonus points for finishing the game. \nWell played gamer.");
+                    player.increasePoints(100); //100 bonus poäng för att klara spelet.
                     gameHasEnded = true;
                     return gameHasEnded;
                 }
             }
         } else {
             damage = 10;
+            streak=0; //Streak reset
             player.takeDamage(damage);
             System.out.println("Oh no, the monster dealt " + damage +" damage to you!");
             ifCharacterIsDead = player.checkIfAlive();

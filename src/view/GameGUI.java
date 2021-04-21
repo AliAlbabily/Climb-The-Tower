@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * @author
+ * @author Jagtej Sidhu
  * @version 1.1
  */
 public class GameGUI
@@ -142,7 +142,7 @@ public class GameGUI
         enemyName = new JLabel();
         enemyName.setForeground(Color.white);
         enemyName.setFont(font);
-        enemyName.setBounds(470,120, 100, 50);
+        enemyName.setBounds(470,120, 250, 50);
 
         pnlSouth.add(timeLeft);
         pnlSouth.add(timer);

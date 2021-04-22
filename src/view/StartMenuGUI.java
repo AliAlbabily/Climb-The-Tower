@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * @author
+ * @author Jagtej Sidhu
  * @version 1.1
  */
 public class StartMenuGUI extends JPanel

@@ -5,6 +5,10 @@ import control.Controller;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @author Jagtej Sidhu
+ * @version 1.0
+ */
 public class HighscoreGUI extends JFrame
 {
 

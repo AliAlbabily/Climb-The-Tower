@@ -10,6 +10,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * @author Jagtej Sidhu
+ * @version 1.0
+ */
 public class EndGameWinGUI extends JPanel
 {
     private JFrame frame;

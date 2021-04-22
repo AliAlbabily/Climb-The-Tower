@@ -175,6 +175,12 @@ public class GameManager implements TimerCallback{
      */
     public void timesUp() {
         player.takeDamage(10);
+        try
+        {
+            playSound("files/runescape-hit.wav");
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+            e.printStackTrace();
+        }
         System.out.println("Times up! You need to be faster than that!");
         try {
             getNewMathQuestion();

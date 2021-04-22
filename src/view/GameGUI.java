@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 /**
  * @author Jagtej Sidhu
- * @version 1.1
+ * @version 1.2
  */
 public class GameGUI
 {
@@ -29,6 +29,7 @@ public class GameGUI
     private JLabel lblLevel;
     private JLabel enemyName;
     private JLabel lblplayer;
+    private static JLabel streak;
 
     public GameGUI(Controller controller)
     {
@@ -97,8 +98,6 @@ public class GameGUI
         pnlSouth.setLayout(null);
 
         //Labels för tiden som tickar neråt
-        //TODO - timern bytar färg enligt vad tiden ligger på
-        //TODO - till exempel ifall tiden ligger mellan 6-10 så är det grönt, 4-5 orange och 0-3 rött.
         JLabel timeLeft = new JLabel("Time left:");
         timeLeft.setForeground(Color.white);
         timeLeft.setFont(font);
@@ -134,10 +133,20 @@ public class GameGUI
         lblLevel.setFont(font);
         lblLevel.setBounds(433,85, 100, 50);
 
+        JLabel lblStreak = new JLabel("Streak:");
+        lblStreak.setForeground(Color.white);
+        lblStreak.setFont(font);
+        lblStreak.setBounds(25,140, 100, 50);
+
+        //TODO koppla denna jlabeln till streak nummer så att man kan se vilken streak man ligger på i GUI:t
+        streak = new JLabel("0");
+        streak.setForeground(Color.white);
+        streak.setFont(font);
+        streak.setBounds(105, 140, 50, 50);
+
         enemyName = new JLabel();
         enemyName.setForeground(Color.white);
         enemyName.setFont(font);
-
         enemyName.setBounds(425,120, 250, 50);
 
         pnlSouth.add(timeLeft);
@@ -148,6 +157,8 @@ public class GameGUI
         pnlSouth.add(playerHealth);
         pnlSouth.add(lblLevel);
         pnlSouth.add(enemyName);
+        pnlSouth.add(lblStreak);
+        pnlSouth.add(streak);
 
         frame.add(pnlSouth, BorderLayout.SOUTH);
         frame.pack();

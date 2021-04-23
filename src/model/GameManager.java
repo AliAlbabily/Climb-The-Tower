@@ -111,7 +111,7 @@ public class GameManager implements TimerCallback{
                 System.out.println("20 bonus points for completing " + currentLevel.getLvlName()); //20 bonus poäng för att klara en level.
                 lvls.removeLast();
                 nextLevel();
-                
+
                 // when there are no more levels available in the lvls-list
                 if(lvls.isEmpty()) {
                     System.out.println("\nYou won!");

@@ -181,10 +181,7 @@ public class GameGUI
     public void updateMathQuestionGUI(String mathQuestionStr) {
         lblQuestion.setText(mathQuestionStr);
     }
-    public void updateLblQuestionBounds(int x, int y, int width, int height) {
-        lblQuestion.setBounds(x, y, width, height);
-    }
-
+    
     public void updateLevelNameGUI(String levelName) {
         lblLevel.setText(levelName);
     }

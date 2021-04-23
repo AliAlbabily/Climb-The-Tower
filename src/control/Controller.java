@@ -2,6 +2,7 @@ package control;
 
 import model.*;
 import view.ButtonType;
+import view.EndGameWinGUI;
 import view.GameGUI;
 import view.StartMenuGUI;
 
@@ -18,6 +19,8 @@ public class Controller implements TimerCallback {
     private StartMenuGUI startMenuGUI;
     private GameGUI gameGUI;
     private GameTimer timer;
+    private EndGameWinGUI endGameGui;
+
     private final PlayersList playersList = new PlayersList();
 
     private double currentCorrectAnswer = 0;
@@ -109,9 +112,10 @@ public class Controller implements TimerCallback {
                     tempList = checkIfPointsQualified(tempList, points, worstResult);
                     playersList.setHighScoreList(tempList);
                     updateHighscoreListGUI(tempList);
-
                     // FIXME : ska ändras mot "öppna highscore-view"
-                    System.exit(0); // terminate program
+                    gameGUI.closeGameGUI();
+                    setupEndGameWindow();
+                   // System.exit(0); // terminate program  TODO kommenterade bort detta tillfälligt
                 }
 
                 updateGamePlayInformation();
@@ -177,6 +181,10 @@ public class Controller implements TimerCallback {
         for(int i = listOfObjects.length-2; i >=index; i--){
             listOfObjects[i+1] = listOfObjects[i];
         }
+    }
+
+    public void setupEndGameWindow(){
+        endGameGui = new EndGameWinGUI();
     }
 
     @Override

@@ -12,7 +12,7 @@ import java.util.Random;
 
 /**
  * @author Ardian Glamniki
- * @version 1.0
+ * @version 1.1
  *
  * Denna klass väljer slumpmässigt ut frågor från levels 1-8, men i en svårare variant.
  */
@@ -62,7 +62,7 @@ public class Level9 extends Level {
 
         if(number1 % number2 == 0) {
             if (number2 != 1 && number1 != number2) {
-                System.out.println(number1 + " / " + number2 + " = ?");
+                getGameManager().setCurrentMathQuestion(number1 + " / " + number2 + " = ?");
                 answer = number1 / number2;
             } else {
                 answer = generateDivisionQuestion();
@@ -89,7 +89,7 @@ public class Level9 extends Level {
             questionToAnswer.put(question, answer);
         }
         String question = MathUtilities.generateRandomQuestion(questions);
-        System.out.println(question + " vad är x?");
+        getGameManager().setCurrentMathQuestion(question);
         return questionToAnswer.get(question);
     }
 
@@ -102,7 +102,7 @@ public class Level9 extends Level {
         int low = 10;
         int high = 100;
         b = random.nextInt(high-low) + low;
-        System.out.println(a + " + " + b + " = ?");
+        getGameManager().setCurrentMathQuestion(a + " + " + b + " = ?");
         return a + b;
     }
 
@@ -111,7 +111,7 @@ public class Level9 extends Level {
         int a, b;
         a = (int)(Math.random() * 100 + 1);
         b = (int)(Math.random() * 100 + 1);
-        System.out.println(a + " - " + b + " = ?");
+        getGameManager().setCurrentMathQuestion(a + " - " + b + " = ?");
         return a - b;
     }
     // Genererar multiplikationsfrågor där både talen är mellan 5 - 14.
@@ -122,7 +122,7 @@ public class Level9 extends Level {
         int high = 15;
         a = (int)(Math.random() * 10 + 1);
         b = random.nextInt(high - low) + low;
-        System.out.println(a + " * " + b + " = ?");
+        getGameManager().setCurrentMathQuestion(a + " * " + b + " = ?");
         return a * b;
     }
 
@@ -131,7 +131,7 @@ public class Level9 extends Level {
         int a;
         a = (int)(Math.random() * 15 + 1);
         int squareroot = a*a;
-        System.out.println("What's the square root of "+ squareroot + " ?");
+        getGameManager().setCurrentMathQuestion("Square root of "+ squareroot + " ?");
         return a;
     }
 

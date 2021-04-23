@@ -13,7 +13,7 @@ import java.util.Random;
 
 /**
  * @author Ardian Glamniki
- * @version 1.0
+ * @version 1.1
  *
  * Denna klass genererar slumpmässiga frågor från level 1-8 med tre termer per fråga.
  */
@@ -64,7 +64,7 @@ public class Level10 extends Level {
         int number3 = answer*placeholder1;
 
 
-        System.out.println(number3 + " / " + "(" + number2 + " / " + number1 + ")" + " = ?");
+        getGameManager().setCurrentMathQuestion(number3 + " / " + "(" + number2 + " / " + number1 + ")" + " = ?");
         return number3/(number2/number1);
     }
     // Genererar additionsfråga med tre termer
@@ -76,7 +76,7 @@ public class Level10 extends Level {
         int high = 100;
         b = random.nextInt(high-low) + low;
         c = random.nextInt(high-low) + low;
-        System.out.println(a + " + " + b + " + " + c + " = ?");
+        getGameManager().setCurrentMathQuestion(a + " + " + b + " + " + c + " = ?");
         return a + b + c;
     }
     // Genererar subtraktionsfråga med tre temer
@@ -85,7 +85,7 @@ public class Level10 extends Level {
         a = (int)(Math.random() * 100 + 1);
         b = (int)(Math.random() * 100 + 1);
         c = (int)(Math.random() * 100 + 1);
-        System.out.println(a + " - " + b + " - " + c + " = ?");
+        getGameManager().setCurrentMathQuestion(a + " - " + b + " - " + c + " = ?");
         return a - b - c;
     }
 
@@ -97,7 +97,7 @@ public class Level10 extends Level {
         b = (int)(Math.random() * 10 + 1);
         c = (int)(Math.random() * 10 + 1);
 
-        System.out.println(c + " " + "(" + a + " * " + b + ")" + " = ?");
+        getGameManager().setCurrentMathQuestion(c + " " + "(" + a + " * " + b + ")" + " = ?");
         return (a * b) * c;
     }
 
@@ -116,7 +116,7 @@ public class Level10 extends Level {
             questionToAnswer.put(question, answer);
         }
         String question = MathUtilities.generateRandomQuestion(questions);
-        System.out.println(question + " vad är x?");
+        getGameManager().setCurrentMathQuestion(question);
         return questionToAnswer.get(question);
     }
 

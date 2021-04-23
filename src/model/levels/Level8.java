@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 
 /**
- * @version 1.1
+ * @version 1.2
  * @author Ardian Glamniki
  */
 public class Level8 extends Level {
@@ -58,7 +58,7 @@ public class Level8 extends Level {
             questionToAnswer.put(question, answer);
         }
         String question = generateRandomMathQuestion();
-        System.out.println(question + " vad är x?");
+        getGameManager().setCurrentMathQuestion(question);
         return questionToAnswer.get(question);
     }
     // Returnerar en slumpmässig matematikfråga.

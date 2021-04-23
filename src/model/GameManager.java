@@ -26,16 +26,16 @@ public class GameManager implements TimerCallback{
         this.player = player;
 
         // fill levels-list with new levels
-        lvls.addFirst(new Level1("Level 1", this));
-        lvls.addFirst(new Level2("Level 2", this));
+//        lvls.addFirst(new Level1("Level 1", this));
+//        lvls.addFirst(new Level2("Level 2", this));
  //       lvls.addFirst(new Level3("Level 3", this));
-        lvls.addFirst(new Level4("Level 4", this));
-        lvls.addFirst(new Level5("Level 5", this));
-        lvls.addFirst(new Level6("Level 6", this));
+//        lvls.addFirst(new Level4("Level 4", this));
+ //       lvls.addFirst(new Level5("Level 5", this));
+ //       lvls.addFirst(new Level6("Level 6", this));
 //        lvls.addFirst(new Level7("Level 7", this));
 //        lvls.addFirst(new Level8("Level 8", this));
 //        lvls.addFirst(new Level9("Level 9", this));
-//        lvls.addFirst(new Level10("Level 10", this));
+        lvls.addFirst(new Level10("Level 10", this));
     }
 
     private boolean checkUserAnswer(double correctAnswer, double userAnswer) {
@@ -111,7 +111,7 @@ public class GameManager implements TimerCallback{
                 System.out.println("20 bonus points for completing " + currentLevel.getLvlName()); //20 bonus poäng för att klara en level.
                 lvls.removeLast();
                 nextLevel();
-
+                
                 // when there are no more levels available in the lvls-list
                 if(lvls.isEmpty()) {
                     System.out.println("\nYou won!");

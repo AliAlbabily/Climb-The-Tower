@@ -73,7 +73,7 @@ public class GameGUI
         lblQuestion = new JLabel();
         lblQuestion.setForeground(Color.white);
         lblQuestion.setFont(new Font(Font.SANS_SERIF,Font.PLAIN, 30));
-        lblQuestion.setBounds(100, 125, 200, 50);
+        lblQuestion.setBounds(100, 125, 300, 50);
 
         answerTextField = new JTextField();
         answerTextField.setBounds(75,175,200, 25);
@@ -180,6 +180,9 @@ public class GameGUI
 
     public void updateMathQuestionGUI(String mathQuestionStr) {
         lblQuestion.setText(mathQuestionStr);
+    }
+    public void updateLblQuestionBounds(int x, int y, int width, int height) {
+        lblQuestion.setBounds(x, y, width, height);
     }
 
     public void updateLevelNameGUI(String levelName) {

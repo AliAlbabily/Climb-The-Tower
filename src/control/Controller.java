@@ -3,6 +3,7 @@ package control;
 import model.*;
 import view.ButtonType;
 import view.GameGUI;
+import view.HighscoreGUI;
 import view.StartMenuGUI;
 
 import javax.swing.*;
@@ -18,6 +19,7 @@ public class Controller implements TimerCallback {
     private StartMenuGUI startMenuGUI;
     private GameGUI gameGUI;
     private GameTimer timer;
+    private HighscoreGUI highscoreGUI;
     private final PlayersList playersList = new PlayersList();
 
     private double currentCorrectAnswer = 0;
@@ -105,16 +107,20 @@ public class Controller implements TimerCallback {
                     Player[] tempList = playersList.getHighScoreList();
                     int points = model.getPoints();
                     int worstResult = tempList[9].getPoints();
-
                     tempList = checkIfPointsQualified(tempList, points, worstResult);
                     playersList.setHighScoreList(tempList);
                     updateHighscoreListGUI(tempList);
+
 
                     // FIXME : ska ändras mot "öppna highscore-view"
                     System.exit(0); // terminate program
                 }
 
                 updateGamePlayInformation();
+                break;
+
+            case Highscore:
+
                 break;
             default:
                 JOptionPane.showMessageDialog(null,"Error");
@@ -148,9 +154,12 @@ public class Controller implements TimerCallback {
         });
     }
 
+    //Updates highscore taking the values from PlayersList class in model package and
+    //transfering it to HighscoreGUi in view
     public void updateHighscoreListGUI(Player [] highscoreList){
         String [] list = playersList.convertObjListToStringList(highscoreList);
         playersList.printStringList(list);
+        highscoreGUI.updateHighscoreGUI(list);
     }
 
 

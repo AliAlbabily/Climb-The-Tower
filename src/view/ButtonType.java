@@ -3,8 +3,5 @@ package view;
 public enum ButtonType
 {
     Play,
-    SubmitAnswer,
-    PlayAgain,
-    Highscore,
-    Quit
+    SubmitAnswer
 }

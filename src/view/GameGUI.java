@@ -181,7 +181,7 @@ public class GameGUI
     public void updateMathQuestionGUI(String mathQuestionStr) {
         lblQuestion.setText(mathQuestionStr);
     }
-    
+
     public void updateLevelNameGUI(String levelName) {
         lblLevel.setText(levelName);
     }

@@ -20,12 +20,8 @@ public class Controller implements TimerCallback {
     private StartMenuGUI startMenuGUI;
     private GameGUI gameGUI;
     private GameTimer timer;
-<<<<<<< HEAD
     private HighscoreGUI highscoreGUI;
-=======
     private EndGameWinGUI endGameGui;
-
->>>>>>> 842a9a09b44778e4c24b2d7fc335c4010157d59a
     private final PlayersList playersList = new PlayersList();
 
     private double currentCorrectAnswer = 0;
@@ -108,6 +104,7 @@ public class Controller implements TimerCallback {
                 timer.stopTimer();
 
                 if(gameHasEnded) {
+                  
                     System.out.println("\nGame Over!");
 
                     Player[] tempList = playersList.getHighScoreList();
@@ -122,6 +119,8 @@ public class Controller implements TimerCallback {
                     gameGUI.closeGameGUI();
                     setupEndGameWindow();
                    // System.exit(0); // terminate program  TODO kommenterade bort detta tillfälligt
+
+                    endGame();
                 }
 
                 updateGamePlayInformation();
@@ -134,7 +133,21 @@ public class Controller implements TimerCallback {
                 JOptionPane.showMessageDialog(null,"Error");
         }
     }
-    
+
+    private void endGame() {
+        System.out.println("\nGame Over!");
+
+        Player[] tempList = playersList.getHighScoreList();
+        int points = model.getPoints();
+        int worstResult = tempList[9].getPoints();
+
+        tempList = checkIfPointsQualified(tempList, points, worstResult);
+        playersList.setHighScoreList(tempList);
+        updateHighscoreListGUI(tempList);
+
+        // FIXME : ska ändras mot "öppna highscore-view"
+        System.exit(0); // terminate program
+    }
     // Initializes the timer by setting the contents and starting the countdown thread.
     private void setTimer(String lvl) {
         timer.setTimeLeftLbl(gameGUI.getTimer());
@@ -204,6 +217,9 @@ public class Controller implements TimerCallback {
     // Callback function that is invoked when the countdown timer is finished.
     public void timesUp() {
         updateGamePlayInformation();
+        if(model.getGameHasEnded()) {
+            endGame();
+        }
     }
 
 

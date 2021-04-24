@@ -2,7 +2,9 @@ package control;
 
 import model.*;
 import view.ButtonType;
+import view.EndGameWinGUI;
 import view.GameGUI;
+import view.HighscoreGUI;
 import view.StartMenuGUI;
 
 import javax.swing.*;
@@ -18,6 +20,8 @@ public class Controller implements TimerCallback {
     private StartMenuGUI startMenuGUI;
     private GameGUI gameGUI;
     private GameTimer timer;
+    private HighscoreGUI highscoreGUI;
+    private EndGameWinGUI endGameGui;
     private final PlayersList playersList = new PlayersList();
 
     private double currentCorrectAnswer = 0;
@@ -100,10 +104,30 @@ public class Controller implements TimerCallback {
                 timer.stopTimer();
 
                 if(gameHasEnded) {
+                  
+                    System.out.println("\nGame Over!");
+
+                    Player[] tempList = playersList.getHighScoreList();
+                    int points = model.getPoints();
+                    int worstResult = tempList[9].getPoints();
+                    tempList = checkIfPointsQualified(tempList, points, worstResult);
+                    playersList.setHighScoreList(tempList);
+                    updateHighscoreListGUI(tempList);
+
+
+                    // FIXME : ska ändras mot "öppna highscore-view"
+                    gameGUI.closeGameGUI();
+                    setupEndGameWindow();
+                   // System.exit(0); // terminate program  TODO kommenterade bort detta tillfälligt
+
                     endGame();
                 }
 
                 updateGamePlayInformation();
+                break;
+
+            case Highscore:
+
                 break;
             default:
                 JOptionPane.showMessageDialog(null,"Error");
@@ -151,9 +175,12 @@ public class Controller implements TimerCallback {
         });
     }
 
+    //Updates highscore taking the values from PlayersList class in model package and
+    //transfering it to HighscoreGUi in view
     public void updateHighscoreListGUI(Player [] highscoreList){
         String [] list = playersList.convertObjListToStringList(highscoreList);
         playersList.printStringList(list);
+        highscoreGUI.updateHighscoreGUI(list);
     }
 
 
@@ -180,6 +207,10 @@ public class Controller implements TimerCallback {
         for(int i = listOfObjects.length-2; i >=index; i--){
             listOfObjects[i+1] = listOfObjects[i];
         }
+    }
+
+    public void setupEndGameWindow(){
+        endGameGui = new EndGameWinGUI();
     }
 
     @Override

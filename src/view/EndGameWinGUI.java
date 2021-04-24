@@ -1,5 +1,7 @@
 package view;
 
+import control.Controller;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -19,6 +21,14 @@ public class EndGameWinGUI extends JPanel
     private JFrame frame;
     private JPanel mainPnl;
     private BufferedImage image;
+    private EndGameWinGUI endWinGUi;
+    private Controller controller;
+
+    private JButton btnPlayAgain;
+    private JButton btnHighscore;
+    private JButton btnQuit;
+
+
 
     public EndGameWinGUI()
     {
@@ -80,7 +90,7 @@ public class EndGameWinGUI extends JPanel
 //        }
 //        JLabel piclbl = new JLabel(new ImageIcon(image));
 
-        JButton btnPlayAgain = new JButton("Play again");
+        btnPlayAgain = new JButton("Play again");
         btnPlayAgain.setBounds(12,345,100, 50);
         btnPlayAgain.addActionListener(new ActionListener() {
             @Override
@@ -89,7 +99,7 @@ public class EndGameWinGUI extends JPanel
             }
         });
 
-        JButton btnHighscore = new JButton("Highscore");
+        btnHighscore = new JButton("Highscore");
         btnHighscore.setBounds(140,345,100, 50);
         btnHighscore.addActionListener(new ActionListener() {
             @Override
@@ -98,7 +108,7 @@ public class EndGameWinGUI extends JPanel
             }
         });
 
-        JButton btnQuit = new JButton("Quit");
+        btnQuit = new JButton("Quit");
         btnQuit.setBounds(272,345,100, 50);
         btnQuit.addActionListener(new ActionListener() {
             @Override
@@ -117,6 +127,25 @@ public class EndGameWinGUI extends JPanel
 
         frame.add(mainPnl);
         frame.pack();
+    }
+
+    private void addListeners()
+    {
+        ActionListener listener = new ButtonActionListeners();
+
+        btnHighscore.addActionListener(listener);
+    }
+
+    class ButtonActionListeners implements ActionListener
+    {
+
+        public void actionPerformed(ActionEvent e)
+        {
+            if (e.getSource() == btnHighscore)
+            {
+                controller.buttonPressed(ButtonType.Highscore);
+            }
+        }
     }
 
     public static void main(String[] args)

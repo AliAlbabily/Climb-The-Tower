@@ -31,8 +31,10 @@ public class GameManager implements TimerCallback{
 
         // fill levels-list with new levels
         lvls.addFirst(new Level1("Level 1", this));
+
         lvls.addFirst(new Level2("Level 2", this));
         //       lvls.addFirst(new Level3("Level 3", this));
+
 //        lvls.addFirst(new Level4("Level 4", this));
         //       lvls.addFirst(new Level5("Level 5", this));
         //       lvls.addFirst(new Level6("Level 6", this));

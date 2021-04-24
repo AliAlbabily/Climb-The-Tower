@@ -3,7 +3,10 @@ package view;
 import control.Controller;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * @author Jagtej Sidhu
@@ -13,21 +16,22 @@ public class HighscoreGUI extends JFrame
 {
 
     private JList list = new JList<String[]>();
-    private JButton closeHS;
+    private JButton btnBack;
     private JFrame frame;
+    private JPanel panel;
 
     private Controller controller;
 
     public HighscoreGUI()
     {
 //        this.controller = controller;
-
         initializePanels();
     }
 
     public void initializePanels()
     {
         createHsFrame();
+        createHighscore();
     }
 
     public void createHsFrame()
@@ -39,16 +43,44 @@ public class HighscoreGUI extends JFrame
         frame.pack();
     }
 
-    public void closeHsFrame()
-    {
-        setVisible(false);
-        dispose();
-    }
-
     public void createHighscore()
     {
+        BorderLayout layout = new BorderLayout();
+        Border b2 = BorderFactory.createTitledBorder("Highscore");
 
+        panel = new JPanel();
+        panel.setPreferredSize(new Dimension(350, 550));
+        panel.setLayout(layout);
+        panel.setBorder(b2);
+
+        btnBack = new JButton("Back");
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                closeHsWindow();
+            }
+        });
+
+        panel.add(list, BorderLayout.CENTER);
+        panel.add(btnBack, BorderLayout.SOUTH);
+
+        frame.add(panel);
+        frame.pack();
     }
+
+
+    public void closeHsWindow()
+    {
+        frame.setVisible(false);
+        frame.dispose();
+    }
+
+    public void updateHighscoreGUI(String[] highscore)
+    {
+        list.setListData(highscore);
+    }
+
 
     public static void main(String[] args) {
         new HighscoreGUI();

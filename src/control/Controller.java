@@ -216,8 +216,9 @@ public class Controller implements TimerCallback {
     @Override
     // Callback function that is invoked when the countdown timer is finished.
     public void timesUp() {
-        updateGamePlayInformation();
-        if(model.getGameHasEnded()) {
+        if (!model.getGameHasEnded()) {
+            updateGamePlayInformation();
+        } else {
             endGame();
         }
     }

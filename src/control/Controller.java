@@ -121,6 +121,7 @@ public class Controller implements TimerCallback {
                    // System.exit(0); // terminate program  TODO kommenterade bort detta tillfälligt
 
                     endGame();
+                    timer.stopTimer();
                 }
 
                 updateGamePlayInformation();

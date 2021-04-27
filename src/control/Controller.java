@@ -22,6 +22,7 @@ public class Controller implements TimerCallback {
     private GameTimer timer;
     private HighscoreGUI highscoreGUI;
     private EndGameWinGUI endGameWinGui;
+
     private final PlayersList playersList = new PlayersList();
 
     private double currentCorrectAnswer = 0;
@@ -104,15 +105,15 @@ public class Controller implements TimerCallback {
                 timer.stopTimer();
 
                 if(gameHasEnded) {
-                  
+               
                     System.out.println("\nGame Over!");
-
                    // System.exit(0); // terminate program  TODO kommenterade bort detta tillfälligt
 
                  //   endGame();
                     timer.stopTimer();
                     gameGUI.closeGameGUI();
                     setupEndGameWindow();
+
                 }
 
                 updateGamePlayInformation();
@@ -135,26 +136,26 @@ public class Controller implements TimerCallback {
 
             case Quit:
                 System.exit(0);
+
             default:
                 JOptionPane.showMessageDialog(null,"Error");
         }
     }
 
-//    private void endGame() {
-//        System.out.println("\nGame Over!");
-//
-////        Player[] tempList = playersList.getHighScoreList();
-////        int points = model.getPoints();
-////        int worstResult = tempList[9].getPoints();
-////
-////        tempList = checkIfPointsQualified(tempList, points, worstResult);
-////        playersList.setHighScoreList(tempList);
-////        updateHighscoreListGUI(tempList);
-//
-//        // FIXME : ska ändras mot "öppna highscore-view"
-//      //  System.exit(0); // terminate program
-//    }
+    private void endGame() {
+        System.out.println("\nGame Over!");
 
+        Player[] tempList = playersList.getHighScoreList();
+        int points = model.getPoints();
+        int worstResult = tempList[9].getPoints();
+
+        tempList = checkIfPointsQualified(tempList, points, worstResult);
+        playersList.setHighScoreList(tempList);
+        updateHighscoreListGUI(tempList);
+
+        // FIXME : ska ändras mot "öppna highscore-view"
+        System.exit(0); // terminate program
+    }
     // Initializes the timer by setting the contents and starting the countdown thread.
     private void setTimer(String lvl) {
         timer.setTimeLeftLbl(gameGUI.getTimer());
@@ -189,6 +190,7 @@ public class Controller implements TimerCallback {
             String[] list = playersList.convertObjListToStringList(highscoreList);
             playersList.printStringList(list);
             highscoreGUI.updateHighscoreGUI(list);
+
 
 
 
@@ -227,11 +229,9 @@ public class Controller implements TimerCallback {
     @Override
     // Callback function that is invoked when the countdown timer is finished.
     public void timesUp() {
-        if (!model.getGameHasEnded()) {
-            updateGamePlayInformation();
-        } else {
-            gameHasEnded = true;
-        //    endGame();
+        updateGamePlayInformation();
+        if(model.getGameHasEnded()) {
+            endGame();
         }
     }
 

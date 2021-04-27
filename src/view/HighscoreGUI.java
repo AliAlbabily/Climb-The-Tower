@@ -2,7 +2,6 @@ package view;
 
 import control.Controller;
 
-import javax.naming.ldap.Control;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -10,8 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * @author Jagtej Sidhu, Hanis Saley
- * @version 1.1
+ * @author Jagtej Sidhu
+ * @version 1.0
  */
 public class HighscoreGUI extends JFrame
 {
@@ -23,9 +22,10 @@ public class HighscoreGUI extends JFrame
 
     private Controller controller;
 
-    public HighscoreGUI(Controller controller)
+    public HighscoreGUI()
     {
-        this.controller = controller;
+//        this.controller = controller;
+
         initializePanels();
     }
 
@@ -78,12 +78,14 @@ public class HighscoreGUI extends JFrame
     {
         frame.setVisible(false);
         frame.dispose();
+
     }
 
     public void updateHighscoreGUI(String[] highscore)
     {
         list.setListData(highscore);
     }
+
 
 
 

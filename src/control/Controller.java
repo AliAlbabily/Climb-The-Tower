@@ -26,6 +26,7 @@ public class Controller implements TimerCallback {
     private final PlayersList playersList = new PlayersList();
 
     private double currentCorrectAnswer = 0;
+    int streak = 0;
     private boolean gameHasEnded = false;
 
     public Controller() {
@@ -84,27 +85,44 @@ public class Controller implements TimerCallback {
     }
 
     public void buttonPressed(ButtonType button) {
+
         switch (button) {
             case Play:
-                String playerName = startMenuGUI.getPlayerName();
-                Player player = new Player(playerName, 100,0);
-                model = new GameManager(player);
-                timer = new GameTimer();
-                timer.addListener(model);
-                timer.addListener(this);
+                if (startMenuGUI.getPlayerName().equals(""))
+                {
+                    JOptionPane.showMessageDialog(null, "Please type your chosen name");
+                }
+                else {
+                    String playerName = startMenuGUI.getPlayerName();
+                    Player player = new Player(playerName, 100, 0);
+                    model = new GameManager(player);
+                    timer = new GameTimer();
+                    timer.addListener(model);
+                    timer.addListener(this);
 
-                model.startAtFirstLevel();
-                gameGUI = new GameGUI(this); // start the gameplay with a GUI
-                updateGamePlayInformation();
-
-                startMenuGUI.closeStartMenuGUIWindow();
+                    model.startAtFirstLevel();
+                    gameGUI = new GameGUI(this); // start the gameplay with a GUI
+                    updateGamePlayInformation();
+                    startMenuGUI.closeStartMenuGUIWindow();
+                }
                 break;
             case SubmitAnswer:
+
                 double userAnswer = gameGUI.getUserAnswer();
+                if (userAnswer == currentCorrectAnswer)
+                {
+                    streak++;
+                    gameGUI.updateStreak(streak);
+                }
+                if (userAnswer != currentCorrectAnswer)
+                {
+                    gameGUI.updateStreak(0);
+                }
                 gameHasEnded = model.handleUserAnswer(userAnswer, currentCorrectAnswer);
                 timer.stopTimer();
 
-                if(gameHasEnded) {
+                if(gameHasEnded)
+                {
                
                     System.out.println("\nGame Over!");
                    // System.exit(0); // terminate program  TODO kommenterade bort detta tillfälligt
@@ -113,7 +131,6 @@ public class Controller implements TimerCallback {
                     timer.stopTimer();
                     gameGUI.closeGameGUI();
                     setupEndGameWindow();
-
                 }
 
                 updateGamePlayInformation();

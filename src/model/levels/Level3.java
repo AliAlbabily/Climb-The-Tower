@@ -23,6 +23,7 @@ public class Level3 extends Level {
         b = (int)(Math.random() * 10 + 1); // generera ett tal från 1 - 10
         c = (int)(Math.random() * 10 + 1); // generera ett tal från 1 - 10
 
+        System.out.println(a + "" + b+ "" + c + "");
         firstOperator = (int)(Math.random() * 2 + 1); //Genererar ett tal från 1-2 för att slumpmässigt bestämma tecken
         secondOperator = (int)(Math.random() * 2 + 1); //Genererar ett tal från 1-2 för att slumpmässigt bestämma tecken
 
@@ -48,17 +49,22 @@ public class Level3 extends Level {
 
         if (firstOperator == 1 && secondOperator == 1) //Retunerar rätt svar på uträkningen baserad på vilka operatorer som har valts ut.
         {
+            getGameManager().setCurrentMathQuestion(a + " + " + b + " - " + c +" = ?");
             return a + b + c;
         } else if (firstOperator == 1 && secondOperator == 2)
         {
+            getGameManager().setCurrentMathQuestion(a + " + " + b + " - " + c +" = ?");
             return a + b - c;
         }
        else if (firstOperator == 2 && secondOperator == 1)
         {
+            getGameManager().setCurrentMathQuestion(a + " - " + b + " + " + c +" = ?");
             return a - b + c;
 
         } else
         {
+
+            getGameManager().setCurrentMathQuestion(a + " - " + b + " - "  + c +" = ?");
             return a - b - c;
         }
     }

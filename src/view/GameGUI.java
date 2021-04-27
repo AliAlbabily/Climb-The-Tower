@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /**
  * @author Jagtej Sidhu
@@ -30,11 +32,12 @@ public class GameGUI
     private JLabel enemyName;
     private JLabel lblplayer;
     private static JLabel streak;
+    private Controller controller;
 
     public GameGUI(Controller controller)
     {
         InitializePanels();
-
+        this.controller = controller;
         // add action listener to submit button
         submitButton.addActionListener(new ActionListener() {
             @Override
@@ -169,6 +172,11 @@ public class GameGUI
         String answerStr = answerTextField.getText();
         answerTextField.setText("");
         return Double.parseDouble(answerStr);
+    }
+
+    public void updateStreak(int count)
+    {
+        streak.setText("" + count + "");
     }
 
     public void updateCharactersHPGUI(int playerHP, int enemyHP) {

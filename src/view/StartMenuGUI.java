@@ -81,7 +81,7 @@ public class StartMenuGUI extends JPanel
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane optionPane = new JOptionPane
-                        ("You versus the monsters! You play the game by typing the the right mathematical answers for each question. \n"+
+                        ("You versus the monsters!\n You play the game by typing the the right mathematical answers for each question. \n"+
                                 "An amount of correct answers are required to defeat the monsters. \n"+
                                 "The further you progress the harder the questions become. \n" +
                                 "You can also get bonus hits and points if you answer quickly before the timer" +

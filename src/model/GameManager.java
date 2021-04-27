@@ -1,6 +1,7 @@
 package model;
 
 import model.levels.*;
+import view.GameGUI;
 
 import javax.sound.sampled.*;
 import java.io.File;
@@ -30,9 +31,9 @@ public class GameManager implements TimerCallback{
         this.player = player;
 
         // fill levels-list with new levels
-        lvls.addFirst(new Level1("Level 1", this));
-     // lvls.addFirst(new Level2("Level 2", this));
-     // lvls.addFirst(new Level3("Level 3", this));
+      lvls.addFirst(new Level1("Level 1", this));
+//      lvls.addFirst(new Level2("Level 2", this));
+//      lvls.addFirst(new Level3("Level 3", this));
 //      lvls.addFirst(new Level4("Level 4", this));
 //      lvls.addFirst(new Level5("Level 5", this));
 //      lvls.addFirst(new Level6("Level 6", this));
@@ -130,7 +131,7 @@ public class GameManager implements TimerCallback{
         // when there are no more levels available in the lvls-list
         if(lvls.isEmpty()) {
             System.out.println("\nYou won!");
-            System.out.println("A final reward of 100 bonus points for finishing the game. \nWell played gamer.");
+            System.out.println("A final reward of 100 bonus points for finishing the game. \nWell played warrior.");
             player.increasePoints(100); //100 bonus poäng för att klara spelet.
             gameHasEnded = true;
         }
@@ -163,6 +164,7 @@ public class GameManager implements TimerCallback{
         if(userAnswerIsCorrect) {
 
             handleCorrectAnswer();
+
 
         } else {
             handleWrongAnswer();

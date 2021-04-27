@@ -2,6 +2,7 @@ package view;
 
 import control.Controller;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -25,6 +26,7 @@ public class EndGameWinGUI extends JPanel
     private JButton btnPlayAgain;
     private JButton btnHighscore;
     private JButton btnQuit;
+
 
 
 
@@ -91,7 +93,7 @@ public class EndGameWinGUI extends JPanel
 //        }
 //        JLabel piclbl = new JLabel(new ImageIcon(image));
 
-        btnPlayAgain = new JButton("Play again");
+        JButton btnPlayAgain = new JButton("Play again");
         btnPlayAgain.setBounds(12,345,100, 50);
         btnPlayAgain.addActionListener(new ActionListener() {
             @Override
@@ -100,7 +102,7 @@ public class EndGameWinGUI extends JPanel
             }
         });
 
-        btnHighscore = new JButton("Highscore");
+        JButton btnHighscore = new JButton("Highscore");
         btnHighscore.setBounds(140,345,100, 50);
         btnHighscore.addActionListener(new ActionListener() {
             @Override
@@ -112,7 +114,7 @@ public class EndGameWinGUI extends JPanel
             }
         });
 
-        btnQuit = new JButton("Quit");
+        JButton btnQuit = new JButton("Quit");
         btnQuit.setBounds(272,345,100, 50);
         btnQuit.addActionListener(new ActionListener() {
             @Override
@@ -136,5 +138,6 @@ public class EndGameWinGUI extends JPanel
     public JButton getBtnHighscore(){
         return btnHighscore;
     }
+
 
 }

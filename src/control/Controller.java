@@ -2,9 +2,7 @@ package control;
 
 import model.*;
 import view.ButtonType;
-import view.EndGameWinGUI;
 import view.GameGUI;
-import view.HighscoreGUI;
 import view.StartMenuGUI;
 
 import javax.swing.*;
@@ -22,6 +20,8 @@ public class Controller implements TimerCallback {
     private GameTimer timer;
     private HighscoreGUI highscoreGUI;
     private EndGameWinGUI endGameWinGui;
+
+
     private final PlayersList playersList = new PlayersList();
 
     private double currentCorrectAnswer = 0;
@@ -113,7 +113,7 @@ public class Controller implements TimerCallback {
                     timer.stopTimer();
                     gameGUI.closeGameGUI();
                     setupEndGameWindow();
-                }
+                                  }
 
                 updateGamePlayInformation();
                 break;
@@ -135,6 +135,7 @@ public class Controller implements TimerCallback {
 
             case Quit:
                 System.exit(0);
+            
             default:
                 JOptionPane.showMessageDialog(null,"Error");
         }
@@ -182,15 +183,11 @@ public class Controller implements TimerCallback {
         });
     }
 
-    //Updates highscore taking the values from PlayersList class in model package and
-    //transfering it to HighscoreGUi in view
     public void updateHighscoreListGUI(Player [] highscoreList){
             HighscoreGUI highscoreGUI = new HighscoreGUI(this);
             String[] list = playersList.convertObjListToStringList(highscoreList);
             playersList.printStringList(list);
             highscoreGUI.updateHighscoreGUI(list);
-
-
 
     }
 
@@ -220,9 +217,11 @@ public class Controller implements TimerCallback {
         }
     }
 
+
     public void setupEndGameWindow(){
         endGameWinGui = new EndGameWinGUI(this);
     }
+
 
     @Override
     // Callback function that is invoked when the countdown timer is finished.

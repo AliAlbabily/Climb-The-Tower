@@ -2,13 +2,12 @@ package view;
 
 import control.Controller;
 
-import javax.naming.ldap.Control;
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * @author Jagtej Sidhu, Hanis Saley
- * @version 1.1
+ * @author Jagtej Sidhu
+ * @version 1.0
  */
 public class HighscoreGUI extends JFrame
 {
@@ -19,9 +18,10 @@ public class HighscoreGUI extends JFrame
 
     private Controller controller;
 
-    public HighscoreGUI(Controller controller)
+    public HighscoreGUI()
     {
-        this.controller = controller;
+//        this.controller = controller;
+
         initializePanels();
     }
 
@@ -41,65 +41,16 @@ public class HighscoreGUI extends JFrame
 
     public void closeHsFrame()
     {
-        BorderLayout layout = new BorderLayout();
-        Border b2 = BorderFactory.createTitledBorder("Highscore");
-
-        panel = new JPanel();
-        panel.setPreferredSize(new Dimension(350, 550));
-        panel.setLayout(layout);
-        panel.setBorder(b2);
-
-        btnBack = new JButton("Back");
-        btnBack.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                    closeHsWindow();
-                    controller.buttonPressed(ButtonType.Back);
-            }
-        });
-
-        panel.add(list, BorderLayout.CENTER);
-        panel.add(btnBack, BorderLayout.SOUTH);
-
-        frame.add(panel);
-        frame.pack();
-    }
-
-
-
-
-    public void closeHsWindow()
         setVisible(false);
         dispose();
     }
 
     public void createHighscore()
     {
-        BorderLayout layout = new BorderLayout();
-        Border b2 = BorderFactory.createTitledBorder("Highscore");
 
-        panel = new JPanel();
-        panel.setPreferredSize(new Dimension(350, 550));
-        panel.setLayout(layout);
-        panel.setBorder(b2);
-
-        btnBack = new JButton("Back");
-        btnBack.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                    closeHsWindow();
-                    controller.buttonPressed(ButtonType.Back);
-            }
-        });
-
-        panel.add(list, BorderLayout.CENTER);
-        panel.add(btnBack, BorderLayout.SOUTH);
-
-        frame.add(panel);
-        frame.pack();
     }
 
+    public static void main(String[] args) {
+        new HighscoreGUI();
     }
 }

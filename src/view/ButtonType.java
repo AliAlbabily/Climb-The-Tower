@@ -6,5 +6,7 @@ public enum ButtonType
     SubmitAnswer,
     PlayAgain,
     Highscore,
-    Quit
+    Quit,
+    Back,
+
 }

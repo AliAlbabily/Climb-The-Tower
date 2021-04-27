@@ -2,6 +2,7 @@ package view;
 
 import control.Controller;
 
+import javax.naming.ldap.Control;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -22,9 +23,9 @@ public class HighscoreGUI extends JFrame
 
     private Controller controller;
 
-    public HighscoreGUI()
+    public HighscoreGUI(Controller controller)
     {
-//        this.controller = controller;
+        this.controller = controller;
         initializePanels();
     }
 
@@ -58,7 +59,8 @@ public class HighscoreGUI extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                closeHsWindow();
+                    closeHsWindow();
+                    controller.buttonPressed(ButtonType.Back);
             }
         });
 
@@ -68,6 +70,8 @@ public class HighscoreGUI extends JFrame
         frame.add(panel);
         frame.pack();
     }
+
+
 
 
     public void closeHsWindow()
@@ -82,7 +86,5 @@ public class HighscoreGUI extends JFrame
     }
 
 
-    public static void main(String[] args) {
-        new HighscoreGUI();
-    }
+
 }

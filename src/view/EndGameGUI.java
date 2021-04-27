@@ -2,27 +2,25 @@ package view;
 
 import control.Controller;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * @author Jagtej Sidhu
  * @version 1.0
  */
-public class EndGameWinGUI extends JPanel
+public class EndGameGUI extends JPanel
 {
     private JFrame frame;
     private JPanel mainPnl;
     private BufferedImage image;
-    private EndGameWinGUI endWinGUi;
+    private EndGameGUI endWinGUi;
     private Controller controller;
+    private HighscoreGUI highscoreGUI;
 
     private JButton btnPlayAgain;
     private JButton btnHighscore;
@@ -30,8 +28,9 @@ public class EndGameWinGUI extends JPanel
 
 
 
-    public EndGameWinGUI()
+    public EndGameGUI(Controller controller)
     {
+        this.controller = controller;
         initializePanels();
     }
 
@@ -46,6 +45,8 @@ public class EndGameWinGUI extends JPanel
     {
         createMainFrame();
         createEndPanel();
+
+
     }
 
 
@@ -104,6 +105,9 @@ public class EndGameWinGUI extends JPanel
         btnHighscore.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                controller.buttonPressed(ButtonType.Highscore);
+
                 //TODO koppla knapparna här inne
             }
         });
@@ -113,7 +117,7 @@ public class EndGameWinGUI extends JPanel
         btnQuit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO koppla knapparna här inne
+                controller.buttonPressed(ButtonType.Quit);
             }
         });
 
@@ -129,27 +133,8 @@ public class EndGameWinGUI extends JPanel
         frame.pack();
     }
 
-    private void addListeners()
-    {
-        ActionListener listener = new ButtonActionListeners();
-
-        btnHighscore.addActionListener(listener);
+    public JButton getBtnHighscore(){
+        return btnHighscore;
     }
 
-    class ButtonActionListeners implements ActionListener
-    {
-
-        public void actionPerformed(ActionEvent e)
-        {
-            if (e.getSource() == btnHighscore)
-            {
-                controller.buttonPressed(ButtonType.Highscore);
-            }
-        }
-    }
-
-    public static void main(String[] args)
-    {
-        new EndGameWinGUI();
-    }
 }

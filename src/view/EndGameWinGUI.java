@@ -13,12 +13,12 @@ import java.awt.image.BufferedImage;
  * @author Jagtej Sidhu, Hanis Saley
  * @version 1.1
  */
-public class EndGameGUI extends JPanel
+public class EndGameWinGUI extends JPanel
 {
     private JFrame frame;
     private JPanel mainPnl;
     private BufferedImage image;
-    private EndGameGUI endWinGUi;
+    private EndGameWinGUI endWinGUi;
     private Controller controller;
     private HighscoreGUI highscoreGUI;
 
@@ -28,7 +28,7 @@ public class EndGameGUI extends JPanel
 
 
 
-    public EndGameGUI(Controller controller)
+    public EndGameWinGUI(Controller controller)
     {
         this.controller = controller;
         initializePanels();

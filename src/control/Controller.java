@@ -2,7 +2,7 @@ package control;
 
 import model.*;
 import view.ButtonType;
-import view.EndGameGUI;
+import view.EndGameWinGUI;
 import view.GameGUI;
 import view.HighscoreGUI;
 import view.StartMenuGUI;
@@ -21,7 +21,7 @@ public class Controller implements TimerCallback {
     private GameGUI gameGUI;
     private GameTimer timer;
     private HighscoreGUI highscoreGUI;
-    private EndGameGUI endGameGui;
+    private EndGameWinGUI endGameWinGui;
     private final PlayersList playersList = new PlayersList();
 
     private double currentCorrectAnswer = 0;
@@ -126,11 +126,11 @@ public class Controller implements TimerCallback {
                 tempList = checkIfPointsQualified(tempList, points, worstResult);
                 playersList.setHighScoreList(tempList);
                 updateHighscoreListGUI(tempList);
-                endGameGui.getBtnHighscore().setEnabled(false);
+                endGameWinGui.getBtnHighscore().setEnabled(false);
                 break;
 
             case Back:
-                endGameGui.getBtnHighscore().setEnabled(true);
+                endGameWinGui.getBtnHighscore().setEnabled(true);
                 break;
 
             case Quit:
@@ -221,7 +221,7 @@ public class Controller implements TimerCallback {
     }
 
     public void setupEndGameWindow(){
-        endGameGui = new EndGameGUI(this);
+        endGameWinGui = new EndGameWinGUI(this);
     }
 
     @Override

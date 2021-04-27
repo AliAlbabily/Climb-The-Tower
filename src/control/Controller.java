@@ -2,9 +2,7 @@ package control;
 
 import model.*;
 import view.ButtonType;
-import view.EndGameWinGUI;
 import view.GameGUI;
-import view.HighscoreGUI;
 import view.StartMenuGUI;
 
 import javax.swing.*;
@@ -20,9 +18,6 @@ public class Controller implements TimerCallback {
     private StartMenuGUI startMenuGUI;
     private GameGUI gameGUI;
     private GameTimer timer;
-    private HighscoreGUI highscoreGUI;
-    private EndGameWinGUI endGameWinGui;
-
     private final PlayersList playersList = new PlayersList();
 
     private double currentCorrectAnswer = 0;
@@ -105,38 +100,11 @@ public class Controller implements TimerCallback {
                 timer.stopTimer();
 
                 if(gameHasEnded) {
-               
-                    System.out.println("\nGame Over!");
-                   // System.exit(0); // terminate program  TODO kommenterade bort detta tillfälligt
-
-                 //   endGame();
-                    timer.stopTimer();
-                    gameGUI.closeGameGUI();
-                    setupEndGameWindow();
-
+                    endGame();
                 }
 
                 updateGamePlayInformation();
                 break;
-
-            case Highscore:
-
-                Player[] tempList = playersList.getHighScoreList();
-                int points = model.getPoints();
-                int worstResult = tempList[9].getPoints();
-                tempList = checkIfPointsQualified(tempList, points, worstResult);
-                playersList.setHighScoreList(tempList);
-                updateHighscoreListGUI(tempList);
-                endGameWinGui.getBtnHighscore().setEnabled(false);
-                break;
-
-            case Back:
-                endGameWinGui.getBtnHighscore().setEnabled(true);
-                break;
-
-            case Quit:
-                System.exit(0);
-
             default:
                 JOptionPane.showMessageDialog(null,"Error");
         }
@@ -183,17 +151,9 @@ public class Controller implements TimerCallback {
         });
     }
 
-    //Updates highscore taking the values from PlayersList class in model package and
-    //transfering it to HighscoreGUi in view
     public void updateHighscoreListGUI(Player [] highscoreList){
-            HighscoreGUI highscoreGUI = new HighscoreGUI(this);
-            String[] list = playersList.convertObjListToStringList(highscoreList);
-            playersList.printStringList(list);
-            highscoreGUI.updateHighscoreGUI(list);
-
-
-
-
+        String [] list = playersList.convertObjListToStringList(highscoreList);
+        playersList.printStringList(list);
     }
 
 
@@ -220,10 +180,6 @@ public class Controller implements TimerCallback {
         for(int i = listOfObjects.length-2; i >=index; i--){
             listOfObjects[i+1] = listOfObjects[i];
         }
-    }
-
-    public void setupEndGameWindow(){
-        endGameWinGui = new EndGameWinGUI(this);
     }
 
     @Override

@@ -20,10 +20,16 @@ public class EndGameWinGUI extends JPanel
     private JFrame frame;
     private JPanel mainPnl;
     private BufferedImage image;
+    private Controller controller;
+
+    private JButton btnHighscore;
+    private JButton btnPlayAgain;
+
+
 
     public EndGameWinGUI(Controller controller)
-
     {
+        this.controller = controller;
         initializePanels();
     }
 
@@ -96,11 +102,14 @@ public class EndGameWinGUI extends JPanel
         btnHighscore.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO koppla knapparna här inne
+
+
+                controller.buttonPressed(ButtonType.Highscore);
+
             }
         });
 
-        btnQuit = new JButton("Quit");
+        JButton btnQuit = new JButton("Quit");
         btnQuit.setBounds(272,345,100, 50);
         btnQuit.addActionListener(new ActionListener() {
             @Override
@@ -121,9 +130,8 @@ public class EndGameWinGUI extends JPanel
         frame.pack();
     }
 
-    public static void main(String[] args)
-    {
-        new EndGameWinGUI();
+    public JButton getBtnHighscore(){
+        return btnHighscore;
     }
 
 }

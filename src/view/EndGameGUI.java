@@ -10,8 +10,8 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 /**
- * @author Jagtej Sidhu
- * @version 1.0
+ * @author Jagtej Sidhu, Hanis Saley
+ * @version 1.1
  */
 public class EndGameGUI extends JPanel
 {

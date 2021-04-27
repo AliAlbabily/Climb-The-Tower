@@ -10,8 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * @author Jagtej Sidhu
- * @version 1.0
+ * @author Jagtej Sidhu, Hanis Saley
+ * @version 1.1
  */
 public class HighscoreGUI extends JFrame
 {

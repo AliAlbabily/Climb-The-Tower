@@ -222,11 +222,6 @@ public class GameGUI
 
     }
 
-    public void closeGameGUI(){
-        frame.setVisible(false);
-        frame.dispose();
-    }
-
     public JLabel getTimer()
     {
         return timer;

@@ -21,6 +21,7 @@ public class GameGUI
 
     private JTextField answerTextField;
     private JButton submitButton;
+    private Controller controller;
 
     private static JLabel timer;
     private JLabel enemyHealth;
@@ -33,15 +34,16 @@ public class GameGUI
 
     public GameGUI(Controller controller)
     {
+        this.controller = controller;
         InitializePanels();
 
         // add action listener to submit button
-        submitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.buttonPressed(ButtonType.SubmitAnswer);
-            }
-        });
+//        submitButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                controller.buttonPressed(ButtonType.SubmitAnswer);
+//            }
+//        });
     }
 
     public void InitializePanels()
@@ -80,6 +82,13 @@ public class GameGUI
 
         submitButton = new JButton("Submit Answer");
         submitButton.setBounds(75,225,130, 25);
+
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.buttonPressed(ButtonType.SubmitAnswer);
+            }
+        });
 
         pnlNorth.add(lblQuestion);
         pnlNorth.add(answerTextField);

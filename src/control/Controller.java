@@ -136,7 +136,7 @@ public class Controller implements TimerCallback {
 
             case Quit:
                 System.exit(0);
-
+                break;
             default:
                 JOptionPane.showMessageDialog(null,"Error");
         }

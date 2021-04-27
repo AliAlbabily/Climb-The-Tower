@@ -114,7 +114,7 @@ public class EndGameWinGUI extends JPanel
         btnQuit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO koppla knapparna här inne
+                controller.buttonPressed(ButtonType.Quit);
             }
         });
 

@@ -22,10 +22,9 @@ public class HighscoreGUI extends JFrame
 
     private Controller controller;
 
-    public HighscoreGUI()
+    public HighscoreGUI(Controller controller)
     {
-//        this.controller = controller;
-
+        this.controller = controller;
         initializePanels();
     }
 

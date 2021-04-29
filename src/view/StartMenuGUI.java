@@ -24,6 +24,8 @@ public class StartMenuGUI extends JPanel
     private JButton playBtn = new JButton();
     private JButton infoBtn = new JButton();
     private String  playerName;
+    private ImageIcon towerPic = new ImageIcon("files/towers.png");
+    private JLabel myLabel;
 
 
    // private Image pic;
@@ -32,9 +34,8 @@ public class StartMenuGUI extends JPanel
     public StartMenuGUI(Controller controller)
     {
         this.controller = controller;
-
         createMenuBox();
-        //ImageIcon obj = new ImageIcon("files/towers.png");
+       // towerPic = new ImageIcon("files/towers.png");
         //pic = obj.getImage();
 
     }
@@ -56,6 +57,8 @@ public class StartMenuGUI extends JPanel
         frame.add(panel);
         frame.setResizable(false);
         frame.setVisible(true);
+
+
 
         Border blackline = BorderFactory.createLineBorder(Color.black);
 
@@ -95,6 +98,10 @@ public class StartMenuGUI extends JPanel
         mainPanel.add(userTextField);
         mainPanel.add(playBtn);
 
+
+        myLabel = new JLabel(towerPic);
+        myLabel.setSize(300,400);
+        mainPanel.add(myLabel);
         frame.setVisible(true);
         addListeners();
     }

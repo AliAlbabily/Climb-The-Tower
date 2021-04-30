@@ -7,8 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 /**
  * @author Jagtej Sidhu
@@ -16,6 +14,7 @@ import java.awt.event.KeyEvent;
  */
 public class GameGUI
 {
+    // java swing variables
     private JFrame frame;
     private JPanel pnlNorth;
     private JPanel pnlSouth;
@@ -32,8 +31,14 @@ public class GameGUI
     private JLabel enemyName;
     private JLabel lblplayer;
     private static JLabel streak;
+
+    //Object of controller class
     private Controller controller;
 
+    /**
+     * Constructor
+     * @param controller
+     */
     public GameGUI(Controller controller)
     {
         InitializePanels();
@@ -47,6 +52,9 @@ public class GameGUI
         });
     }
 
+    /**
+     * Method that initializes all the other frames and jpanels
+     */
     public void InitializePanels()
     {
         createMainFrame();
@@ -54,6 +62,9 @@ public class GameGUI
         SouthPanel();
     }
 
+    /**
+     * Creation of the frame window
+     */
     public void createMainFrame()
     {
         frame = new JFrame("Climb The Tower");
@@ -64,6 +75,9 @@ public class GameGUI
         frame.pack();
     }
 
+    /**
+     * The north panel in the frame where the math questions are located
+     */
     public void NorthPanel()
     {
         //TODO fixa bild till jpanel
@@ -92,6 +106,9 @@ public class GameGUI
         frame.pack();
     }
 
+    /**
+     * The bottom part of the window where health, level, and timer is being showned.
+     */
     public void SouthPanel()
     {
         pnlSouth = new JPanel();
@@ -174,10 +191,15 @@ public class GameGUI
         return Double.parseDouble(answerStr);
     }
 
+    /**
+     * Updates the streak label
+     * @param count
+     */
     public void updateStreak(int count)
     {
         streak.setText("" + count + "");
     }
+
 
     public void updateCharactersHPGUI(int playerHP, int enemyHP) {
         String playerHPStr = Integer.toString(playerHP);
@@ -230,6 +252,9 @@ public class GameGUI
 
     }
 
+    /**
+     * Closes the frame on command
+     */
     public void closeGameGUI(){
         frame.setVisible(false);
         frame.dispose();

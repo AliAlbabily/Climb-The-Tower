@@ -10,11 +10,13 @@ import java.awt.event.ActionListener;
 
 /**
  * @author Jagtej Sidhu
- * @version 1.0
+ * @version 1.1
  */
+
 public class HighscoreGUI extends JFrame
 {
 
+    //java swing variables
     private JList list = new JList<String[]>();
     private JButton btnBack;
     private JFrame frame;
@@ -22,18 +24,28 @@ public class HighscoreGUI extends JFrame
 
     private Controller controller;
 
+    /**
+     * Constructor
+     * @param controller
+     */
     public HighscoreGUI(Controller controller)
     {
         this.controller = controller;
         initializePanels();
     }
 
+    /**
+     * Method that initializes all the other frames and jpanels
+     */
     public void initializePanels()
     {
         createHsFrame();
         createHighscore();
     }
 
+    /**
+     * Creation of the frame
+     */
     public void createHsFrame()
     {
         frame = new JFrame("Highscore");
@@ -43,16 +55,25 @@ public class HighscoreGUI extends JFrame
         frame.pack();
     }
 
+    /**
+     * The window that players see
+     */
     public void createHighscore()
     {
         BorderLayout layout = new BorderLayout();
         Border b2 = BorderFactory.createTitledBorder("Highscore");
 
+        /**
+         * Jpanel window
+         */
         panel = new JPanel();
         panel.setPreferredSize(new Dimension(350, 550));
         panel.setLayout(layout);
         panel.setBorder(b2);
 
+        /**
+         * Back button on screen
+         */
         btnBack = new JButton("Back");
         btnBack.addActionListener(new ActionListener() {
             @Override
@@ -62,17 +83,16 @@ public class HighscoreGUI extends JFrame
                     controller.buttonPressed(ButtonType.Back);
             }
         });
-
-        panel.add(list, BorderLayout.CENTER);
         panel.add(btnBack, BorderLayout.SOUTH);
+        panel.add(list, BorderLayout.CENTER);
 
         frame.add(panel);
         frame.pack();
     }
 
-
-
-
+    /**
+     * Method that closes the frames window on command
+     */
     public void closeHsWindow()
     {
         frame.setVisible(false);
@@ -80,6 +100,10 @@ public class HighscoreGUI extends JFrame
 
     }
 
+    /**
+     * Updates the current highscorelist
+     * @param highscore
+     */
     public void updateHighscoreGUI(String[] highscore)
     {
         list.setListData(highscore);

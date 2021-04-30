@@ -13,40 +13,43 @@ import java.io.IOException;
 
 /**
  * @author Jagtej Sidhu
- * @version 1.0
+ * @version 1.1
  */
 public class EndGameWinGUI extends JPanel
 {
+    //java swing variables
     private JFrame frame;
     private JPanel mainPnl;
-    private BufferedImage image;
     private Controller controller;
 
     private JButton btnHighscore;
     private JButton btnPlayAgain;
 
+    private ImageIcon trophyIcon = new ImageIcon("files/newTrophy.png");
+    private JLabel myLabel;
 
-
+    /**
+     * Constructor
+     * @param controller
+     */
     public EndGameWinGUI(Controller controller)
     {
         this.controller = controller;
         initializePanels();
     }
 
-    @Override
-    protected void paintComponent(Graphics g)
-    {
-        super.paintComponent(g);
-        g.drawImage(image, 0, 0, this);
-    }
-
+    /**
+     * Method that initializes the frame and jpanel windows
+     */
     public void initializePanels()
     {
         createMainFrame();
         createEndPanel();
     }
 
-
+    /**
+     * Creates the frame window
+     */
     public void createMainFrame()
     {
         frame = new JFrame("Climb The Tower");
@@ -57,37 +60,44 @@ public class EndGameWinGUI extends JPanel
         frame.pack();
     }
 
+    /**
+     * Created the jpanel for the frame window
+     */
     public void createEndPanel() {
-        Border blackline = BorderFactory.createLineBorder(Color.black);
 
+        //initializing of jpanel
         mainPnl = new JPanel();
         mainPnl.setPreferredSize(new Dimension(400, 450));
         mainPnl.setLayout(null);
         mainPnl.setBackground(Color.lightGray);
 
+        //game over text
         JLabel gameOverlbl = new JLabel("GAME OVER");
         gameOverlbl.setForeground(Color.black);
         gameOverlbl.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 32));
         gameOverlbl.setBounds(90, 30, 200, 100);
+        mainPnl.add(gameOverlbl);
 
+        //You won text
         JLabel youWonlbl = new JLabel("You defeated all the monsters");
         youWonlbl.setForeground(Color.black);
         youWonlbl.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
         youWonlbl.setBounds(70, 100, 300, 100);
+        mainPnl.add(youWonlbl);
 
+        //Great work text
         JLabel greatJoblbl = new JLabel("Great work!");
         greatJoblbl.setForeground(Color.black);
         greatJoblbl.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
         greatJoblbl.setBounds(140, 140, 200, 100);
+        mainPnl.add(greatJoblbl);
 
-//        TODO måste fixa så att bilden visas
-//        try{
-//            image = ImageIO.read(new File("files/trophy.png"));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        JLabel piclbl = new JLabel(new ImageIcon(image));
+        //Trophy picture
+        myLabel = new JLabel(trophyIcon);
+        myLabel.setBounds(140, 220, 100, 100);
+        mainPnl.add(myLabel);
 
+        //play again button on screen
         btnPlayAgain = new JButton("Play again");
         btnPlayAgain.setBounds(12,345,100, 50);
         btnPlayAgain.addActionListener(new ActionListener() {
@@ -96,7 +106,9 @@ public class EndGameWinGUI extends JPanel
                 //TODO koppla knapparna här inne
             }
         });
+        mainPnl.add(btnPlayAgain);
 
+        //highscore button on screen
         btnHighscore = new JButton("Highscore");
         btnHighscore.setBounds(140,345,100, 50);
         btnHighscore.addActionListener(new ActionListener() {
@@ -108,7 +120,9 @@ public class EndGameWinGUI extends JPanel
 
             }
         });
+        mainPnl.add(btnHighscore);
 
+        //Quit button on screen
         JButton btnQuit = new JButton("Quit");
         btnQuit.setBounds(272,345,100, 50);
         btnQuit.addActionListener(new ActionListener() {
@@ -117,19 +131,16 @@ public class EndGameWinGUI extends JPanel
                 controller.buttonPressed(ButtonType.Quit);
             }
         });
-
         mainPnl.add(btnQuit);
-        mainPnl.add(btnHighscore);
-        mainPnl.add(btnPlayAgain);
-//        mainPnl.add(piclbl);
-        mainPnl.add(gameOverlbl);
-        mainPnl.add(youWonlbl);
-        mainPnl.add(greatJoblbl);
 
         frame.add(mainPnl);
         frame.pack();
     }
 
+    /**
+     *
+     * @return highscore button 
+     */
     public JButton getBtnHighscore(){
         return btnHighscore;
     }

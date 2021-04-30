@@ -2,7 +2,7 @@ package control;
 
 import model.*;
 import view.ButtonType;
-import view.EndGameWinGUI;
+import view.EndGameGUI;
 import view.GameGUI;
 import view.HighscoreGUI;
 import view.StartMenuGUI;
@@ -21,7 +21,7 @@ public class Controller implements TimerCallback {
     private GameGUI gameGUI;
     private GameTimer timer;
     private HighscoreGUI highscoreGUI;
-    private EndGameWinGUI endGameWinGui;
+    private EndGameGUI endGameGui;
 
     private final PlayersList playersList = new PlayersList();
 
@@ -146,10 +146,10 @@ public class Controller implements TimerCallback {
                 tempList = checkIfPointsQualified(tempList, points, worstResult);
                 playersList.setHighScoreList(tempList);
                 updateHighscoreListGUI(tempList);
-                endGameWinGui.getBtnHighscore().setEnabled(false);
+                endGameGui.getBtnHighscore().setEnabled(false);
                 break;
             case Back:
-                endGameWinGui.getBtnHighscore().setEnabled(true);
+                endGameGui.getBtnHighscore().setEnabled(true);
                 break;
             case Quit:
                 System.exit(0);
@@ -215,7 +215,7 @@ public class Controller implements TimerCallback {
     }
 
     public void setupEndGameWindow(){
-        endGameWinGui = new EndGameWinGUI(this);
+        endGameGui = new EndGameGUI(this);
     }
 
     // Callback function that is invoked when the countdown timer is finished.

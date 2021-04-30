@@ -15,7 +15,7 @@ import java.io.IOException;
  * @author Jagtej Sidhu
  * @version 1.2
  */
-public class EndGameWinGUI extends JPanel
+public class EndGameGUI extends JPanel
 {
     //java swing variables
     private JFrame frame;
@@ -32,7 +32,7 @@ public class EndGameWinGUI extends JPanel
      * Constructor
      * @param controller
      */
-    public EndGameWinGUI(Controller controller)
+    public EndGameGUI(Controller controller)
     {
         this.controller = controller;
         initializePanels();

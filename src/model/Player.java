@@ -1,8 +1,8 @@
 package model;
 
 /**
- * @author Hanis and Ali
- * @version 1.0
+ * @author Hanis, Mads and Ali
+ * @version 1.1
  */
 public class Player extends Character {
 
@@ -18,7 +18,7 @@ public class Player extends Character {
     }
 
     public void increasePoints(int bonuspoints){
-        points += bonuspoints;                      //Bonuspoäng som läggs till för x antal korrekta svar i rad.
+        points += bonuspoints; //Bonuspoäng som läggs till för x antal korrekta svar i rad.
     }
 
     public int getPoints() {

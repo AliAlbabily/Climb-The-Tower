@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 /**
  * @author Jagtej Sidhu
- * @version 1.1
+ * @version 1.2
  */
 public class StartMenuGUI extends JPanel
 {
@@ -37,7 +37,7 @@ public class StartMenuGUI extends JPanel
     {
         this.controller = controller;
         createMenuBox();
-
+        addListeners(); // add action-listeners to components
     }
 
     public void createMenuBox()
@@ -51,6 +51,7 @@ public class StartMenuGUI extends JPanel
         frame.add(panel);
         frame.setResizable(false);
         frame.setVisible(true);
+        centreWindow(frame);
 
         Border blackline = BorderFactory.createLineBorder(Color.black);
 
@@ -102,28 +103,19 @@ public class StartMenuGUI extends JPanel
             }
         });
         mainPnl.add(infoBtn);
-
-        frame.setVisible(true);
-        addListeners();
     }
 
     private void addListeners()
     {
-        ActionListener listener = new ButtonActionListeners();
-
-        playBtn.addActionListener(listener);
-    }
-
-    class ButtonActionListeners implements ActionListener
-    {
-
-        public void actionPerformed(ActionEvent e)
-        {
-            if (e.getSource() == playBtn)
-            {
-                controller.buttonPressed(ButtonType.Play);
+        playBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == playBtn)
+                {
+                    controller.buttonPressed(ButtonType.Play);
+                }
             }
-        }
+        });
     }
 
     public void closeStartMenuGUIWindow() {
@@ -135,6 +127,17 @@ public class StartMenuGUI extends JPanel
     public String getPlayerName() {
         playerName = userTextField.getText();
         return playerName;
+    }
+
+    /**
+     * Centers the frame according to the user's window size
+     * @param frame the JFrame that needs to be centered
+     */
+    private void centreWindow(Window frame) {
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+        frame.setLocation(x, y);
     }
 }
 

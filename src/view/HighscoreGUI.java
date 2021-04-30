@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 /**
  * @author Jagtej Sidhu
- * @version 1.1
+ * @version 1.2
  */
 
 public class HighscoreGUI extends JFrame
@@ -53,6 +53,7 @@ public class HighscoreGUI extends JFrame
         frame.setResizable(false);
         frame.setVisible(true);
         frame.pack();
+        centreWindow(frame);
     }
 
     /**
@@ -97,7 +98,6 @@ public class HighscoreGUI extends JFrame
     {
         frame.setVisible(false);
         frame.dispose();
-
     }
 
     /**
@@ -109,7 +109,14 @@ public class HighscoreGUI extends JFrame
         list.setListData(highscore);
     }
 
-
-
-
+    /**
+     * Centers the frame according to the user's window size
+     * @param frame the JFrame that needs to be centered
+     */
+    private void centreWindow(Window frame) {
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+        frame.setLocation(x, y);
+    }
 }

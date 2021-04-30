@@ -13,7 +13,7 @@ import java.io.IOException;
 
 /**
  * @author Jagtej Sidhu
- * @version 1.1
+ * @version 1.2
  */
 public class EndGameWinGUI extends JPanel
 {
@@ -58,6 +58,7 @@ public class EndGameWinGUI extends JPanel
         frame.setResizable(false);
         frame.setVisible(true);
         frame.pack();
+        centreWindow(frame);
     }
 
     /**
@@ -114,10 +115,7 @@ public class EndGameWinGUI extends JPanel
         btnHighscore.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
                 controller.buttonPressed(ButtonType.Highscore);
-
             }
         });
         mainPnl.add(btnHighscore);
@@ -145,4 +143,14 @@ public class EndGameWinGUI extends JPanel
         return btnHighscore;
     }
 
+    /**
+     * Centers the frame according to the user's window size
+     * @param frame the JFrame that needs to be centered
+     */
+    private void centreWindow(Window frame) {
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+        frame.setLocation(x, y);
+    }
 }

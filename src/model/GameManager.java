@@ -1,7 +1,6 @@
 package model;
 
 import model.levels.*;
-import view.GameGUI;
 
 import javax.sound.sampled.*;
 import java.io.File;
@@ -11,7 +10,7 @@ import java.util.LinkedList;
 
 /**
  * @author Ali-A, Ardian Glamniki
- * @version 1.4
+ * @version 1.5
  */
 public class GameManager implements TimerCallback{
 
@@ -41,7 +40,6 @@ public class GameManager implements TimerCallback{
 //      lvls.addFirst(new Level8("Level 8", this));
 //      lvls.addFirst(new Level9("Level 9", this));
 //      lvls.addFirst(new Level10("Level 10", this));
-
     }
 
 
@@ -70,7 +68,7 @@ public class GameManager implements TimerCallback{
         System.out.println("You dealt " + damage +" damage to the monster!");
         ifCharacterIsDead = currentMonster.checkIfAlive();
         if (ifCharacterIsDead) {
-            progressGame();
+            progressGame(); // advances to the next level
         }
     }
 
@@ -158,17 +156,14 @@ public class GameManager implements TimerCallback{
 
     // Compares the user input with the generated correct answer to determine if the answer is correct or not.
     public boolean handleUserAnswer(double userAnswer, double currentCorrectAnswer) {
-
         boolean userAnswerIsCorrect = checkUserAnswer(currentCorrectAnswer, userAnswer);
 
         if(userAnswerIsCorrect) {
-
             handleCorrectAnswer();
-
-
         } else {
             handleWrongAnswer();
         }
+
         return gameHasEnded;
     }
 
@@ -196,6 +191,10 @@ public class GameManager implements TimerCallback{
         return player.getPoints();
     }
 
+    public boolean getGameHasEnded() {
+        return gameHasEnded;
+    }
+
     /*
      * This callback function is invoked when the countdown timer is finished,
      * which punishes the player by reducing hitpoints.
@@ -205,15 +204,8 @@ public class GameManager implements TimerCallback{
         player.takeDamage(10);
         playSound(wrongAnswerSound);
         System.out.println("Times up! You need to be faster than that!");
-        ifCharacterIsDead = player.checkIfAlive();
-        if (ifCharacterIsDead) {
-            endGame();
-        }
     }
 
-    public boolean getGameHasEnded() {
-        return gameHasEnded;
-    }
     public static void playSound(String fileName) {
         try {
             File url = new File(fileName);

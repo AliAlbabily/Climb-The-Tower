@@ -12,7 +12,7 @@ import java.io.FileNotFoundException;
 
 /**
  * @author Ali, Hanis and Ardian
- * @version 1.3
+ * @version 1.4
  */
 public class Controller implements TimerCallback {
 
@@ -62,22 +62,27 @@ public class Controller implements TimerCallback {
         // update characters HP on console
         System.out.println("\n" + model.getPlayer().getName() + "'s hp: " + playerHP);
         System.out.println(model.getCurrentMonster().getName() + "'s hp: " + monsterHP +"\n");
+
         // update characters HP on GUI
         gameGUI.updateCharactersHPGUI(playerHP, monsterHP);
 
         // generate a math question
         try {
             currentCorrectAnswer = model.getNewMathQuestion();
-            timer = new GameTimer();
+
+            timer = new GameTimer(model);
             timer.addListener(model);
             timer.addListener(this);
+
             setTimer(model.getCurrentLevel().getLvlName());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
         // update math question on console
         mathQuestionStr = model.getCurrentMathQuestion();
         System.out.println(mathQuestionStr);
+
         // update math question on GUI
         gameGUI.updateMathQuestionGUI(mathQuestionStr);
 
@@ -96,7 +101,8 @@ public class Controller implements TimerCallback {
                     String playerName = startMenuGUI.getPlayerName();
                     Player player = new Player(playerName, 100, 0);
                     model = new GameManager(player);
-                    timer = new GameTimer();
+
+                    timer = new GameTimer(model);
                     timer.addListener(model);
                     timer.addListener(this);
 
@@ -107,8 +113,8 @@ public class Controller implements TimerCallback {
                 }
                 break;
             case SubmitAnswer:
-
                 double userAnswer = gameGUI.getUserAnswer();
+
                 if (userAnswer == currentCorrectAnswer)
                 {
                     streak++;
@@ -118,26 +124,22 @@ public class Controller implements TimerCallback {
                 {
                     gameGUI.updateStreak(0);
                 }
+
                 gameHasEnded = model.handleUserAnswer(userAnswer, currentCorrectAnswer);
-                timer.stopTimer();
 
                 if(gameHasEnded)
                 {
-               
                     System.out.println("\nGame Over!");
-                   // System.exit(0); // terminate program  TODO kommenterade bort detta tillfälligt
-
-                 //   endGame();
-                    timer.stopTimer();
                     gameGUI.closeGameGUI();
                     setupEndGameWindow();
                 }
+                else {
+                    timer.stopTimer();
+                    updateGamePlayInformation();
+                }
 
-                updateGamePlayInformation();
                 break;
-
             case Highscore:
-
                 Player[] tempList = playersList.getHighScoreList();
                 int points = model.getPoints();
                 int worstResult = tempList[9].getPoints();
@@ -146,11 +148,9 @@ public class Controller implements TimerCallback {
                 updateHighscoreListGUI(tempList);
                 endGameWinGui.getBtnHighscore().setEnabled(false);
                 break;
-
             case Back:
                 endGameWinGui.getBtnHighscore().setEnabled(true);
                 break;
-
             case Quit:
                 System.exit(0);
                 break;
@@ -159,20 +159,6 @@ public class Controller implements TimerCallback {
         }
     }
 
-    private void endGame() {
-        System.out.println("\nGame Over!");
-
-//        Player[] tempList = playersList.getHighScoreList();
-//        int points = model.getPoints();
-//        int worstResult = tempList[9].getPoints();
-//
-//        tempList = checkIfPointsQualified(tempList, points, worstResult);
-//        playersList.setHighScoreList(tempList);
-//        updateHighscoreListGUI(tempList);
-
-        // FIXME : ska ändras mot "öppna highscore-view"
-       // System.exit(0); // terminate program
-    }
     // Initializes the timer by setting the contents and starting the countdown thread.
     private void setTimer(String lvl) {
         timer.setTimeLeftLbl(gameGUI.getTimer());
@@ -190,26 +176,18 @@ public class Controller implements TimerCallback {
                 break;
             default:
                 timer.setSeconds(61);
-
         }
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                timer.start();
-            }
-        });
+        timer.start();
     }
 
     //Updates highscore taking the values from PlayersList class in model package and
     //transfering it to HighscoreGUi in view
     public void updateHighscoreListGUI(Player [] highscoreList){
-            HighscoreGUI highscoreGUI = new HighscoreGUI(this);
-            String[] list = playersList.convertObjListToStringList(highscoreList);
-            playersList.printStringList(list);
-            highscoreGUI.updateHighscoreGUI(list);
-
+        HighscoreGUI highscoreGUI = new HighscoreGUI(this);
+        String[] list = playersList.convertObjListToStringList(highscoreList);
+        playersList.printStringList(list);
+        highscoreGUI.updateHighscoreGUI(list);
     }
-
 
     public Player[] checkIfPointsQualified(Player[] listOfPlayers, int points, int worstResult){
 
@@ -240,14 +218,9 @@ public class Controller implements TimerCallback {
         endGameWinGui = new EndGameWinGUI(this);
     }
 
-    @Override
     // Callback function that is invoked when the countdown timer is finished.
+    @Override
     public void timesUp() {
         updateGamePlayInformation();
-        if(model.getGameHasEnded()) {
-            endGame();
-        }
     }
-
-
 }

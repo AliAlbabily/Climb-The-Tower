@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 /**
  * @author Ardian Glamniki
- * @version 1.1
+ * @version 1.2
  *
  * This class is the timer for the math questions, which counts down from a set time and notifies the observers
  * when the timer runs out.
@@ -16,7 +16,10 @@ public class GameTimer extends Thread {
     private JLabel timeLeftLbl;
     private int seconds;
 
-    public GameTimer() {
+    private GameManager gameManager;
+
+    public GameTimer(GameManager gameManager) {
+        this.gameManager = gameManager;
     }
 
     // Setting the listeners
@@ -29,10 +32,16 @@ public class GameTimer extends Thread {
     // Asynchronous task which is the countdown timer.
     @Override
     public void run() {
-
         while (seconds >= 0) {
+
+            // check if game has ended
+            if(gameManager.getGameHasEnded()) {
+                break; // stop executing the loop
+            }
+
             seconds--;
-            SwingUtilities.invokeLater(new Write(seconds));
+            SwingUtilities.invokeLater(new Write(seconds)); // updates time left on GUI
+
             if (seconds == 0) {
                 for (TimerCallback cb: callbackList) {
                     cb.timesUp();
@@ -41,11 +50,10 @@ public class GameTimer extends Thread {
             }
             try {
                 Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                break;
-            }
+            } catch (InterruptedException e) { break; }
         }
     }
+
     // This is called when a question has been answered which terminates the counter thread.
     public void stopTimer() {
         this.interrupt();

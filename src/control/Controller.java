@@ -11,7 +11,7 @@ import javax.swing.*;
 import java.io.FileNotFoundException;
 
 /**
- * @author Ali, Hanis and Ardian
+ * @author Ali, Hanis, Ardian and Mads
  * @version 1.4
  */
 public class Controller implements TimerCallback {

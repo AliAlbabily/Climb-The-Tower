@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 /**
- * @author Ali-A, Ardian Glamniki
+ * @author Ali-A, Ardian Glamniki and Mads
  * @version 1.5
  */
 public class GameManager implements TimerCallback{
@@ -71,7 +71,6 @@ public class GameManager implements TimerCallback{
             progressGame(); // advances to the next level
         }
     }
-
 
     /*
      * This method is called when the user input is wrong.

@@ -139,6 +139,11 @@ public class Controller implements TimerCallback {
                 }
 
                 break;
+            case PlayAgain:
+                startNewGame();
+                streak = 0; // reset amount of streak
+                endGameGui.closeEndGameGUI(); // closes endGame window
+                break;
             case Highscore:
                 Player[] tempList = playersList.getHighScoreList();
                 int points = model.getPoints();

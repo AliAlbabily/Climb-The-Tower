@@ -105,6 +105,8 @@ public class EndGameGUI extends JPanel
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO koppla knapparna här inne
+                controller.buttonPressed(ButtonType.PlayAgain);
+                System.out.println("Play again is worikng !!!!!!!!!!!!!!!!!!!");
             }
         });
         mainPnl.add(btnPlayAgain);
@@ -152,5 +154,13 @@ public class EndGameGUI extends JPanel
         int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
         frame.setLocation(x, y);
+    }
+
+    /**
+     * Closes the frame on command
+     */
+    public void closeEndGameGUI(){
+        frame.setVisible(false);
+        frame.dispose();
     }
 }

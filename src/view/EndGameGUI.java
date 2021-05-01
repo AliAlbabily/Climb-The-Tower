@@ -106,7 +106,6 @@ public class EndGameGUI extends JPanel
             public void actionPerformed(ActionEvent e) {
                 //TODO koppla knapparna här inne
                 controller.buttonPressed(ButtonType.PlayAgain);
-                System.out.println("Play again is worikng !!!!!!!!!!!!!!!!!!!");
             }
         });
         mainPnl.add(btnPlayAgain);

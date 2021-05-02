@@ -31,14 +31,14 @@ public class GameManager implements TimerCallback{
 
         // fill levels-list with new levels
       lvls.addFirst(new Level1("Level 1", this));
-//      lvls.addFirst(new Level2("Level 2", this));
+      lvls.addFirst(new Level2("Level 2", this));
 //      lvls.addFirst(new Level3("Level 3", this));
 //      lvls.addFirst(new Level4("Level 4", this));
 //      lvls.addFirst(new Level5("Level 5", this));
 //      lvls.addFirst(new Level6("Level 6", this));
 //      lvls.addFirst(new Level7("Level 7", this));
 //      lvls.addFirst(new Level8("Level 8", this));
-//      lvls.addFirst(new Level9("Level 9", this));
+      lvls.addFirst(new Level9("Level 9", this));
 //      lvls.addFirst(new Level10("Level 10", this));
     }
 
@@ -203,6 +203,10 @@ public class GameManager implements TimerCallback{
         player.takeDamage(10);
         playSound(wrongAnswerSound);
         System.out.println("Times up! You need to be faster than that!");
+        ifCharacterIsDead = player.checkIfAlive();
+        if (ifCharacterIsDead) {
+            endGame();
+        }
     }
 
     public static void playSound(String fileName) {

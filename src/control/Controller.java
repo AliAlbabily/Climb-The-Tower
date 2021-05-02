@@ -12,7 +12,7 @@ import java.io.FileNotFoundException;
 
 /**
  * @author Ali, Hanis, Ardian and Mads
- * @version 1.4
+ * @version 1.5
  */
 public class Controller implements TimerCallback {
 
@@ -45,7 +45,6 @@ public class Controller implements TimerCallback {
 
         int playerHP = model.getPlayer().getHitPoints();
         int monsterHP = model.getCurrentMonster().getHitPoints();
-        String mathQuestionStr;
 
         // update level name on GUI
         currentLevelName = model.getCurrentLevel().getLvlName();
@@ -59,14 +58,33 @@ public class Controller implements TimerCallback {
         currentPlayerName = model.getPlayer().getName();
 //        gameGUI.setName(currentPlayerName);
 
-        // update characters HP on console
+        updateCharacterHP(playerHP, monsterHP);
+
+        generateMathQuestion();
+
+        // update math question on console
+        updateMathQuestion();
+        // update math question on GUI
+
+        System.out.println("\nAttack the enemy by entering the right number: ");
+    }
+
+    // Updates the level, monster and player name on the GUI
+
+    // Displays the current health of the characters on the GUI and prints it on the console.
+    private void updateCharacterHP(int playerHP, int monsterHP) {
+        gameGUI.updateCharactersHPGUI(playerHP, monsterHP);
         System.out.println("\n" + model.getPlayer().getName() + "'s hp: " + playerHP);
         System.out.println(model.getCurrentMonster().getName() + "'s hp: " + monsterHP +"\n");
-
-        // update characters HP on GUI
-        gameGUI.updateCharactersHPGUI(playerHP, monsterHP);
-
-        // generate a math question
+    }
+    // Displays the current math question on the GUI and prints it on the console.
+    private void updateMathQuestion() {
+        String mathQuestionStr = model.getCurrentMathQuestion();
+        gameGUI.updateMathQuestionGUI(mathQuestionStr);
+        System.out.println(mathQuestionStr);
+    }
+    // Fetches a math question and starts the timer for the question.
+    private void generateMathQuestion() {
         try {
             currentCorrectAnswer = model.getNewMathQuestion();
 
@@ -78,15 +96,21 @@ public class Controller implements TimerCallback {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+    // Initializes the player and timer object then starts starts the gameplay with a GUI.
+    private void startGamePlay() {
+        String playerName = startMenuGUI.getPlayerName();
+        Player player = new Player(playerName, 100, 0);
+        model = new GameManager(player);
 
-        // update math question on console
-        mathQuestionStr = model.getCurrentMathQuestion();
-        System.out.println(mathQuestionStr);
+        timer = new GameTimer(model);
+        timer.addListener(model);
+        timer.addListener(this);
 
-        // update math question on GUI
-        gameGUI.updateMathQuestionGUI(mathQuestionStr);
-
-        System.out.println("\nAttack the enemy by entering the right number: ");
+        model.startAtFirstLevel();
+        gameGUI = new GameGUI(this);
+        updateGamePlayInformation();
+        startMenuGUI.closeStartMenuGUIWindow();
     }
 
     public void buttonPressed(ButtonType button) {
@@ -98,46 +122,35 @@ public class Controller implements TimerCallback {
                     JOptionPane.showMessageDialog(null, "Please type your chosen name");
                 }
                 else {
-                    String playerName = startMenuGUI.getPlayerName();
-                    Player player = new Player(playerName, 100, 0);
-                    model = new GameManager(player);
-
-                    timer = new GameTimer(model);
-                    timer.addListener(model);
-                    timer.addListener(this);
-
-                    model.startAtFirstLevel();
-                    gameGUI = new GameGUI(this); // start the gameplay with a GUI
-                    updateGamePlayInformation();
-                    startMenuGUI.closeStartMenuGUIWindow();
+                    startGamePlay();
                 }
                 break;
             case SubmitAnswer:
-                double userAnswer = gameGUI.getUserAnswer();
+                try {
+                    double userAnswer = Double.parseDouble(gameGUI.getUserAnswer());
+                    if (userAnswer == currentCorrectAnswer)
+                    {
+                        streak++;
+                        gameGUI.updateStreak(streak);
+                    }
+                    if (userAnswer != currentCorrectAnswer)
+                    {
+                        gameGUI.updateStreak(0);
+                    }
 
-                if (userAnswer == currentCorrectAnswer)
-                {
-                    streak++;
-                    gameGUI.updateStreak(streak);
-                }
-                if (userAnswer != currentCorrectAnswer)
-                {
-                    gameGUI.updateStreak(0);
-                }
+                    gameHasEnded = model.handleUserAnswer(userAnswer, currentCorrectAnswer);
 
-                gameHasEnded = model.handleUserAnswer(userAnswer, currentCorrectAnswer);
-
-                if(gameHasEnded)
-                {
-                    System.out.println("\nGame Over!");
-                    gameGUI.closeGameGUI();
-                    setupEndGameWindow();
+                    if(gameHasEnded)
+                    {
+                        endGame();
+                    }
+                    else {
+                        timer.stopTimer();
+                        updateGamePlayInformation();
+                    }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Invalid input, try again with a number!");
                 }
-                else {
-                    timer.stopTimer();
-                    updateGamePlayInformation();
-                }
-
                 break;
             case PlayAgain:
                 startNewGame();
@@ -145,13 +158,7 @@ public class Controller implements TimerCallback {
                 endGameGui.closeEndGameGUI(); // closes endGame window
                 break;
             case Highscore:
-                Player[] tempList = playersList.getHighScoreList();
-                int points = model.getPoints();
-                int worstResult = tempList[9].getPoints();
-                tempList = checkIfPointsQualified(tempList, points, worstResult);
-                playersList.setHighScoreList(tempList);
-                updateHighscoreListGUI(tempList);
-                endGameGui.getBtnHighscore().setEnabled(false);
+                displayHighscores();
                 break;
             case Back:
                 endGameGui.getBtnHighscore().setEnabled(true);
@@ -212,7 +219,22 @@ public class Controller implements TimerCallback {
         }
         return listOfPlayers;
     }
+    private void endGame() {
+        System.out.println("\nGame Over!");
+        gameGUI.closeGameGUI();
+        setupEndGameWindow();
+    }
 
+    private void displayHighscores(){
+        Player[] tempList = playersList.getHighScoreList();
+        int points = model.getPoints();
+        int worstResult = tempList[9].getPoints();
+        tempList = checkIfPointsQualified(tempList, points, worstResult);
+        playersList.setHighScoreList(tempList);
+        updateHighscoreListGUI(tempList);
+        endGameGui.getBtnHighscore().setEnabled(false);
+
+    }
     private void moveElementsToRight(int index, Player[] listOfObjects){
         for(int i = listOfObjects.length-2; i >=index; i--){
             listOfObjects[i+1] = listOfObjects[i];
@@ -226,6 +248,10 @@ public class Controller implements TimerCallback {
     // Callback function that is invoked when the countdown timer is finished.
     @Override
     public void timesUp() {
-        updateGamePlayInformation();
+        if (!model.getGameHasEnded()) {
+            updateGamePlayInformation();
+        } else {
+            endGame();
+        }
     }
 }

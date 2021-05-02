@@ -6,6 +6,9 @@ package model;
  */
 public class PlayersList {
 
+    /**
+     * Player with points to fill the highscore.
+     */
     private Player[] highScoreList = {
             new Player ("Lasse", 100, 100),
             new Player ("Kalle", 100, 80),
@@ -20,15 +23,24 @@ public class PlayersList {
 
     };
 
+    /**
+     * @return Returns highscoreList
+     */
     public Player[] getHighScoreList(){
         return highScoreList;
     }
 
+    /**
+     * @param highScoreList Setter for highscoreList.
+     */
     public void setHighScoreList(Player[] highScoreList){
         this.highScoreList = highScoreList;
     }
 
-
+    /**
+     * @param listOfObjects Converts object to string.
+     * @return Returns string version of the object.
+     */
     public String[] convertObjListToStringList(Player[] listOfObjects) {
         String[] ItemToString = new String[10];
 
@@ -43,7 +55,9 @@ public class PlayersList {
         return ItemToString;
     }
 
-
+    /**
+     * @param stringList Prints out the strings in the String[] stringList
+     */
     public void printStringList(String[] stringList){
         for (String s : stringList) {
             System.out.println(s);

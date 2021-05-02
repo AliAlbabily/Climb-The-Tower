@@ -14,6 +14,7 @@ import java.util.Scanner;
 /**
  * @author Hanis Saley
  * @version 1.2
+ * This class generates random math questions that consist of multiplication and division combined.
  */
 public class Level6 extends Level {
 
@@ -26,14 +27,14 @@ public class Level6 extends Level {
     @Override
     public double generateMathQuestion() {
         int a, b, c, d;
-        a = (int) (Math.random() * 5 + 1);
-        c = (int) (Math.random() * 9 + 1);
-        d = (int) (Math.random() * 10 + 1);
+        a = (int) (Math.random() * 5 + 1); //generates random number up to 5
+        c = (int) (Math.random() * 9 + 1); //generates random number up to 9
+        d = (int) (Math.random() * 10 + 1); // generates random number up to 10
         b = a * c * d;
 
 
             String mathQuestionStr = a + " * " + b + "/" + c+ "= ?";
-            getGameManager().setCurrentMathQuestion(mathQuestionStr); // save math question in GameManager
+            getGameManager().setCurrentMathQuestion(mathQuestionStr); // saves math question in GameManager
             return a * b / c;
 
     }

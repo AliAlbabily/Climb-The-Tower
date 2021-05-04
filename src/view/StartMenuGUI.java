@@ -25,7 +25,6 @@ public class StartMenuGUI extends JPanel
     private JPanel panel = new JPanel();
     private JButton playBtn = new JButton();
     private JButton infoBtn = new JButton();
-    private JButton exitBtn = new JButton();
     private String  playerName;
 
     //Image variables

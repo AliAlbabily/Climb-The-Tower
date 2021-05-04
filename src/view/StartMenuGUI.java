@@ -20,12 +20,13 @@ public class StartMenuGUI extends JPanel
     private Controller controller;
 
     //Java swing variables
-    private JTextField userTextField = new JTextField();
+    private JTextField userTextField = new JTextField("Enter username here...");
     private JFrame frame = new JFrame();
     private JPanel panel = new JPanel();
     private JButton playBtn = new JButton();
     private JButton infoBtn = new JButton();
     private String  playerName;
+
 
     //Image variables
     private ImageIcon towerPic = new ImageIcon("files/towers.png");
@@ -68,7 +69,7 @@ public class StartMenuGUI extends JPanel
         /**
          * Text field where you type in your name
          */
-        userTextField = new JTextField("Enter username here...");
+    //    userTextField = new JTextField("Enter username here...");
         userTextField.setPreferredSize(new Dimension(200,30));
         userTextField.setBounds(50,200, 200, 30);
         userTextField.setBorder(blackline);

@@ -18,6 +18,8 @@ public class GameGUI
     private JFrame frame;
     private JPanel pnlNorth;
     private JPanel pnlSouth;
+    private JPanel playerHealthBarPanel;
+    private JPanel enemyHealthBarPanel;
     Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 24);
 
     private JTextField answerTextField;
@@ -31,6 +33,9 @@ public class GameGUI
     private JLabel enemyName;
     private JLabel lblplayer;
     private static JLabel streak;
+
+    private JProgressBar playerHealthBar;
+    private JProgressBar enemyHealthBar;
 
     //Object of controller class
     private Controller controller;
@@ -129,6 +134,24 @@ public class GameGUI
         timer.setFont(font);
         timer.setBounds(130, 50, 50, 50);
 
+        playerHealthBarPanel = new JPanel();
+        playerHealthBarPanel.setBounds(860,100, 100, 25);
+        playerHealthBarPanel.setBackground(Color.black);
+        pnlSouth.add(playerHealthBarPanel);
+
+//        enemyHealthBarPanel = new JPanel();
+//        enemyHealthBarPanel.setBounds(860,60, 100, 25);
+//        pnlSouth.add(enemyHealthBar);
+
+        playerHealthBar = new JProgressBar(0,100);
+        playerHealthBar.setPreferredSize(new Dimension(100, 30));
+        playerHealthBarPanel.add(playerHealthBar);
+
+//        enemyHealthBar = new JProgressBar(0,100);
+//        enemyHealthBar.setPreferredSize(new Dimension(100, 30));
+//        enemyHealthBarPanel.add(enemyHealthBar);
+
+
         JLabel lblenemy = new JLabel("Enemy:");
         lblenemy.setForeground(Color.white);
         lblenemy.setFont(font);
@@ -175,7 +198,7 @@ public class GameGUI
         pnlSouth.add(lblenemy);
         pnlSouth.add(lblplayer);
         pnlSouth.add(enemyHealth);
-        pnlSouth.add(playerHealth);
+//        pnlSouth.add(playerHealth);
         pnlSouth.add(lblLevel);
         pnlSouth.add(enemyName);
         pnlSouth.add(lblStreak);
@@ -203,10 +226,13 @@ public class GameGUI
 
 
     public void updateCharactersHPGUI(int playerHP, int enemyHP) {
-        String playerHPStr = Integer.toString(playerHP);
+//        String playerHPStr = Integer.toString(playerHP);
         String enemyHPStr = Integer.toString(enemyHP);
-        playerHealth.setText(playerHPStr);
+//        playerHealth.setText(playerHPStr);
         enemyHealth.setText(enemyHPStr);
+
+        playerHealthBar.setValue(playerHP);
+//        enemyHealthBar.setValue(enemyHP);
     }
 
     public void updateMathQuestionGUI(String mathQuestionStr) {

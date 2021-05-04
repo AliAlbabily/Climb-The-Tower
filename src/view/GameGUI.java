@@ -217,6 +217,11 @@ public class GameGUI
         lblLevel.setText(levelName);
     }
 
+    public void updateLayoutGUI(String levelname)
+    {
+        //TODO skapa if satser för levlar där bakgrundbilden sätts för varje level.
+    }
+
     public void updateMonsterNameGUI(String currentMonsterName)
     {
 

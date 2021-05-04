@@ -12,7 +12,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * @author Jagtej Sidhu and Hanis Saley
+ * @author Jagtej Sidhu, Hanis Saley
  * @version 1.2
  */
 public class EndGameGUI extends JPanel

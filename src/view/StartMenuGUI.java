@@ -7,10 +7,12 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
- * @author Jagtej Sidhu and Hanis Saley
- * @version 1.2
+ * @author Jagtej Sidhu, Hanis Saley
+ * @version 1.3
  */
 public class StartMenuGUI extends JPanel
 {
@@ -23,6 +25,7 @@ public class StartMenuGUI extends JPanel
     private JPanel panel = new JPanel();
     private JButton playBtn = new JButton();
     private JButton infoBtn = new JButton();
+    private JButton exitBtn = new JButton();
     private String  playerName;
 
     //Image variables
@@ -66,31 +69,34 @@ public class StartMenuGUI extends JPanel
         /**
          * Text field where you type in your name
          */
-        userTextField = new JTextField("");
+        userTextField = new JTextField("Enter username here...");
         userTextField.setPreferredSize(new Dimension(200,30));
-        userTextField.setBounds(50,175, 200, 30);
+        userTextField.setBounds(50,200, 200, 30);
         userTextField.setBorder(blackline);
+        userTextField.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (userTextField.getText().equals("Enter username here..."))
+                {
+                    userTextField.setText("");
+                }
+            }
+        });
         mainPnl.add(userTextField);
-
-        /**
-         * Background picture for the frame
-         */
-        myLabel = new JLabel(towerPic);
-        myLabel.setSize(300,400);
-        mainPnl.add(myLabel);
 
         /**
          * Play button on screen
          */
         playBtn = new JButton("PLAY");
-        playBtn.setBounds(75, 225, 150, 50);
+        playBtn.setBounds(75, 245, 150, 40);
         mainPnl.add(playBtn);
 
         /**
          * Info button on screen
          */
-        infoBtn = new JButton("?");
-        infoBtn.setBounds(15, 8, 40,40);
+        infoBtn = new JButton("Tutorial");
+//        infoBtn.setBounds(15, 8, 40,40);
+        infoBtn.setBounds(75, 295, 150, 25);
         infoBtn.setFont(new Font("", Font.BOLD, 10));
         infoBtn.addActionListener(new ActionListener() {
             @Override
@@ -103,6 +109,13 @@ public class StartMenuGUI extends JPanel
             }
         });
         mainPnl.add(infoBtn);
+
+        /**
+         * Background picture for the frame
+         */
+        myLabel = new JLabel(towerPic);
+        myLabel.setSize(300,400);
+        mainPnl.add(myLabel);
     }
 
     private void addListeners()

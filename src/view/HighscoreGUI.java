@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * @author Jagtej Sidhu
+ * @author Jagtej Sidhu, Hanis Saley
  * @version 1.2
  */
 

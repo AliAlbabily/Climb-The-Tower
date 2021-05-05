@@ -49,7 +49,7 @@ public class Controller implements TimerCallback {
         // update level name on GUI
         currentLevelName = model.getCurrentLevel().getLvlName();
         gameGUI.updateLevelNameGUI(currentLevelName);
-
+        gameGUI.updateLayoutGUI(currentLevelName);
         // update monster name on GUI
         currentMonsterName = model.getCurrentMonster().getName();
         gameGUI.updateMonsterNameGUI(currentMonsterName);

@@ -34,14 +34,27 @@ public class GameGUI
     private JLabel lblplayer;
     private static JLabel streak;
 
+
+
     private JProgressBar playerHealthBar;
     private JProgressBar enemyHealthBar;
 
+    private ImageIcon level1 = new ImageIcon("files/levels/resized_level1.png");
+    private ImageIcon level2 = new ImageIcon("files/levels/rsz_level2.png");
+    private ImageIcon level3 = new ImageIcon("files/levels/level6NEW");
+    private ImageIcon level4 = new ImageIcon("files/levels/level4.png");
+    private ImageIcon level5 = new ImageIcon("files/levels/level5NEW.png");
     private ImageIcon level6 = new ImageIcon("files/levels/level6.png");
     private ImageIcon level7 = new ImageIcon("files/levels/level7.png");
     private ImageIcon level8 = new ImageIcon("files/levels/level8.png");
-    private ImageIcon level9 = new ImageIcon("files/levels/level9.png");
+    private ImageIcon level9 = new ImageIcon("files/levels/level9_test.png");
     private ImageIcon level10 = new ImageIcon("files/levels/level10.png");
+
+    private JLabel lblLevel1 = new JLabel(level1);
+    private JLabel lblLevel2 = new JLabel(level2);
+    private JLabel lblLevel3 = new JLabel(level3);
+    private JLabel lblLevel4 = new JLabel(level4);
+    private JLabel lblLevel5 = new JLabel(level5);
 
 
     //Object of controller class
@@ -252,8 +265,44 @@ public class GameGUI
 
     public void updateLayoutGUI(String levelname)
     {
+        if(levelname == "Level 1") {
+            frame.repaint();
+            lblLevel1.setSize(1000, 400);
+            pnlNorth.add(lblLevel1);
+        }
+
+        if(levelname == "Level 2") {
+            lblLevel1.setVisible(false);
+            frame.repaint();
+            lblLevel2.setSize(1000, 400);
+            pnlNorth.add(lblLevel2);
+        }
+            if (levelname == "Level 3") {
+                lblLevel2.setVisible(false);
+                frame.repaint();
+                lblLevel3.setSize(1000, 400);
+                pnlNorth.add(lblLevel3);
+            }
+
+            if (levelname == "Level 4") {
+                lblLevel3.setVisible(false);
+                frame.repaint();
+                lblLevel4.setSize(1000, 400);
+                pnlNorth.add(lblLevel4);
+            }
+
+            if(levelname == "Level 5"){
+                lblLevel4.setVisible(false);
+                frame.repaint();
+                lblLevel5.setSize(1000,400);
+                pnlNorth.add(lblLevel5);
+            }
+
+        }
+
+
         //TODO skapa if satser för levlar där bakgrundbilden sätts för varje level.
-    }
+
 
     public void updateMonsterNameGUI(String currentMonsterName)
     {

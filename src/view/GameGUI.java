@@ -37,6 +37,13 @@ public class GameGUI
     private JProgressBar playerHealthBar;
     private JProgressBar enemyHealthBar;
 
+    private ImageIcon level6 = new ImageIcon("files/levels/level6.png");
+    private ImageIcon level7 = new ImageIcon("files/levels/level7.png");
+    private ImageIcon level8 = new ImageIcon("files/levels/level8.png");
+    private ImageIcon level9 = new ImageIcon("files/levels/level9.png");
+    private ImageIcon level10 = new ImageIcon("files/levels/level10.png");
+
+
     //Object of controller class
     private Controller controller;
 

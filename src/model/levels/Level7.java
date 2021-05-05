@@ -21,7 +21,7 @@ public class Level7 extends Level {
         a = (int)(Math.random() * 15 + 1); // generera ett tal från 1 - 10
         int squareroot = a*a;
 
-        String mathQuestionStr = "What's the square root of "+ squareroot + " ?";
+        String mathQuestionStr = "√"+ squareroot + "?";
         getGameManager().setCurrentMathQuestion(mathQuestionStr);
        // System.out.println("What's the square root of "+ squareroot + " ?");
         return a;

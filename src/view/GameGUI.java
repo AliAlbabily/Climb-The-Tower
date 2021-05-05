@@ -34,14 +34,20 @@ public class GameGUI
     private JLabel lblplayer;
     private static JLabel streak;
 
+    private JLabel lblLevel6;
+    private JLabel lblLevel7;
+    private JLabel lblLevel8;
+    private JLabel lblLevel9;
+    private JLabel lblLevel10;
+
     private JProgressBar playerHealthBar;
     private JProgressBar enemyHealthBar;
 
     private ImageIcon level6 = new ImageIcon("files/levels/level6.png");
-    private ImageIcon level7 = new ImageIcon("files/levels/level7.png");
-    private ImageIcon level8 = new ImageIcon("files/levels/level8.png");
+    private ImageIcon level7 = new ImageIcon("files/levels/rsz_level7.png");
+    private ImageIcon level8 = new ImageIcon("files/levels/rsz_level8.png");
     private ImageIcon level9 = new ImageIcon("files/levels/level9.png");
-    private ImageIcon level10 = new ImageIcon("files/levels/level10.png");
+    private ImageIcon level10 = new ImageIcon("files/levels/rsz_level10.png");
 
 
     //Object of controller class
@@ -103,7 +109,7 @@ public class GameGUI
         lblQuestion = new JLabel();
         lblQuestion.setForeground(Color.white);
         lblQuestion.setFont(new Font(Font.SANS_SERIF,Font.PLAIN, 30));
-        lblQuestion.setBounds(100, 125, 300, 50);
+        lblQuestion.setBounds(90, 125, 450, 50);
 
         answerTextField = new JTextField();
         answerTextField.setBounds(75,175,200, 25);
@@ -252,7 +258,41 @@ public class GameGUI
 
     public void updateLayoutGUI(String levelname)
     {
-        //TODO skapa if satser för levlar där bakgrundbilden sätts för varje level.
+        if (levelname == "Level 6")
+        {
+            lblLevel6 = new JLabel(level6);
+            lblLevel6.setSize(1000,400);
+            pnlNorth.add(lblLevel6);
+        }
+
+        if (levelname == "Level 7")
+        {
+            lblLevel7 = new JLabel(level7);
+            lblLevel7.setSize(1000,400);
+            pnlNorth.add(lblLevel7);
+        }
+
+        if (levelname == "Level 8")
+        {
+            lblLevel8 = new JLabel(level8);
+            lblLevel8.setSize(1000,400);
+            pnlNorth.add(lblLevel8);
+        }
+
+        if (levelname == "Level 9")
+        {
+            lblLevel9 = new JLabel(level9);
+            lblLevel9.setSize(1000,400);
+            pnlNorth.add(lblLevel9);
+        }
+
+        if (levelname == "Level 10")
+        {
+            lblLevel10 = new JLabel(level10);
+            lblLevel10.setSize(1000,400);
+            pnlNorth.add(lblLevel10);
+        }
+
     }
 
     public void updateMonsterNameGUI(String currentMonsterName)

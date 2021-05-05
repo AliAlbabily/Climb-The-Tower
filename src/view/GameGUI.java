@@ -34,6 +34,11 @@ public class GameGUI
     private JLabel lblplayer;
     private static JLabel streak;
 
+    private JLabel lblLevel1;
+    private JLabel lblLevel2;
+    private JLabel lblLevel3;
+    private JLabel lblLevel4;
+    private JLabel lblLevel5;
     private JLabel lblLevel6;
     private JLabel lblLevel7;
     private JLabel lblLevel8;
@@ -43,12 +48,16 @@ public class GameGUI
     private JProgressBar playerHealthBar;
     private JProgressBar enemyHealthBar;
 
+    private ImageIcon level1 = new ImageIcon("files/levels/resized_level1.png");
+    private ImageIcon level2 = new ImageIcon("files/levels/rsz_level2.png");
+    private ImageIcon level3 = new ImageIcon("files/levels/level6NEW");
+    private ImageIcon level4 = new ImageIcon("files/levels/level4.png");
+    private ImageIcon level5 = new ImageIcon("files/levels/level5NEW.png");
     private ImageIcon level6 = new ImageIcon("files/levels/level6.png");
     private ImageIcon level7 = new ImageIcon("files/levels/rsz_level7.png");
     private ImageIcon level8 = new ImageIcon("files/levels/rsz_level8.png");
     private ImageIcon level9 = new ImageIcon("files/levels/level9.png");
     private ImageIcon level10 = new ImageIcon("files/levels/rsz_level10.png");
-
 
     //Object of controller class
     private Controller controller;
@@ -258,10 +267,52 @@ public class GameGUI
 
     public void updateLayoutGUI(String levelname)
     {
+        if(levelname == "Level 1") {
+            lblLevel1 = new JLabel(level1);
+            frame.repaint();
+            lblLevel1.setSize(1000, 400);
+            pnlNorth.add(lblLevel1);
+        }
+
+        if(levelname == "Level 2") {
+            lblLevel2 = new JLabel(level2);
+            lblLevel1.setVisible(false);
+            frame.repaint();
+            lblLevel2.setSize(1000, 400);
+            pnlNorth.add(lblLevel2);
+        }
+        if (levelname == "Level 3") {
+            lblLevel3 = new JLabel(level3);
+            lblLevel2.setVisible(false);
+            frame.repaint();
+            lblLevel3.setSize(1000, 400);
+            pnlNorth.add(lblLevel3);
+        }
+
+        if (levelname == "Level 4") {
+            lblLevel4 = new JLabel(level4);
+            lblLevel3.setVisible(false);
+            frame.repaint();
+            lblLevel4.setSize(1000, 400);
+            pnlNorth.add(lblLevel4);
+        }
+
+        if(levelname == "Level 5"){
+            lblLevel5 = new JLabel(level6);
+            lblLevel4.setVisible(false);
+            frame.repaint();
+            lblLevel5.setSize(1000,400);
+            pnlNorth.add(lblLevel5);
+        }
+
         if (levelname == "Level 6")
         {
             lblLevel6 = new JLabel(level6);
             lblLevel6.setSize(1000,400);
+
+            lblLevel5.setVisible(false);
+            
+            frame.repaint();
             pnlNorth.add(lblLevel6);
         }
 
@@ -269,6 +320,10 @@ public class GameGUI
         {
             lblLevel7 = new JLabel(level7);
             lblLevel7.setSize(1000,400);
+
+            lblLevel6.setVisible(false);
+
+            frame.repaint();
             pnlNorth.add(lblLevel7);
         }
 
@@ -276,6 +331,10 @@ public class GameGUI
         {
             lblLevel8 = new JLabel(level8);
             lblLevel8.setSize(1000,400);
+
+            lblLevel7.setVisible(false);
+
+            frame.repaint();
             pnlNorth.add(lblLevel8);
         }
 
@@ -283,6 +342,10 @@ public class GameGUI
         {
             lblLevel9 = new JLabel(level9);
             lblLevel9.setSize(1000,400);
+
+            lblLevel8.setVisible(false);
+
+            frame.repaint();
             pnlNorth.add(lblLevel9);
         }
 
@@ -290,10 +353,14 @@ public class GameGUI
         {
             lblLevel10 = new JLabel(level10);
             lblLevel10.setSize(1000,400);
+
+            lblLevel9.setVisible(false);
+
+            frame.repaint();
             pnlNorth.add(lblLevel10);
         }
-
     }
+
 
     public void updateMonsterNameGUI(String currentMonsterName)
     {

@@ -298,7 +298,7 @@ public class GameGUI
         }
 
         if(levelname == "Level 5"){
-            lblLevel5 = new JLabel(level6);
+            lblLevel5 = new JLabel(level5);
             lblLevel4.setVisible(false);
             frame.repaint();
             lblLevel5.setSize(1000,400);

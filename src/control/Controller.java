@@ -118,7 +118,7 @@ public class Controller implements TimerCallback {
 
         switch (button) {
             case Play:
-                if (startMenuGUI.getPlayerName().equals(""))
+                if (startMenuGUI.getPlayerName().equals("") || startMenuGUI.getPlayerName().equals("Enter username here..."))
                 {
                     JOptionPane.showMessageDialog(null, "Please type your chosen name");
                 }

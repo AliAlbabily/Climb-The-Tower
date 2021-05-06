@@ -31,7 +31,7 @@ public class GameGUI
     private JLabel lblQuestion;
     private JLabel lblLevel;
     private JLabel enemyName;
-    private JLabel lblplayer;
+    private JLabel lblPlayer;
     private static JLabel streak;
 
     private JProgressBar playerHealthBar;
@@ -68,7 +68,7 @@ public class GameGUI
      */
     public GameGUI(Controller controller)
     {
-        InitializePanels();
+        initializePanels();
         this.controller = controller;
         // add action listener to submit button
         submitButton.addActionListener(new ActionListener() {
@@ -82,11 +82,11 @@ public class GameGUI
     /**
      * Method that initializes all the other frames and jpanels
      */
-    public void InitializePanels()
+    public void initializePanels()
     {
         createMainFrame();
-        NorthPanel();
-        SouthPanel();
+        northPanel();
+        southPanel();
     }
 
     /**
@@ -106,7 +106,7 @@ public class GameGUI
     /**
      * The north panel in the frame where the math questions are located
      */
-    public void NorthPanel()
+    public void northPanel()
     {
         //TODO fixa bild till jpanel
         pnlNorth = new JPanel();
@@ -137,7 +137,7 @@ public class GameGUI
     /**
      * The bottom part of the window where health, level, and timer is being showned.
      */
-    public void SouthPanel()
+    public void southPanel()
     {
         pnlSouth = new JPanel();
         pnlSouth.setPreferredSize(new Dimension(1000,200));
@@ -171,23 +171,22 @@ public class GameGUI
 //        enemyHealthBarPanel = new JPanel();
 //        enemyHealthBarPanel.setBounds(860,60, 100, 25);
 //        pnlSouth.add(enemyHealthBar);
-//
 //        enemyHealthBar = new JProgressBar(0,80);
 //        enemyHealthBar.setPreferredSize(new Dimension(100, 30));
 //        enemyHealthBarPanel.add(enemyHealthBar);
 
-        JLabel lblenemy = new JLabel("Enemy:");
-        lblenemy.setForeground(Color.white);
-        lblenemy.setFont(font);
-        lblenemy.setBounds(760,50, 100, 50);
-        pnlSouth.add(lblenemy);
+        JLabel lblEnemy = new JLabel("Enemy:");
+        lblEnemy.setForeground(Color.white);
+        lblEnemy.setFont(font);
+        lblEnemy.setBounds(760,50, 100, 50);
+        pnlSouth.add(lblEnemy);
 
 
-        lblplayer = new JLabel("You:");
-        lblplayer.setForeground(Color.white);
-        lblplayer.setFont(font);
-        lblplayer.setBounds(792,90, 100, 50);
-        pnlSouth.add(lblplayer);
+        lblPlayer = new JLabel("You:");
+        lblPlayer.setForeground(Color.white);
+        lblPlayer.setFont(font);
+        lblPlayer.setBounds(792,90, 100, 50);
+        pnlSouth.add(lblPlayer);
 
         enemyHealth = new JLabel();
         enemyHealth.setFont(font);
@@ -243,7 +242,6 @@ public class GameGUI
     {
         streak.setText("" + count + "");
     }
-
 
     public void updateCharactersHPGUI(int playerHP, int enemyHP) {
         String playerHPStr = Integer.toString(playerHP);
@@ -373,7 +371,6 @@ public class GameGUI
         }
     }
 
-
     public void updateMonsterNameGUI(String currentMonsterName)
     {
 
@@ -407,7 +404,6 @@ public class GameGUI
         {
             enemyName.setBounds(436,120, 250, 50);
         }
-
     }
 
     /**

@@ -23,6 +23,7 @@ public class StartMenuGUI extends JPanel
     private JTextField userTextField = new JTextField("Enter username here...");
     private JFrame frame = new JFrame();
     private JPanel panel = new JPanel();
+    private JPanel mainPnl;
     private JButton playBtn = new JButton();
     private JButton infoBtn = new JButton();
     private String  playerName;
@@ -61,7 +62,7 @@ public class StartMenuGUI extends JPanel
         /**
          * Initializing of jpanel being used
          */
-        JPanel mainPnl = new JPanel();
+        mainPnl = new JPanel();
         mainPnl.setPreferredSize(new Dimension(300, 400));
         mainPnl.setLayout(null);
         panel.add(mainPnl);

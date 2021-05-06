@@ -112,6 +112,7 @@ public class EndGameGUI extends JPanel
 
         //highscore button on screen
         btnHighscore = new JButton("Highscore");
+        btnHighscore.setEnabled(true);
         btnHighscore.setBounds(140,345,100, 50);
         btnHighscore.addActionListener(new ActionListener() {
             @Override

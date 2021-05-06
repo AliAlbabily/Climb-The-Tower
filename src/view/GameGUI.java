@@ -9,8 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * @author Jagtej Sidhu
- * @version 1.3
+ * @author Jagtej Sidhu, Hanis Saley
+ * @version 1.4
  */
 public class GameGUI
 {

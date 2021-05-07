@@ -12,7 +12,7 @@ import java.io.FileNotFoundException;
 
 /**
  * @author Ali, Hanis, Ardian and Mads
- * @version 1.5
+ * @version 1.6
  */
 public class Controller implements TimerCallback {
 
@@ -223,7 +223,14 @@ public class Controller implements TimerCallback {
     private void endGame() {
         System.out.println("\nGame Over!");
         gameGUI.closeGameGUI();
-        setupEndGameWindow();
+
+        boolean playerIsAlive = model.playerIsAliveStatus();
+
+        if(playerIsAlive) { // if player is alive
+            setupEndGameWindow(true);
+        } else { // otherwise (player is dead)
+            setupEndGameWindow(false);
+        }
     }
 
     private void displayHighscores(){
@@ -242,8 +249,8 @@ public class Controller implements TimerCallback {
         }
     }
 
-    public void setupEndGameWindow(){
-        endGameGui = new EndGameGUI(this);
+    public void setupEndGameWindow(boolean playerIsAliveStatus){
+        endGameGui = new EndGameGUI(this, playerIsAliveStatus);
     }
 
     // Callback function that is invoked when the countdown timer is finished.

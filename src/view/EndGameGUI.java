@@ -32,7 +32,7 @@ public class EndGameGUI extends JPanel
      * Constructor
      * @param controller
      */
-    public EndGameGUI(Controller controller)
+    public EndGameGUI(Controller controller, boolean playerIsAliveStatus)
     {
         this.controller = controller;
         initializePanels();

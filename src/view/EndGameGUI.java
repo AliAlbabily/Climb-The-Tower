@@ -1,15 +1,11 @@
 package view;
 
 import control.Controller;
-import javax.imageio.ImageIO;
+
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * @author Jagtej Sidhu, Hanis Saley
@@ -27,7 +23,9 @@ public class EndGameGUI extends JPanel
 
     private ImageIcon trophyIcon = new ImageIcon("files/newTrophy.png");
     private JLabel myLabel;
-
+    private JLabel gameOverlbl;
+    private JLabel youWonlbl;
+    private JLabel greatJoblbl;
     /**
      * Constructor
      * @param controller
@@ -73,21 +71,21 @@ public class EndGameGUI extends JPanel
         mainPnl.setBackground(Color.lightGray);
 
         //game over text
-        JLabel gameOverlbl = new JLabel("GAME OVER");
+        gameOverlbl = new JLabel("GAME OVER");
         gameOverlbl.setForeground(Color.black);
         gameOverlbl.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 32));
         gameOverlbl.setBounds(90, 30, 200, 100);
         mainPnl.add(gameOverlbl);
 
         //You won text
-        JLabel youWonlbl = new JLabel("You defeated all the monsters");
+        youWonlbl = new JLabel("You defeated all the monsters");
         youWonlbl.setForeground(Color.black);
         youWonlbl.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
         youWonlbl.setBounds(70, 100, 300, 100);
         mainPnl.add(youWonlbl);
 
         //Great work text
-        JLabel greatJoblbl = new JLabel("Great work!");
+        greatJoblbl = new JLabel("Great work!");
         greatJoblbl.setForeground(Color.black);
         greatJoblbl.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
         greatJoblbl.setBounds(140, 140, 200, 100);

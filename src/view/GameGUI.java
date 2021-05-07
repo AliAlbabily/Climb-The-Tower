@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 /**
  * @author Jagtej Sidhu, Hanis Saley
- * @version 1.4
+ * @version 1.5
  */
 public class GameGUI
 {
@@ -39,7 +39,7 @@ public class GameGUI
 
     private ImageIcon level1 = new ImageIcon("files/levels/level1.png");
     private ImageIcon level2 = new ImageIcon("files/levels/level2.png");
-    private ImageIcon level3 = new ImageIcon("files/levels/level3NEW");
+    private ImageIcon level3 = new ImageIcon("files/levels/level3");
     private ImageIcon level4 = new ImageIcon("files/levels/level4.png");
     private ImageIcon level5 = new ImageIcon("files/levels/level5.png");
     private ImageIcon level6 = new ImageIcon("files/levels/level6.png");
@@ -108,7 +108,6 @@ public class GameGUI
      */
     public void northPanel()
     {
-        //TODO fixa bild till jpanel
         pnlNorth = new JPanel();
         pnlNorth.setPreferredSize(new Dimension(1000,400));
         pnlNorth.setBackground(Color.gray);
@@ -158,22 +157,23 @@ public class GameGUI
         timer.setBounds(130, 50, 50, 50);
         pnlSouth.add(timer);
 
-//        playerHealthBarPanel = new JPanel();
-//        playerHealthBarPanel.setBounds(860,100, 100, 30);
-//        playerHealthBarPanel.setBackground(Color.black);
-//        pnlSouth.add(playerHealthBarPanel);
-//
-//        playerHealthBar = new JProgressBar(0,100);
-//        playerHealthBar.setPreferredSize(new Dimension(100, 30));
-////        playerHealthBar.setForeground(Color.green);
-//        playerHealthBarPanel.add(playerHealthBar);
+        playerHealthBarPanel = new JPanel();
+        playerHealthBarPanel.setBounds(860,100, 100, 30);
+        playerHealthBarPanel.setBackground(Color.black);
+        pnlSouth.add(playerHealthBarPanel);
 
-//        enemyHealthBarPanel = new JPanel();
-//        enemyHealthBarPanel.setBounds(860,60, 100, 25);
-//        pnlSouth.add(enemyHealthBar);
-//        enemyHealthBar = new JProgressBar(0,80);
-//        enemyHealthBar.setPreferredSize(new Dimension(100, 30));
-//        enemyHealthBarPanel.add(enemyHealthBar);
+        playerHealthBar = new JProgressBar(0, 100);
+        playerHealthBar.setPreferredSize(new Dimension(100, 30));
+        playerHealthBarPanel.add(playerHealthBar);
+
+        enemyHealthBarPanel = new JPanel();
+        enemyHealthBarPanel.setBounds(860,60, 100, 25);
+        enemyHealthBarPanel.setBackground(Color.black);
+        pnlSouth.add(enemyHealthBarPanel);
+
+        enemyHealthBar = new JProgressBar();
+        enemyHealthBar.setPreferredSize(new Dimension(100, 30));
+        enemyHealthBarPanel.add(enemyHealthBar);
 
         JLabel lblEnemy = new JLabel("Enemy:");
         lblEnemy.setForeground(Color.white);
@@ -244,48 +244,55 @@ public class GameGUI
     }
 
     public void updateCharactersHPGUI(int playerHP, int enemyHP) {
-        String playerHPStr = Integer.toString(playerHP);
-        String enemyHPStr = Integer.toString(enemyHP);
-        playerHealth.setText(playerHPStr);
-        enemyHealth.setText(enemyHPStr);
+//        String playerHPStr = Integer.toString(playerHP);
+//        String enemyHPStr = Integer.toString(enemyHP);
+//        playerHealth.setText(playerHPStr);
+//        enemyHealth.setText(enemyHPStr);
 
-//        playerHealthBar.setValue(playerHP);
-//        playerHealthBar.setBackground(Color.black);
-//        playerHealthBar.setStringPainted(true);
+        playerHealthBar.setValue(playerHP);
+        playerHealthBar.setStringPainted(true);
 
-//        enemyHealthBar.setValue(enemyHP);
-//        enemyHealthBar.setStringPainted(true);
-
-        if (playerHP <= 30)
-        {
-            playerHealth.setForeground(Color.red);
-        }
-
-        if (playerHP <= 50)
-        {
-            playerHealth.setForeground(Color.orange);
-        }
+        enemyHealthBar.setValue(enemyHP);
+        enemyHealthBar.setStringPainted(true);
 
         if (playerHP > 50)
         {
-            playerHealth.setForeground(Color.green);
+//            playerHealth.setForeground(Color.green);
+            playerHealthBar.setForeground(Color.green);
         }
 
-        if (enemyHP <= 30)
+        if (playerHP <= 40 )
         {
-            enemyHealth.setForeground(Color.red);
+//            playerHealth.setForeground(Color.orange);
+            playerHealthBar.setForeground(Color.orange);
         }
 
-        if (enemyHP <= 50)
+        if (playerHP <= 20)
         {
-            enemyHealth.setForeground(Color.orange);
+//            playerHealth.setForeground(Color.red);
+            playerHealthBar.setForeground(Color.red);
         }
 
         if (enemyHP > 50)
         {
-            enemyHealth.setForeground(Color.green);
+//            enemyHealth.setForeground(Color.green);
+            enemyHealthBar.setForeground(Color.green);
         }
+
+        if (enemyHP <= 40)
+        {
+//            enemyHealth.setForeground(Color.orange);
+            enemyHealthBar.setForeground(Color.orange);
+        }
+
+        if (enemyHP <= 20)
+        {
+//            enemyHealth.setForeground(Color.red);
+            enemyHealthBar.setForeground(Color.red);
+        }
+
     }
+
 
     public void updateMathQuestionGUI(String mathQuestionStr) {
         lblQuestion.setText(mathQuestionStr);
@@ -301,6 +308,8 @@ public class GameGUI
             frame.repaint();
             lblLevel1.setSize(1000, 400);
             pnlNorth.add(lblLevel1);
+            enemyHealthBar.setMaximum(80);
+            enemyHealthBar.setMinimum(0);
         }
 
         if(levelname == "Level 2") {
@@ -308,12 +317,16 @@ public class GameGUI
             frame.repaint();
             lblLevel2.setSize(1000, 400);
             pnlNorth.add(lblLevel2);
+            enemyHealthBar.setMaximum(90);
+            enemyHealthBar.setMinimum(0);
         }
         if (levelname == "Level 3") {
             lblLevel2.setVisible(false);
             frame.repaint();
             lblLevel3.setSize(1000, 400);
             pnlNorth.add(lblLevel3);
+            enemyHealthBar.setMaximum(110);
+            enemyHealthBar.setMinimum(0);
         }
 
         if (levelname == "Level 4") {
@@ -321,6 +334,8 @@ public class GameGUI
             frame.repaint();
             lblLevel4.setSize(1000, 400);
             pnlNorth.add(lblLevel4);
+            enemyHealthBar.setMaximum(120);
+            enemyHealthBar.setMinimum(0);
         }
 
         if(levelname == "Level 5"){
@@ -328,6 +343,8 @@ public class GameGUI
             frame.repaint();
             lblLevel5.setSize(1000,400);
             pnlNorth.add(lblLevel5);
+            enemyHealthBar.setMaximum(140);
+            enemyHealthBar.setMinimum(0);
         }
 
         if (levelname == "Level 6")
@@ -336,6 +353,8 @@ public class GameGUI
             lblLevel5.setVisible(false);
             frame.repaint();
             pnlNorth.add(lblLevel6);
+            enemyHealthBar.setMaximum(160);
+            enemyHealthBar.setMinimum(0);
         }
 
         if (levelname == "Level 7")
@@ -344,6 +363,8 @@ public class GameGUI
             lblLevel6.setVisible(false);
             frame.repaint();
             pnlNorth.add(lblLevel7);
+            enemyHealthBar.setMaximum(140);
+            enemyHealthBar.setMinimum(0);
         }
 
         if (levelname == "Level 8")
@@ -352,6 +373,8 @@ public class GameGUI
             lblLevel7.setVisible(false);
             frame.repaint();
             pnlNorth.add(lblLevel8);
+            enemyHealthBar.setMaximum(200);
+            enemyHealthBar.setMinimum(0);
         }
 
         if (levelname == "Level 9")
@@ -360,6 +383,8 @@ public class GameGUI
             lblLevel8.setVisible(false);
             frame.repaint();
             pnlNorth.add(lblLevel9);
+            enemyHealthBar.setMaximum(140);
+            enemyHealthBar.setMinimum(0);
         }
 
         if (levelname == "Level 10")
@@ -368,6 +393,8 @@ public class GameGUI
             lblLevel9.setVisible(false);
             frame.repaint();
             pnlNorth.add(lblLevel10);
+            enemyHealthBar.setMaximum(200);
+            enemyHealthBar.setMinimum(0);
         }
     }
 

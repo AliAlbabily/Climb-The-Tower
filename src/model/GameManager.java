@@ -10,7 +10,7 @@ import java.util.LinkedList;
 
 /**
  * @author Ali-A, Ardian Glamniki and Mads
- * @version 1.5
+ * @version 1.6
  */
 public class GameManager implements TimerCallback{
 
@@ -23,6 +23,7 @@ public class GameManager implements TimerCallback{
     int streak = 0;
     private int damage = 0;
     private boolean ifCharacterIsDead = false;
+    private boolean playerIsAlive = true;
     private final String correctAnswerSound = "files/minecraft_hit.wav";
     private final String wrongAnswerSound = "files/runescape-hit.wav";
 
@@ -86,14 +87,15 @@ public class GameManager implements TimerCallback{
         System.out.println("Oh no, the monster dealt " + damage +" damage to you!");
         ifCharacterIsDead = player.checkIfAlive();
         if (ifCharacterIsDead) {
-            endGame();
+            endGamePlayerDead();
         }
     }
 
-    // Sets the flag that ends the game
-    private void endGame() {
+    // Sets the flag that ends the game when the player is dead
+    private void endGamePlayerDead() {
         System.out.println("You Died!");
         gameHasEnded = true;
+        playerIsAlive = false;
     }
 
     // For every correct answer by the user, the streak increases
@@ -195,6 +197,10 @@ public class GameManager implements TimerCallback{
         return gameHasEnded;
     }
 
+    public boolean playerIsAliveStatus() {
+        return playerIsAlive;
+    }
+
     /*
      * This callback function is invoked when the countdown timer is finished,
      * which punishes the player by reducing hitpoints.
@@ -206,7 +212,7 @@ public class GameManager implements TimerCallback{
         System.out.println("Times up! You need to be faster than that!");
         ifCharacterIsDead = player.checkIfAlive();
         if (ifCharacterIsDead) {
-            endGame();
+            endGamePlayerDead();
         }
     }
 

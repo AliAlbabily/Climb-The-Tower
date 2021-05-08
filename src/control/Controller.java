@@ -14,7 +14,7 @@ import java.util.LinkedList;
 
 /**
  * @author Ali, Hanis, Ardian and Mads
- * @version 1.6
+ * @version 1.7
  */
 public class Controller implements TimerCallback {
 

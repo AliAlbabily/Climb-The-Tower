@@ -2,12 +2,13 @@ package model;
 
 import java.io.*;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedList;
 
 /**
  * @author Ardian
- * @Version 1.0
+ * @Version 1.1
+ *
+ * This class handles the highscores in a file.
  */
 public class HighscoreList {
     private LinkedList<Highscore> highscoreList;
@@ -17,12 +18,13 @@ public class HighscoreList {
         highscoreList = new LinkedList<>();
     }
 
+    // Adds a highscore to the file
     public void saveNewHighscore(Highscore highscore) {
         LinkedList<Highscore> highscores = null;
         try (ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(highscoreFile)))) {
             highscores = (LinkedList<Highscore>) in.readObject();
         }  catch (Exception e) {
-            // Ignorera och skapa en ny fil
+            // Ignore and create a list
         }
 
         if (highscores == null) {
@@ -38,7 +40,8 @@ public class HighscoreList {
         }
     }
 
-    public LinkedList<Highscore> fetchHighscores() {
+    // Retrieves the highscores from the highscore file and returns a linked-list.
+    private LinkedList<Highscore> fetchHighscores() {
             try (ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(highscoreFile)))) {
                 highscoreList = (LinkedList<Highscore>) in.readObject();
             }  catch (FileNotFoundException e) {
@@ -51,6 +54,7 @@ public class HighscoreList {
         return highscoreList;
     }
 
+    // Returns the top ten highscores from the list of highscores.
     public LinkedList<Highscore> topTenHighscores() {
         LinkedList<Highscore> highscoreList = fetchHighscores();
         LinkedList<Highscore> topTenList = new LinkedList<>();
@@ -62,14 +66,5 @@ public class HighscoreList {
             topTenList.add(highscoreList.get(i));
         }
         return topTenList;
-    }
-
-    public static void main(String[] args) {
-        HighscoreList list = new HighscoreList();
-        LinkedList<Highscore> hs = list.topTenHighscores();
-
-        for (Highscore h : hs) {
-            System.out.println(h.getName() + " " + h.getPoints());
-        }
     }
 }

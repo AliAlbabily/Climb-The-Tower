@@ -2,6 +2,13 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ * @author Ardian
+ * @version 1.0
+ *
+ * This class represents a players highscore.
+ */
+
 public class Highscore implements Serializable, Comparable<Highscore> {
     private String name;
     private int points;

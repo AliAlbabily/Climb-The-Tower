@@ -1,5 +1,6 @@
 package model;
 
+
 public class Character {
 
     private int hitPoints = 0;

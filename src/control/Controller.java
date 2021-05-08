@@ -9,6 +9,8 @@ import view.StartMenuGUI;
 
 import javax.swing.*;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
+import java.util.LinkedList;
 
 /**
  * @author Ali, Hanis, Ardian and Mads
@@ -22,6 +24,7 @@ public class Controller implements TimerCallback {
     private GameTimer timer;
     private HighscoreGUI highscoreGUI;
     private EndGameGUI endGameGui;
+    private HighscoreList highscoreList;
 
     private final PlayersList playersList = new PlayersList();
 
@@ -35,6 +38,7 @@ public class Controller implements TimerCallback {
 
     private void startNewGame() {
         startMenuGUI = new StartMenuGUI(this);
+        highscoreList = new HighscoreList();
     }
 
     // update gameplay info on both GUI & console
@@ -136,6 +140,7 @@ public class Controller implements TimerCallback {
                     }
                     if (userAnswer != currentCorrectAnswer)
                     {
+                        streak = 0;
                         gameGUI.updateStreak(0);
                     }
 
@@ -193,34 +198,18 @@ public class Controller implements TimerCallback {
         timer.start();
     }
 
-    //Updates highscore taking the values from PlayersList class in model package and
-    //transfering it to HighscoreGUi in view
-    public void updateHighscoreListGUI(Player [] highscoreList){
-        HighscoreGUI highscoreGUI = new HighscoreGUI(this);
-        String[] list = playersList.convertObjListToStringList(highscoreList);
-        playersList.printStringList(list);
-        highscoreGUI.updateHighscoreGUI(list);
-    }
+    private String[] convertToStringArray(LinkedList<Highscore> highscores) {
+        String[] scores = new String[highscores.size()];
 
-    public Player[] checkIfPointsQualified(Player[] listOfPlayers, int points, int worstResult){
-
-        if(points > worstResult){
-            for(int i = 0; i < listOfPlayers.length; i++){
-                int playerPoints = listOfPlayers[i].getPoints();
-
-                if(points > playerPoints){
-                    moveElementsToRight(i,listOfPlayers);
-
-                    String playerName = startMenuGUI.getPlayerName();
-                    listOfPlayers[i] = new Player(playerName, 100, points);
-                    System.out.println();
-                    break;
-                }
-            }
+        for (int i = 0; i < highscores.size(); i++) {
+            scores[i] = highscores.get(i).toString();
         }
-        return listOfPlayers;
+
+        return scores;
     }
+
     private void endGame() {
+        highscoreList.saveNewHighscore(new Highscore(model.getPlayer().getName(), model.getPlayer().getPoints()));
         System.out.println("\nGame Over!");
         gameGUI.closeGameGUI();
 
@@ -234,19 +223,11 @@ public class Controller implements TimerCallback {
     }
 
     private void displayHighscores(){
-        Player[] tempList = playersList.getHighScoreList();
-        int points = model.getPoints();
-        int worstResult = tempList[9].getPoints();
-        tempList = checkIfPointsQualified(tempList, points, worstResult);
-        playersList.setHighScoreList(tempList);
-        updateHighscoreListGUI(tempList);
-        endGameGui.getBtnHighscore().setEnabled(false);
-
-    }
-    private void moveElementsToRight(int index, Player[] listOfObjects){
-        for(int i = listOfObjects.length-2; i >=index; i--){
-            listOfObjects[i+1] = listOfObjects[i];
-        }
+        highscoreGUI = new HighscoreGUI(this);
+        LinkedList<Highscore> hsList = highscoreList.topTenHighscores();
+        String[] scores = convertToStringArray(hsList);
+        playersList.printStringList(scores);
+        highscoreGUI.updateHighscoreGUI(scores);
     }
 
     public void setupEndGameWindow(boolean playerIsAliveStatus){

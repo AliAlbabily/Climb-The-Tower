@@ -1,5 +1,6 @@
 package model;
 
+
 /**
  * @author Hanis, Mads and Ali
  * @version 1.1
@@ -7,6 +8,7 @@ package model;
 public class Player extends Character {
 
     private int points;
+
 
     public Player(String name, int hitPoints, int points) {
         super(name, hitPoints);
@@ -20,6 +22,8 @@ public class Player extends Character {
     public void increasePoints(int bonuspoints){
         points += bonuspoints; //Bonuspoäng som läggs till för x antal korrekta svar i rad.
     }
+
+
 
     public int getPoints() {
         return points;

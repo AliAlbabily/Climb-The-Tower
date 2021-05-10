@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 /**
  * @author Jagtej Sidhu, Hanis Saley
- * @version 1.3
+ * @version 1.4
  */
 public class EndGameGUI extends JPanel
 {
@@ -30,12 +30,10 @@ public class EndGameGUI extends JPanel
      * Constructor
      * @param controller
      */
-    public EndGameGUI(Controller controller, boolean playerIsAliveStatus)
+    public EndGameGUI(Controller controller)
     {
         this.controller = controller;
         initializePanels();
-
-        // TODO : handle "playerIsAliveStatus" here
     }
 
     /**
@@ -162,5 +160,13 @@ public class EndGameGUI extends JPanel
     public void closeEndGameGUI(){
         frame.setVisible(false);
         frame.dispose();
+    }
+
+    public void displayYouWinMessage() {
+        youWonlbl.setText("You won!");
+    }
+
+    public void displayYouLostMessage() {
+        youWonlbl.setText("You lost!");
     }
 }

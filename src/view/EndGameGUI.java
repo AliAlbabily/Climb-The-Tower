@@ -22,10 +22,12 @@ public class EndGameGUI extends JPanel
     private JButton btnPlayAgain;
 
     private ImageIcon trophyIcon = new ImageIcon("files/newTrophy.png");
-    private JLabel myLabel;
+    private ImageIcon graveIcon = new ImageIcon("files/rip.png");
+    private JLabel trophyLabel;
+    private JLabel graveLabel;
     private JLabel gameOverlbl;
-    private JLabel youWonlbl;
-    private JLabel greatJoblbl;
+    private JLabel monstersDefeated;
+    private JLabel performenceLbl;
     /**
      * Constructor
      * @param controller
@@ -74,27 +76,30 @@ public class EndGameGUI extends JPanel
         gameOverlbl = new JLabel("GAME OVER");
         gameOverlbl.setForeground(Color.black);
         gameOverlbl.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 32));
-        gameOverlbl.setBounds(90, 30, 200, 100);
+        gameOverlbl.setBounds(95, 30, 200, 100);
         mainPnl.add(gameOverlbl);
 
         //You won text
-        youWonlbl = new JLabel("You defeated all the monsters");
-        youWonlbl.setForeground(Color.black);
-        youWonlbl.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
-        youWonlbl.setBounds(70, 100, 300, 100);
-        mainPnl.add(youWonlbl);
+        monstersDefeated = new JLabel();
+        monstersDefeated.setForeground(Color.black);
+        monstersDefeated.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
+        mainPnl.add(monstersDefeated);
 
         //Great work text
-        greatJoblbl = new JLabel("Great work!");
-        greatJoblbl.setForeground(Color.black);
-        greatJoblbl.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
-        greatJoblbl.setBounds(140, 140, 200, 100);
-        mainPnl.add(greatJoblbl);
+        performenceLbl = new JLabel();
+        performenceLbl.setForeground(Color.black);
+        performenceLbl.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
+        mainPnl.add(performenceLbl);
 
         //Trophy picture
-        myLabel = new JLabel(trophyIcon);
-        myLabel.setBounds(140, 220, 100, 100);
-        mainPnl.add(myLabel);
+        trophyLabel = new JLabel(trophyIcon);
+        trophyLabel.setBounds(140, 220, 100, 100);
+
+        //Grave picture
+        graveLabel = new JLabel(graveIcon);
+        graveLabel.setBounds(140, 220, 100, 100);
+
+
 
         //play again button on screen
         btnPlayAgain = new JButton("Play again");
@@ -163,10 +168,18 @@ public class EndGameGUI extends JPanel
     }
 
     public void displayYouWinMessage() {
-        youWonlbl.setText("You won!");
+        monstersDefeated.setText("You defeated all the monsters!");
+        performenceLbl.setText("Great work!");
+        performenceLbl.setBounds(135, 140, 200, 100);
+        monstersDefeated.setBounds(65, 100, 300, 100);
+        mainPnl.add(trophyLabel);
     }
 
     public void displayYouLostMessage() {
-        youWonlbl.setText("You lost!");
+        monstersDefeated.setText("You lost against the monsters!");
+        performenceLbl.setText("Better luck next time!");
+        performenceLbl.setBounds(110, 140, 200, 100);
+        monstersDefeated.setBounds(70, 100, 300, 100);
+        mainPnl.add(graveLabel);
     }
 }

@@ -239,6 +239,8 @@ public class Controller implements TimerCallback {
     public void timesUp() {
         if (!model.getGameHasEnded()) {
             updateGamePlayInformation();
+            streak = 0;
+            gameGUI.updateStreak(streak);
         } else {
             endGame();
         }

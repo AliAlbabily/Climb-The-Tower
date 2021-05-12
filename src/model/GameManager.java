@@ -43,6 +43,7 @@ public class GameManager implements TimerCallback{
       lvls.addFirst(new Level9("Level 9", this));
       lvls.addFirst(new Level10("Level 10", this));
 
+
     }
 
 
@@ -211,6 +212,7 @@ public class GameManager implements TimerCallback{
     public void timesUp() {
         player.takeDamage(10);
         playSound(wrongAnswerSound);
+        streak = 0;
         System.out.println("Times up! You need to be faster than that!");
         ifCharacterIsDead = player.checkIfAlive();
         if (ifCharacterIsDead) {

@@ -32,6 +32,6 @@ public class Highscore implements Serializable, Comparable<Highscore> {
         return Integer.compare(getPoints(), o.getPoints());
     }
     public String toString() {
-        return String.format("Player's name: %s  Score:  %d", getName(), getPoints());
+        return String.format("Player: %s  Score:  %d", getName(), getPoints());
     }
 }

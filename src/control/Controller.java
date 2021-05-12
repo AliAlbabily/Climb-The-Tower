@@ -14,7 +14,7 @@ import java.util.LinkedList;
 
 /**
  * @author Ali, Hanis, Ardian and Mads
- * @version 1.7
+ * @version 1.8
  */
 public class Controller implements TimerCallback {
 
@@ -213,12 +213,13 @@ public class Controller implements TimerCallback {
         System.out.println("\nGame Over!");
         gameGUI.closeGameGUI();
 
-        boolean playerIsAlive = model.playerIsAliveStatus();
+        setupEndGameWindow();
 
-        if(playerIsAlive) { // if player is alive
-            setupEndGameWindow(true);
+        boolean playerIsAlive = model.playerIsAliveStatus();
+        if (playerIsAlive) { // if player is alive
+            endGameGui.displayYouWinMessage();
         } else { // otherwise (player is dead)
-            setupEndGameWindow(false);
+            endGameGui.displayYouLostMessage();
         }
     }
 
@@ -230,8 +231,8 @@ public class Controller implements TimerCallback {
         highscoreGUI.updateHighscoreGUI(scores);
     }
 
-    public void setupEndGameWindow(boolean playerIsAliveStatus){
-        endGameGui = new EndGameGUI(this, playerIsAliveStatus);
+    public void setupEndGameWindow(){
+        endGameGui = new EndGameGUI(this);
     }
 
     // Callback function that is invoked when the countdown timer is finished.
@@ -239,6 +240,8 @@ public class Controller implements TimerCallback {
     public void timesUp() {
         if (!model.getGameHasEnded()) {
             updateGamePlayInformation();
+            streak = 0;
+            gameGUI.updateStreak(streak);
         } else {
             endGame();
         }

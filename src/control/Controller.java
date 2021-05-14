@@ -1,13 +1,11 @@
 package control;
 
 import model.*;
-import view.ButtonType;
-import view.EndGameGUI;
-import view.GameGUI;
-import view.HighscoreGUI;
-import view.StartMenuGUI;
+import view.*;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.LinkedList;
@@ -16,7 +14,7 @@ import java.util.LinkedList;
  * @author Ali, Hanis, Ardian and Mads
  * @version 1.8
  */
-public class Controller implements TimerCallback {
+public class Controller implements TimerCallback, ActionListener {
 
     private GameManager model;
     private StartMenuGUI startMenuGUI;
@@ -246,4 +244,39 @@ public class Controller implements TimerCallback {
             endGame();
         }
     }
+
+    public DifficultyLevel [] getDifficulty()
+    {
+        return DifficultyLevel.values();
+    }
+
+    public Characters [] getCharacter()
+    {
+        return Characters.values();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        var jComboBox = (JComboBox) e.getSource();
+        if (jComboBox == null)
+        {
+            System.out.println("JComboBox is null!");
+            return;
+        }
+
+        var difficulty = (DifficultyLevel) jComboBox.getSelectedItem();
+        if(difficulty == null)
+        {
+            System.out.println("Choice is null");
+        }
+
+        var character = (Characters) jComboBox.getSelectedItem();
+        if (character == null)
+        {
+            JOptionPane.showMessageDialog(null, "Choice is null");
+        }
+//        handleSelectedPizza(choice);
+    }
+
 }

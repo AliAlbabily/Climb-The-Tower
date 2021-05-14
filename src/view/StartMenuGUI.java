@@ -14,8 +14,7 @@ import java.awt.event.MouseEvent;
  * @author Jagtej Sidhu, Hanis Saley
  * @version 1.3
  */
-public class StartMenuGUI extends JPanel
-{
+public class StartMenuGUI extends JPanel {
     //object of controller class
     private Controller controller;
 
@@ -26,7 +25,9 @@ public class StartMenuGUI extends JPanel
     private JPanel mainPnl;
     private JButton playBtn = new JButton();
     private JButton infoBtn = new JButton();
-    private String  playerName;
+    private String playerName;
+    private JComboBox cmbDifficulty;
+    private JComboBox cmbCharacter;
 
 
     //Image variables
@@ -35,17 +36,21 @@ public class StartMenuGUI extends JPanel
 
     /**
      * Constructor
+     *
      * @param controller Controller class
      */
-    public StartMenuGUI(Controller controller)
-    {
+    public StartMenuGUI(Controller controller) {
         this.controller = controller;
-        createMenuBox();
+        initializeGUI();
         addListeners(); // add action-listeners to components
     }
 
-    public void createMenuBox()
-    {
+    public void initializeGUI() {
+        createFrame();
+        createMenuBox();
+    }
+
+    public void createFrame() {
         /**
          * Inizialize of frame
          */
@@ -56,6 +61,9 @@ public class StartMenuGUI extends JPanel
         frame.setResizable(false);
         frame.setVisible(true);
         centreWindow(frame);
+    }
+
+    public void createMenuBox() {
 
         Border blackline = BorderFactory.createLineBorder(Color.black);
 
@@ -70,15 +78,14 @@ public class StartMenuGUI extends JPanel
         /**
          * Text field where you type in your name
          */
-    //    userTextField = new JTextField("Enter username here...");
-        userTextField.setPreferredSize(new Dimension(200,30));
-        userTextField.setBounds(50,200, 200, 30);
+        //    userTextField = new JTextField("Enter username here...");
+        userTextField.setPreferredSize(new Dimension(200, 30));
+        userTextField.setBounds(50, 200, 200, 30);
         userTextField.setBorder(blackline);
         userTextField.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (userTextField.getText().equals("Enter username here..."))
-                {
+                if (userTextField.getText().equals("Enter username here...")) {
                     userTextField.setText("");
                 }
             }
@@ -102,11 +109,11 @@ public class StartMenuGUI extends JPanel
         infoBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(frame,"You versus the monsters!\n You play the game by typing the the right mathematical answers for each question. \n"+
-                                "An amount of correct answers are required to defeat the monsters. \n"+
-                                "The further you progress the harder the questions become. \n" +
-                                "You can also get bonus hits and points if you answer quickly before the timer" +
-                                " runs out.\n" + "Good luck warrior!");
+                JOptionPane.showMessageDialog(frame, "You versus the monsters!\n You play the game by typing the the right mathematical answers for each question. \n" +
+                        "An amount of correct answers are required to defeat the monsters. \n" +
+                        "The further you progress the harder the questions become. \n" +
+                        "You can also get bonus hits and points if you answer quickly before the timer" +
+                        " runs out.\n" + "Good luck warrior!");
             }
         });
         mainPnl.add(infoBtn);
@@ -115,43 +122,54 @@ public class StartMenuGUI extends JPanel
          * Background picture for the frame
          */
         myLabel = new JLabel(towerPic);
-        myLabel.setSize(300,400);
+        myLabel.setSize(300, 400);
         mainPnl.add(myLabel);
+
+        //Svårighetsgrad
+//        cmbDifficulty = new JComboBox(controller.getDifficulty());
+//        cmbDifficulty.addActionListener(controller);
+//        cmbDifficulty.setBounds(75, 100, 150, 25);
+//        mainPnl.add(cmbDifficulty);
+
+        //Karaktärsval
+//        cmbCharacter = new JComboBox(controller.getCharacter());
+//        cmbCharacter.addActionListener(controller);
+//        cmbCharacter.setBounds(75, 140, 150, 25);
+//        mainPnl.add(cmbDifficulty);
     }
 
-    private void addListeners()
-    {
-        playBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == playBtn)
-                {
-                    controller.buttonPressed(ButtonType.Play);
+        private void addListeners ()
+        {
+            playBtn.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (e.getSource() == playBtn) {
+                        controller.buttonPressed(ButtonType.Play);
+                    }
                 }
-            }
-        });
-    }
+            });
+        }
 
-    public void closeStartMenuGUIWindow() {
-        frame.setVisible(false); // hide window
-        frame.dispose(); // Destroy the JFrame object, (close window)
-    }
+        public void closeStartMenuGUIWindow() {
+            frame.setVisible(false); // hide window
+            frame.dispose(); // Destroy the JFrame object, (close window)
+        }
 
-    // get player name from user input (userTextField)
-    public String getPlayerName() {
-        playerName = userTextField.getText();
-        return playerName;
-    }
+        // get player name from user input (userTextField)
+        public String getPlayerName () {
+            playerName = userTextField.getText();
+            return playerName;
+        }
 
-    /**
-     * Centers the frame according to the user's window size
-     * @param frame the JFrame that needs to be centered
-     */
-    private void centreWindow(Window frame) {
-        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
-        int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
-        frame.setLocation(x, y);
-    }
+        /**
+         * Centers the frame according to the user's window size
+         * @param frame the JFrame that needs to be centered
+         */
+        private void centreWindow (Window frame){
+            Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+            int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+            int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+            frame.setLocation(x, y);
+        }
 }
 

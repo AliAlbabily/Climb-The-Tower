@@ -20,14 +20,16 @@ public class StartMenuGUI extends JPanel {
 
     //Java swing variables
     private JTextField userTextField = new JTextField("Enter username here...");
+    private JComboBox cmbCharacter = new JComboBox();
     private JFrame frame = new JFrame();
     private JPanel panel = new JPanel();
     private JPanel mainPnl;
     private JButton playBtn = new JButton();
     private JButton infoBtn = new JButton();
     private String playerName;
+    private JLabel chooseChar;
     private JComboBox cmbDifficulty;
-    private JComboBox cmbCharacter;
+
 
 
     //Image variables
@@ -74,6 +76,18 @@ public class StartMenuGUI extends JPanel {
         mainPnl.setPreferredSize(new Dimension(300, 400));
         mainPnl.setLayout(null);
         panel.add(mainPnl);
+
+        chooseChar = new JLabel("Choose Character");
+        chooseChar.setForeground(Color.orange);
+        chooseChar.setFont(new Font(Font.SERIF, Font.PLAIN,15));
+
+        chooseChar.setBounds(95, 30, 200, 190);
+        mainPnl.add(chooseChar);
+
+        cmbCharacter = new JComboBox(controller.getCharacter());
+        cmbCharacter.addActionListener(controller);
+        cmbCharacter.setBounds(75, 140, 150, 25);
+        mainPnl.add(cmbCharacter);
 
         /**
          * Text field where you type in your name
@@ -132,10 +146,9 @@ public class StartMenuGUI extends JPanel {
 //        mainPnl.add(cmbDifficulty);
 
         //Karaktärsval
-//        cmbCharacter = new JComboBox(controller.getCharacter());
-//        cmbCharacter.addActionListener(controller);
-//        cmbCharacter.setBounds(75, 140, 150, 25);
-//        mainPnl.add(cmbDifficulty);
+       //
+
+
     }
 
         private void addListeners ()

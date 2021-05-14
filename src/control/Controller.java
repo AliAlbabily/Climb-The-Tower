@@ -265,18 +265,20 @@ public class Controller implements TimerCallback, ActionListener {
             return;
         }
 
-        var difficulty = (DifficultyLevel) jComboBox.getSelectedItem();
-        if(difficulty == null)
-        {
-            System.out.println("Choice is null");
-        }
+//        var difficulty = (DifficultyLevel) jComboBox.getSelectedItem();
+//        if(difficulty == null)
+//        {
+//            System.out.println("Choice is null");
+//        }
 
         var character = (Characters) jComboBox.getSelectedItem();
+        System.out.println(character);
         if (character == null)
         {
             JOptionPane.showMessageDialog(null, "Choice is null");
         }
-//        handleSelectedPizza(choice);
+
+
     }
 
 }

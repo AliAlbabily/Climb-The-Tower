@@ -15,21 +15,33 @@ public class DifficultyGUI extends JFrame {
     private JButton btnEasy;
     private JButton btnMedium;
     private JButton btnHard;
+    private JFrame frame = new JFrame();
 
     public DifficultyGUI(Controller controller) {
         this.controller = controller;
-        setTitle("Choose difficulty");
-        setLayout(new GridLayout(3,1,1,1));
-        setPreferredSize(new Dimension(width, height));
-        setResizable(false);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setVisible(true);
-        pack();
-        initializeComponents();
+        initializeGUI();
         addBtnListeners();
     }
 
-    private void initializeComponents() {
+    public void initializeGUI()
+    {
+        createFrame();
+        createButtons();
+    }
+
+    public void createFrame()
+    {
+        frame.setTitle("Choose difficulty");
+        frame.setLayout(new GridLayout(3,1,1,1));
+        frame.setPreferredSize(new Dimension(width, height));
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        frame.pack();
+        centreWindow(frame);
+    }
+
+    private void createButtons() {
         Font font = new Font("Rockwell Extra Bold", 0, 14);
         btnEasy = new JButton("Easy");
         btnEasy.setFont(font);
@@ -46,9 +58,9 @@ public class DifficultyGUI extends JFrame {
         btnHard.setForeground(Color.WHITE);
  //       btnHard.setBackground(Color.RED);
         btnHard.setBackground(new Color(255,51,51));
-        add(btnEasy);
-        add(btnMedium);
-        add(btnHard);
+        frame.add(btnEasy);
+        frame.add(btnMedium);
+        frame.add(btnHard);
     }
 
     private void addBtnListeners() {
@@ -59,8 +71,19 @@ public class DifficultyGUI extends JFrame {
     }
 
     public void closeFrame() {
-        setVisible(false);
+        frame.setVisible(false);
         dispose();
+    }
+
+    /**
+     * Centers the frame according to the user's window size
+     * @param frame the JFrame that needs to be centered
+     */
+    private void centreWindow (Window frame){
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+        frame.setLocation(x, y);
     }
 
     private class ButtonListeners implements ActionListener {
@@ -76,4 +99,5 @@ public class DifficultyGUI extends JFrame {
             }
         }
     }
+
 }

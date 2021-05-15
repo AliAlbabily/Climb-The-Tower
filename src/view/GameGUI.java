@@ -181,7 +181,6 @@ public class GameGUI
         lblEnemy.setBounds(760,50, 100, 50);
         pnlSouth.add(lblEnemy);
 
-
         lblPlayer = new JLabel("You:");
         lblPlayer.setForeground(Color.white);
         lblPlayer.setFont(font);
@@ -204,17 +203,11 @@ public class GameGUI
         lblLevel.setBounds(433,85, 100, 50);
         pnlSouth.add(lblLevel);
 
-        JLabel lblStreak = new JLabel("Streak:");
-        lblStreak.setForeground(Color.white);
-        lblStreak.setFont(font);
-        lblStreak.setBounds(25,140, 100, 50);
-        pnlSouth.add(lblStreak);
-
         //TODO koppla denna jlabeln till streak nummer så att man kan se vilken streak man ligger på i GUI:t
-        streak = new JLabel("0");
+        streak = new JLabel("Streak: 0");
         streak.setForeground(Color.white);
         streak.setFont(font);
-        streak.setBounds(105, 140, 50, 50);
+        streak.setBounds(25, 140, 100, 50);
         pnlSouth.add(streak);
 
         enemyName = new JLabel();
@@ -240,15 +233,10 @@ public class GameGUI
      */
     public void updateStreak(int count)
     {
-        streak.setText("" + count + "");
+        streak.setText("Streak: " + count + "");
     }
 
     public void updateCharactersHPGUI(int playerHP, int currentEnemyHP, int fullEnemyHP) {
-//        String playerHPStr = Integer.toString(playerHP);
-//        String enemyHPStr = Integer.toString(enemyHP);
-//        playerHealth.setText(playerHPStr);
-//        enemyHealth.setText(enemyHPStr);
-
         playerHealthBar.setValue(playerHP);
         playerHealthBar.setStringPainted(true);
 
@@ -259,37 +247,31 @@ public class GameGUI
 
         if (playerHP > 50)
         {
-//            playerHealth.setForeground(Color.green);
             playerHealthBar.setForeground(Color.green);
         }
 
         if (playerHP <= 40 )
         {
-//            playerHealth.setForeground(Color.orange);
             playerHealthBar.setForeground(Color.orange);
         }
 
         if (playerHP <= 20)
         {
-//            playerHealth.setForeground(Color.red);
             playerHealthBar.setForeground(Color.red);
         }
 
         if (currentEnemyHP > (7 * hpFactor))
         {
-//            enemyHealth.setForeground(Color.green);
             enemyHealthBar.setForeground(Color.green);
         }
 
         if (currentEnemyHP <= (7 * hpFactor) && currentEnemyHP >= (4 * hpFactor))
         {
-//            enemyHealth.setForeground(Color.orange);
             enemyHealthBar.setForeground(Color.orange);
         }
 
         if (currentEnemyHP < (4 * hpFactor))
         {
-//            enemyHealth.setForeground(Color.red);
             enemyHealthBar.setForeground(Color.red);
         }
 

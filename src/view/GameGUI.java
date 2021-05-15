@@ -243,7 +243,7 @@ public class GameGUI
         streak.setText("" + count + "");
     }
 
-    public void updateCharactersHPGUI(int playerHP, int enemyHP) {
+    public void updateCharactersHPGUI(int playerHP, int currentEnemyHP, int fullEnemyHP) {
 //        String playerHPStr = Integer.toString(playerHP);
 //        String enemyHPStr = Integer.toString(enemyHP);
 //        playerHealth.setText(playerHPStr);
@@ -252,8 +252,10 @@ public class GameGUI
         playerHealthBar.setValue(playerHP);
         playerHealthBar.setStringPainted(true);
 
-        enemyHealthBar.setValue(enemyHP);
+        enemyHealthBar.setValue(currentEnemyHP);
         enemyHealthBar.setStringPainted(true);
+
+        int hpFactor = (int) (fullEnemyHP * 0.1);
 
         if (playerHP > 50)
         {
@@ -273,19 +275,19 @@ public class GameGUI
             playerHealthBar.setForeground(Color.red);
         }
 
-        if (enemyHP > 50)
+        if (currentEnemyHP > (7 * hpFactor))
         {
 //            enemyHealth.setForeground(Color.green);
             enemyHealthBar.setForeground(Color.green);
         }
 
-        if (enemyHP <= 40)
+        if (currentEnemyHP <= (7 * hpFactor) && currentEnemyHP >= (4 * hpFactor))
         {
 //            enemyHealth.setForeground(Color.orange);
             enemyHealthBar.setForeground(Color.orange);
         }
 
-        if (enemyHP <= 20)
+        if (currentEnemyHP < (4 * hpFactor))
         {
 //            enemyHealth.setForeground(Color.red);
             enemyHealthBar.setForeground(Color.red);
@@ -302,14 +304,17 @@ public class GameGUI
         lblLevel.setText(levelName);
     }
 
+    public void updateProgressBar(int monsterHP) {
+        enemyHealthBar.setMaximum(monsterHP);
+        enemyHealthBar.setMinimum(0);
+    }
+
     public void updateLayoutGUI(String levelname)
     {
         if(levelname == "Level 1") {
             frame.repaint();
             lblLevel1.setSize(1000, 400);
             pnlNorth.add(lblLevel1);
-            enemyHealthBar.setMaximum(80);
-            enemyHealthBar.setMinimum(0);
         }
 
         if(levelname == "Level 2") {
@@ -317,16 +322,12 @@ public class GameGUI
             frame.repaint();
             lblLevel2.setSize(1000, 400);
             pnlNorth.add(lblLevel2);
-            enemyHealthBar.setMaximum(90);
-            enemyHealthBar.setMinimum(0);
         }
         if (levelname == "Level 3") {
             lblLevel2.setVisible(false);
             frame.repaint();
             lblLevel3.setSize(1000, 400);
             pnlNorth.add(lblLevel3);
-            enemyHealthBar.setMaximum(110);
-            enemyHealthBar.setMinimum(0);
         }
 
         if (levelname == "Level 4") {
@@ -334,8 +335,6 @@ public class GameGUI
             frame.repaint();
             lblLevel4.setSize(1000, 400);
             pnlNorth.add(lblLevel4);
-            enemyHealthBar.setMaximum(120);
-            enemyHealthBar.setMinimum(0);
         }
 
         if(levelname == "Level 5"){
@@ -343,8 +342,6 @@ public class GameGUI
             frame.repaint();
             lblLevel5.setSize(1000,400);
             pnlNorth.add(lblLevel5);
-            enemyHealthBar.setMaximum(140);
-            enemyHealthBar.setMinimum(0);
         }
 
         if (levelname == "Level 6")
@@ -353,8 +350,6 @@ public class GameGUI
             lblLevel5.setVisible(false);
             frame.repaint();
             pnlNorth.add(lblLevel6);
-            enemyHealthBar.setMaximum(160);
-            enemyHealthBar.setMinimum(0);
         }
 
         if (levelname == "Level 7")
@@ -363,8 +358,6 @@ public class GameGUI
             lblLevel6.setVisible(false);
             frame.repaint();
             pnlNorth.add(lblLevel7);
-            enemyHealthBar.setMaximum(140);
-            enemyHealthBar.setMinimum(0);
         }
 
         if (levelname == "Level 8")
@@ -373,8 +366,6 @@ public class GameGUI
             lblLevel7.setVisible(false);
             frame.repaint();
             pnlNorth.add(lblLevel8);
-            enemyHealthBar.setMaximum(200);
-            enemyHealthBar.setMinimum(0);
         }
 
         if (levelname == "Level 9")
@@ -383,8 +374,6 @@ public class GameGUI
             lblLevel8.setVisible(false);
             frame.repaint();
             pnlNorth.add(lblLevel9);
-            enemyHealthBar.setMaximum(140);
-            enemyHealthBar.setMinimum(0);
         }
 
         if (levelname == "Level 10")
@@ -393,8 +382,6 @@ public class GameGUI
             lblLevel9.setVisible(false);
             frame.repaint();
             pnlNorth.add(lblLevel10);
-            enemyHealthBar.setMaximum(200);
-            enemyHealthBar.setMinimum(0);
         }
     }
 

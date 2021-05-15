@@ -13,7 +13,6 @@ public class Level2 extends Level {
 
     public Level2(String lvlName, GameManager gameManager) {
         super(lvlName, gameManager);
-        setMonster(new Monster("Graardor",90)); // instansiera ett monster i denna nivå
     }
 
     @Override

@@ -3,12 +3,14 @@ package model;
 
 public class Character {
 
+    private final int baseHitPoints;
     private int hitPoints = 0;
     private String name;
 
     public Character(String name, int hitPoints) {
         this.name = name;
         this.hitPoints = hitPoints;
+        this.baseHitPoints = hitPoints;
     }
 
     public void takeDamage(int damage) {
@@ -27,6 +29,10 @@ public class Character {
 
     public int getHitPoints() {
         return hitPoints;
+    }
+
+    public int getBaseHitPoints() {
+        return baseHitPoints;
     }
 
     public String getName() {

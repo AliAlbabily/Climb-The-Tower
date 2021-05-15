@@ -20,7 +20,6 @@ public class Level9 extends Level {
 
     public Level9(String lvlName, GameManager gameManager) {
         super(lvlName, gameManager);
-        setMonster(new Monster("Chrollo", 140));
     }
 
     /*

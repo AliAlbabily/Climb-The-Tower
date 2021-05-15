@@ -15,7 +15,6 @@ public class Level5 extends Level {
 
     public Level5(String lvlName, GameManager gameManager) {
         super(lvlName, gameManager);
-        setMonster(new Monster("Valyei",140));
     }
 
 

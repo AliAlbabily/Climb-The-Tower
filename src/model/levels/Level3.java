@@ -12,7 +12,6 @@ import model.Monster;
 public class Level3 extends Level {
     public Level3(String lvlName, GameManager gameManager) {
         super(lvlName, gameManager);
-        setMonster(new Monster("Gargamel", 110));
     }
 
     @Override

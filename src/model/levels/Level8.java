@@ -22,7 +22,6 @@ public class Level8 extends Level {
 
     public Level8(String lvlName, GameManager gameManager) {
         super(lvlName, gameManager);
-        setMonster(new Monster("Nosferatu Zodd", 200));
     }
 
     /*

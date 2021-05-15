@@ -181,7 +181,6 @@ public class GameGUI
         lblEnemy.setBounds(760,50, 100, 50);
         pnlSouth.add(lblEnemy);
 
-
         lblPlayer = new JLabel("You:");
         lblPlayer.setForeground(Color.white);
         lblPlayer.setFont(font);
@@ -204,17 +203,11 @@ public class GameGUI
         lblLevel.setBounds(433,85, 100, 50);
         pnlSouth.add(lblLevel);
 
-        JLabel lblStreak = new JLabel("Streak:");
-        lblStreak.setForeground(Color.white);
-        lblStreak.setFont(font);
-        lblStreak.setBounds(25,140, 100, 50);
-        pnlSouth.add(lblStreak);
-
         //TODO koppla denna jlabeln till streak nummer så att man kan se vilken streak man ligger på i GUI:t
-        streak = new JLabel("0");
+        streak = new JLabel("Streak: 0");
         streak.setForeground(Color.white);
         streak.setFont(font);
-        streak.setBounds(105, 140, 50, 50);
+        streak.setBounds(25, 140, 100, 50);
         pnlSouth.add(streak);
 
         enemyName = new JLabel();
@@ -240,54 +233,45 @@ public class GameGUI
      */
     public void updateStreak(int count)
     {
-        streak.setText("" + count + "");
+        streak.setText("Streak: " + count + "");
     }
 
-    public void updateCharactersHPGUI(int playerHP, int enemyHP) {
-//        String playerHPStr = Integer.toString(playerHP);
-//        String enemyHPStr = Integer.toString(enemyHP);
-//        playerHealth.setText(playerHPStr);
-//        enemyHealth.setText(enemyHPStr);
-
+    public void updateCharactersHPGUI(int playerHP, int currentEnemyHP, int fullEnemyHP) {
         playerHealthBar.setValue(playerHP);
         playerHealthBar.setStringPainted(true);
 
-        enemyHealthBar.setValue(enemyHP);
+        enemyHealthBar.setValue(currentEnemyHP);
         enemyHealthBar.setStringPainted(true);
+
+        int hpFactor = (int) (fullEnemyHP * 0.1);
 
         if (playerHP > 50)
         {
-//            playerHealth.setForeground(Color.green);
             playerHealthBar.setForeground(Color.green);
         }
 
         if (playerHP <= 40 )
         {
-//            playerHealth.setForeground(Color.orange);
             playerHealthBar.setForeground(Color.orange);
         }
 
         if (playerHP <= 20)
         {
-//            playerHealth.setForeground(Color.red);
             playerHealthBar.setForeground(Color.red);
         }
 
-        if (enemyHP > 50)
+        if (currentEnemyHP > (7 * hpFactor))
         {
-//            enemyHealth.setForeground(Color.green);
             enemyHealthBar.setForeground(Color.green);
         }
 
-        if (enemyHP <= 40)
+        if (currentEnemyHP <= (7 * hpFactor) && currentEnemyHP >= (4 * hpFactor))
         {
-//            enemyHealth.setForeground(Color.orange);
             enemyHealthBar.setForeground(Color.orange);
         }
 
-        if (enemyHP <= 20)
+        if (currentEnemyHP < (4 * hpFactor))
         {
-//            enemyHealth.setForeground(Color.red);
             enemyHealthBar.setForeground(Color.red);
         }
 
@@ -302,14 +286,17 @@ public class GameGUI
         lblLevel.setText(levelName);
     }
 
+    public void updateProgressBar(int monsterHP) {
+        enemyHealthBar.setMaximum(monsterHP);
+        enemyHealthBar.setMinimum(0);
+    }
+
     public void updateLayoutGUI(String levelname)
     {
         if(levelname == "Level 1") {
             frame.repaint();
             lblLevel1.setSize(1000, 400);
             pnlNorth.add(lblLevel1);
-            enemyHealthBar.setMaximum(80);
-            enemyHealthBar.setMinimum(0);
         }
 
         if(levelname == "Level 2") {
@@ -317,16 +304,12 @@ public class GameGUI
             frame.repaint();
             lblLevel2.setSize(1000, 400);
             pnlNorth.add(lblLevel2);
-            enemyHealthBar.setMaximum(90);
-            enemyHealthBar.setMinimum(0);
         }
         if (levelname == "Level 3") {
             lblLevel2.setVisible(false);
             frame.repaint();
             lblLevel3.setSize(1000, 400);
             pnlNorth.add(lblLevel3);
-            enemyHealthBar.setMaximum(110);
-            enemyHealthBar.setMinimum(0);
         }
 
         if (levelname == "Level 4") {
@@ -334,8 +317,6 @@ public class GameGUI
             frame.repaint();
             lblLevel4.setSize(1000, 400);
             pnlNorth.add(lblLevel4);
-            enemyHealthBar.setMaximum(120);
-            enemyHealthBar.setMinimum(0);
         }
 
         if(levelname == "Level 5"){
@@ -343,8 +324,6 @@ public class GameGUI
             frame.repaint();
             lblLevel5.setSize(1000,400);
             pnlNorth.add(lblLevel5);
-            enemyHealthBar.setMaximum(140);
-            enemyHealthBar.setMinimum(0);
         }
 
         if (levelname == "Level 6")
@@ -353,8 +332,6 @@ public class GameGUI
             lblLevel5.setVisible(false);
             frame.repaint();
             pnlNorth.add(lblLevel6);
-            enemyHealthBar.setMaximum(160);
-            enemyHealthBar.setMinimum(0);
         }
 
         if (levelname == "Level 7")
@@ -363,8 +340,6 @@ public class GameGUI
             lblLevel6.setVisible(false);
             frame.repaint();
             pnlNorth.add(lblLevel7);
-            enemyHealthBar.setMaximum(140);
-            enemyHealthBar.setMinimum(0);
         }
 
         if (levelname == "Level 8")
@@ -373,8 +348,6 @@ public class GameGUI
             lblLevel7.setVisible(false);
             frame.repaint();
             pnlNorth.add(lblLevel8);
-            enemyHealthBar.setMaximum(200);
-            enemyHealthBar.setMinimum(0);
         }
 
         if (levelname == "Level 9")
@@ -383,8 +356,6 @@ public class GameGUI
             lblLevel8.setVisible(false);
             frame.repaint();
             pnlNorth.add(lblLevel9);
-            enemyHealthBar.setMaximum(140);
-            enemyHealthBar.setMinimum(0);
         }
 
         if (levelname == "Level 10")
@@ -393,8 +364,6 @@ public class GameGUI
             lblLevel9.setVisible(false);
             frame.repaint();
             pnlNorth.add(lblLevel10);
-            enemyHealthBar.setMaximum(200);
-            enemyHealthBar.setMinimum(0);
         }
     }
 

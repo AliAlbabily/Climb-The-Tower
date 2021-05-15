@@ -21,7 +21,6 @@ public class Level6 extends Level {
 
     public Level6(String lvlName, GameManager gameManager) {
         super(lvlName, gameManager);
-        setMonster(new Monster("Vorkath", 160));
     }
 
     @Override

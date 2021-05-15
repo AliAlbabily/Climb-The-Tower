@@ -99,15 +99,12 @@ public class EndGameGUI extends JPanel
         graveLabel = new JLabel(graveIcon);
         graveLabel.setBounds(140, 220, 100, 100);
 
-
-
         //play again button on screen
         btnPlayAgain = new JButton("Play again");
         btnPlayAgain.setBounds(12,345,100, 50);
         btnPlayAgain.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO koppla knapparna här inne
                 controller.buttonPressed(ButtonType.PlayAgain);
             }
         });
@@ -140,6 +137,22 @@ public class EndGameGUI extends JPanel
         frame.pack();
     }
 
+    public void displayYouWinMessage() {
+        monstersDefeated.setText("You defeated all the monsters!");
+        performenceLbl.setText("Great work!");
+        performenceLbl.setBounds(135, 140, 200, 100);
+        monstersDefeated.setBounds(65, 100, 300, 100);
+        mainPnl.add(trophyLabel);
+    }
+
+    public void displayYouLostMessage() {
+        monstersDefeated.setText("You lost against the monsters!");
+        performenceLbl.setText("Better luck next time!");
+        performenceLbl.setBounds(110, 140, 200, 100);
+        monstersDefeated.setBounds(70, 100, 300, 100);
+        mainPnl.add(graveLabel);
+    }
+
     /**
      *
      * @return highscore button 
@@ -167,19 +180,4 @@ public class EndGameGUI extends JPanel
         frame.dispose();
     }
 
-    public void displayYouWinMessage() {
-        monstersDefeated.setText("You defeated all the monsters!");
-        performenceLbl.setText("Great work!");
-        performenceLbl.setBounds(135, 140, 200, 100);
-        monstersDefeated.setBounds(65, 100, 300, 100);
-        mainPnl.add(trophyLabel);
-    }
-
-    public void displayYouLostMessage() {
-        monstersDefeated.setText("You lost against the monsters!");
-        performenceLbl.setText("Better luck next time!");
-        performenceLbl.setBounds(110, 140, 200, 100);
-        monstersDefeated.setBounds(70, 100, 300, 100);
-        mainPnl.add(graveLabel);
-    }
 }

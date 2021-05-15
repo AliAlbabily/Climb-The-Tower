@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
-import java.io.Serializable;
 import java.util.LinkedList;
 
 /**
@@ -23,11 +22,12 @@ public class Controller implements TimerCallback, ActionListener {
     private HighscoreGUI highscoreGUI;
     private EndGameGUI endGameGui;
     private HighscoreList highscoreList;
+    private DifficultyGUI difficultyGUI;
 
     private final PlayersList playersList = new PlayersList();
 
     private double currentCorrectAnswer = 0;
-    int streak = 0;
+    private int streak = 0;
     private boolean gameHasEnded = false;
     private String chosenCharacterName = "Soldier"; // set to the default character
 
@@ -54,16 +54,18 @@ public class Controller implements TimerCallback, ActionListener {
         currentLevelName = model.getCurrentLevel().getLvlName();
         gameGUI.updateLevelNameGUI(currentLevelName);
         gameGUI.updateLayoutGUI(currentLevelName);
+        gameGUI.updateProgressBar(model.getMonsterStartingHP());
 
         // update monster name on GUI
         currentMonsterName = model.getCurrentMonster().getName();
         gameGUI.updateMonsterNameGUI(currentMonsterName);
 
+
         //update player name on GUI
         currentPlayerName = model.getPlayer().getName();
 //        gameGUI.setName(currentPlayerName);
 
-        updateCharacterHP(playerHP, monsterHP);
+        updateCharacterHP(playerHP, monsterHP, model.getMonsterStartingHP());
 
         generateMathQuestion();
 
@@ -77,11 +79,12 @@ public class Controller implements TimerCallback, ActionListener {
     // Updates the level, monster and player name on the GUI
 
     // Displays the current health of the characters on the GUI and prints it on the console.
-    private void updateCharacterHP(int playerHP, int monsterHP) {
-        gameGUI.updateCharactersHPGUI(playerHP, monsterHP);
+    private void updateCharacterHP(int playerHP, int monsterHP, int monsterFullHP) {
+        gameGUI.updateCharactersHPGUI(playerHP, monsterHP, monsterFullHP);
         System.out.println("\n" + model.getPlayer().getName() + "'s hp: " + playerHP);
         System.out.println(model.getCurrentMonster().getName() + "'s hp: " + monsterHP +"\n");
     }
+
     // Displays the current math question on the GUI and prints it on the console.
     private void updateMathQuestion() {
         String mathQuestionStr = model.getCurrentMathQuestion();
@@ -103,10 +106,12 @@ public class Controller implements TimerCallback, ActionListener {
         }
     }
     // Initializes the player and timer object then starts starts the gameplay with a GUI.
-    private void startGamePlay() {
+    public void startGamePlay(DifficultyLevel difficultyLevel) {
         String playerName = startMenuGUI.getPlayerName();
         Player player = new Player(playerName, 100, 0);
-        model = new GameManager(player);
+
+        Difficulty difficulty = checkChosenDifficulty(difficultyLevel);
+        model = new GameManager(player, difficulty);
 
         timer = new GameTimer(model);
         timer.addListener(model);
@@ -119,6 +124,22 @@ public class Controller implements TimerCallback, ActionListener {
 
         updateGamePlayInformation();
         startMenuGUI.closeStartMenuGUIWindow();
+        difficultyGUI.closeFrame();
+    }
+
+    private Difficulty checkChosenDifficulty(DifficultyLevel difficultyLevel) {
+        Difficulty difficulty = Difficulty.EASY;
+        switch (difficultyLevel) {
+            case Easy:
+                difficulty = Difficulty.EASY;
+                break;
+            case Medium:
+                difficulty = Difficulty.MEDIUM;
+                break;
+            case Hard:
+                difficulty = Difficulty.HARD;
+        }
+        return difficulty;
     }
 
     public void buttonPressed(ButtonType button) {
@@ -130,7 +151,7 @@ public class Controller implements TimerCallback, ActionListener {
                     JOptionPane.showMessageDialog(null, "Please type your chosen name");
                 }
                 else {
-                    startGamePlay();
+                    difficultyGUI = new DifficultyGUI(this);
                 }
                 break;
             case SubmitAnswer:
@@ -183,20 +204,25 @@ public class Controller implements TimerCallback, ActionListener {
     // Initializes the timer by setting the contents and starting the countdown thread.
     private void setTimer(String lvl) {
         timer.setTimeLeftLbl(gameGUI.getTimer());
+        Difficulty difficulty = model.getDifficulty();
         switch (lvl) {
             case "Level 1":
+            case "Level 4":
             case "Level 2":
             case "Level 3":
-            case "Level 4":
-                timer.setSeconds(11);
+                timer.setSeconds(difficulty.getCountDown());;
                 break;
             case "Level 5":
             case "Level 6":
             case "Level 7":
-                timer.setSeconds(21);
+                timer.setSeconds((int) (difficulty.getCountDown() * 2));
                 break;
             default:
-                timer.setSeconds(61);
+                if (difficulty == Difficulty.HARD) {
+                    timer.setSeconds(difficulty.getCountDown() * 4);
+                } else {
+                    timer.setSeconds(difficulty.getCountDown() * 3);
+                }
         }
         timer.start();
     }

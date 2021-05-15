@@ -457,5 +457,36 @@ public class GameGUI
         return timer;
     }
 
+    /** Changes the background image depending on the character that was selected
+     * @param chosenCharacter the character that was selected in startMenuGUI-frame
+     * */
+    public void changeBackgroundOnCharacter(String chosenCharacter) {
+        if (chosenCharacter.equals("Soldier")) {
+            System.out.println("Default Character");
+        }
+        else if (chosenCharacter.equals("Knight")) {
+            level1 = new ImageIcon("files/levels/level1_knight.png");
+            level2 = new ImageIcon("files/levels/level2_knight.png");
+            level3 = new ImageIcon("files/levels/level3_knight.png");
+            level4 = new ImageIcon("files/levels/level4_knight.png");
+            level5 = new ImageIcon("files/levels/level5_knight.png");
+            level6 = new ImageIcon("files/levels/level6_knight.png");
+            level7 = new ImageIcon("files/levels/level7_knight.png");
+            level8 = new ImageIcon("files/levels/level8_knight.png");
+            level9 = new ImageIcon("files/levels/level9_knight.png");
+            level10 = new ImageIcon("files/levels/level10_knight.png");
+
+            lblLevel1 = new JLabel(level1);
+            lblLevel2 = new JLabel(level2);
+            lblLevel3 = new JLabel(level3);
+            lblLevel4 = new JLabel(level4);
+            lblLevel5 = new JLabel(level5);
+            lblLevel6 = new JLabel(level6);
+            lblLevel7 = new JLabel(level7);
+            lblLevel8 = new JLabel(level8);
+            lblLevel9 = new JLabel(level9);
+            lblLevel10 = new JLabel(level10);
+        }
+    }
 }
 

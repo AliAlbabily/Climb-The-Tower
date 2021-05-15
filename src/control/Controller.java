@@ -173,6 +173,7 @@ public class Controller implements TimerCallback, ActionListener {
                     if(gameHasEnded)
                     {
                         endGame();
+
                     }
                     else {
                         timer.stopTimer();
@@ -241,8 +242,10 @@ public class Controller implements TimerCallback, ActionListener {
         highscoreList.saveNewHighscore(new Highscore(model.getPlayer().getName(), model.getPlayer().getPoints()));
         System.out.println("\nGame Over!");
         gameGUI.closeGameGUI();
+        if(endGameGui == null){
+            setupEndGameWindow();
+        }
 
-        setupEndGameWindow();
 
         boolean playerIsAlive = model.playerIsAliveStatus();
         if (playerIsAlive) { // if player is alive
@@ -310,8 +313,6 @@ public class Controller implements TimerCallback, ActionListener {
         {
             JOptionPane.showMessageDialog(null, "Choice is null");
         }
-
-
     }
 
 }

@@ -42,7 +42,7 @@ public class GameManager implements TimerCallback{
         level1.setMonster(new Monster("Chimera", difficulty.getMonsterHP()));
         lvls.addFirst(level1);
 
-       /* Level level2 = new Level2("Level 2", this);
+        Level level2 = new Level2("Level 2", this);
         level2.setMonster(new Monster("Graardor", difficulty.getMonsterHP()));
         lvls.addFirst(level2);
 
@@ -76,7 +76,7 @@ public class GameManager implements TimerCallback{
 
         Level level10 = new Level10("Level 10", this);
         level10.setMonster(new Monster("Dahaka", difficulty.getMonsterHP() * 2));
-        lvls.addFirst(level10);*/
+        lvls.addFirst(level10);
     }
 
     public Difficulty getDifficulty() {

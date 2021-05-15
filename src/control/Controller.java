@@ -29,6 +29,7 @@ public class Controller implements TimerCallback, ActionListener {
     private double currentCorrectAnswer = 0;
     private int streak = 0;
     private boolean gameHasEnded = false;
+    private String chosenCharacterName = "Soldier"; // set to the default character
 
     public Controller() {
         startNewGame();
@@ -37,6 +38,7 @@ public class Controller implements TimerCallback, ActionListener {
     private void startNewGame() {
         startMenuGUI = new StartMenuGUI(this);
         highscoreList = new HighscoreList();
+        chosenCharacterName = "Soldier";
     }
 
     // update gameplay info on both GUI & console
@@ -117,6 +119,9 @@ public class Controller implements TimerCallback, ActionListener {
 
         model.startAtFirstLevel();
         gameGUI = new GameGUI(this);
+        // TODO : call a method in gameGUI that changes background upon choice
+        gameGUI.changeBackgroundOnCharacter(chosenCharacterName);
+
         updateGamePlayInformation();
         startMenuGUI.closeStartMenuGUIWindow();
         difficultyGUI.closeFrame();
@@ -291,18 +296,22 @@ public class Controller implements TimerCallback, ActionListener {
             return;
         }
 
-        var difficulty = (DifficultyLevel) jComboBox.getSelectedItem();
-        if(difficulty == null)
-        {
-            System.out.println("Choice is null");
-        }
+//        var difficulty = (DifficultyLevel) jComboBox.getSelectedItem();
+//        if(difficulty == null)
+//        {
+//            System.out.println("Choice is null");
+//        }
 
         var character = (Characters) jComboBox.getSelectedItem();
+        //System.out.println(character); // FIXME : delete this line later
+        chosenCharacterName = character.name(); // saves the returned enum value into an instance-variable
+
         if (character == null)
         {
             JOptionPane.showMessageDialog(null, "Choice is null");
         }
-//        handleSelectedPizza(choice);
+
+
     }
 
 }

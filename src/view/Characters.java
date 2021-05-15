@@ -2,7 +2,7 @@ package view;
 
 public enum Characters
 {
-    Knight,
     Soldier,
+    Knight,
     Spearman
 }

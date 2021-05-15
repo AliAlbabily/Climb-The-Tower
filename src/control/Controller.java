@@ -187,6 +187,8 @@ public class Controller implements TimerCallback, ActionListener {
                 startNewGame();
                 streak = 0; // reset amount of streak
                 endGameGui.closeEndGameGUI(); // closes endGame window
+                endGameGui = null; 
+
                 break;
             case Highscore:
                 displayHighscores();

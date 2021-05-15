@@ -12,7 +12,7 @@ import java.awt.event.MouseEvent;
 
 /**
  * @author Jagtej Sidhu, Hanis Saley
- * @version 1.3
+ * @version 1.4
  */
 public class StartMenuGUI extends JPanel {
     //object of controller class
@@ -26,7 +26,7 @@ public class StartMenuGUI extends JPanel {
     private JButton playBtn = new JButton();
     private JButton infoBtn = new JButton();
     private String playerName;
-    private JComboBox cmbDifficulty;
+//    private JComboBox cmbDifficulty;
     private JComboBox cmbCharacter;
 
 
@@ -103,7 +103,6 @@ public class StartMenuGUI extends JPanel {
          * Info button on screen
          */
         infoBtn = new JButton("Tutorial");
-//        infoBtn.setBounds(15, 8, 40,40);
         infoBtn.setBounds(75, 295, 150, 25);
         infoBtn.setFont(new Font("", Font.BOLD, 10));
         infoBtn.addActionListener(new ActionListener() {

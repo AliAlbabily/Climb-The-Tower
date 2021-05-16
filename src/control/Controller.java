@@ -11,7 +11,7 @@ import java.util.LinkedList;
 
 /**
  * @author Ali, Hanis, Ardian and Mads
- * @version 1.8
+ * @version 1.9
  */
 public class Controller implements TimerCallback, ActionListener {
 
@@ -155,33 +155,7 @@ public class Controller implements TimerCallback, ActionListener {
                 }
                 break;
             case SubmitAnswer:
-                try {
-                    double userAnswer = Double.parseDouble(gameGUI.getUserAnswer());
-                    if (userAnswer == currentCorrectAnswer)
-                    {
-                        streak++;
-                        gameGUI.updateStreak(streak);
-                    }
-                    if (userAnswer != currentCorrectAnswer)
-                    {
-                        streak = 0;
-                        gameGUI.updateStreak(0);
-                    }
-
-                    gameHasEnded = model.handleUserAnswer(userAnswer, currentCorrectAnswer);
-
-                    if(gameHasEnded)
-                    {
-                        endGame();
-
-                    }
-                    else {
-                        timer.stopTimer();
-                        updateGamePlayInformation();
-                    }
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Invalid input, try again with a number!");
-                }
+                submitUserAnswer();
                 break;
             case PlayAgain:
                 startNewGame();
@@ -317,4 +291,33 @@ public class Controller implements TimerCallback, ActionListener {
         }
     }
 
+    public void submitUserAnswer() {
+        try {
+            double userAnswer = Double.parseDouble(gameGUI.getUserAnswer());
+            if (userAnswer == currentCorrectAnswer)
+            {
+                streak++;
+                gameGUI.updateStreak(streak);
+            }
+            if (userAnswer != currentCorrectAnswer)
+            {
+                streak = 0;
+                gameGUI.updateStreak(0);
+            }
+
+            gameHasEnded = model.handleUserAnswer(userAnswer, currentCorrectAnswer);
+
+            if(gameHasEnded)
+            {
+                endGame();
+
+            }
+            else {
+                timer.stopTimer();
+                updateGamePlayInformation();
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Invalid input, try again with a number!");
+        }
+    }
 }

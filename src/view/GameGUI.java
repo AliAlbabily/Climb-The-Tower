@@ -5,12 +5,11 @@ import control.Controller;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 /**
  * @author Jagtej Sidhu, Hanis Saley
- * @version 1.5
+ * @version 1.6
  */
 public class GameGUI
 {
@@ -75,6 +74,15 @@ public class GameGUI
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.buttonPressed(ButtonType.SubmitAnswer);
+            }
+        });
+        // submit user answer when you hit Enter-Key
+        answerTextField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER){
+                    controller.submitUserAnswer();
+                }
             }
         });
     }

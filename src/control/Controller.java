@@ -10,7 +10,7 @@ import java.io.FileNotFoundException;
 import java.util.LinkedList;
 
 /**
- * @author Ali, Hanis, Ardian and Mads
+ * @author Ali, Hanis, Ardian Glamniki and Mads
  * @version 1.9
  */
 public class Controller implements TimerCallback, ActionListener {
@@ -231,6 +231,7 @@ public class Controller implements TimerCallback, ActionListener {
         }
     }
 
+    // Displays the top ten highscores from the saved highscores file in the highscore GUI.
     private void displayHighscores(){
         highscoreGUI = new HighscoreGUI(this);
         LinkedList<Highscore> hsList = highscoreList.topTenHighscores();

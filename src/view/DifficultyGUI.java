@@ -8,7 +8,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class DifficultyGUI extends JFrame {
+/**
+ * @author Ardian Glamniki, Jagtej
+ * @version 1.1
+ *
+ * This class contains a window with buttons easy, medium and hard.
+ */
+
+public class DifficultyGUI {
     private Controller controller;
     private final int width = 300;
     private final int height = 300;
@@ -23,19 +30,17 @@ public class DifficultyGUI extends JFrame {
         addBtnListeners();
     }
 
-    public void initializeGUI()
-    {
+    public void initializeGUI() {
         createFrame();
         createButtons();
     }
 
-    public void createFrame()
-    {
+    public void createFrame() {
         frame.setTitle("Choose difficulty");
         frame.setLayout(new GridLayout(3,1,1,1));
         frame.setPreferredSize(new Dimension(width, height));
         frame.setResizable(false);
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.pack();
         centreWindow(frame);
@@ -72,7 +77,7 @@ public class DifficultyGUI extends JFrame {
 
     public void closeFrame() {
         frame.setVisible(false);
-        dispose();
+        frame.dispose();
     }
 
     /**

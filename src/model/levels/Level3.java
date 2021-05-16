@@ -26,6 +26,8 @@ public class Level3 extends Level {
         firstOperator = (int)(Math.random() * 2 + 1); //Genererar ett tal från 1-2 för att slumpmässigt bestämma tecken
         secondOperator = (int)(Math.random() * 2 + 1); //Genererar ett tal från 1-2 för att slumpmässigt bestämma tecken
 
+        System.out.println("First operator: " + firstOperator + "\n"
+        + "Second operator: " + secondOperator);
         if (firstOperator == 1) //Bestämmer vilket tecken som ska sättas i mattefrågan utifrån vår slumpmässiga siffra.
         {
             char_firstOperator = '+';
@@ -34,6 +36,7 @@ public class Level3 extends Level {
         {
             char_firstOperator = '-';
         }
+
 
         if (secondOperator == 1) //Bestämmer vilket tecken som ska sättas i mattefrågan utifrån vår slumpmässiga siffra.
         {
@@ -60,11 +63,13 @@ public class Level3 extends Level {
             getGameManager().setCurrentMathQuestion(a + " - " + b + " + " + c +" = ?");
             return a - b + c;
 
-        } else
+        }
+         else if (firstOperator == 2 && secondOperator == 2)
         {
-
             getGameManager().setCurrentMathQuestion(a + " - " + b + " - "  + c +" = ?");
             return a - b - c;
         }
+        System.out.println("Något gick fel...");
+         return 0;
     }
 }

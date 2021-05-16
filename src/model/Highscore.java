@@ -3,10 +3,11 @@ package model;
 import java.io.Serializable;
 
 /**
- * @author Ardian
+ * @author Ardian Glamniki
  * @version 1.0
  *
  * This class represents a players highscore.
+ * A highscore consists of the players name, and the score belonging to the player.
  */
 
 public class Highscore implements Serializable, Comparable<Highscore> {
@@ -28,6 +29,7 @@ public class Highscore implements Serializable, Comparable<Highscore> {
     }
 
     @Override
+    // Sorts by the players scores, for the purpose of displaying the top ten players
     public int compareTo(Highscore o) {
         return Integer.compare(getPoints(), o.getPoints());
     }

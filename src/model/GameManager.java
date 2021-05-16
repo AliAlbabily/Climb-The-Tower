@@ -11,7 +11,7 @@ import java.util.LinkedList;
 
 /**
  * @author Ali-A, Ardian Glamniki and Mads
- * @version 1.6
+ * @version 1.7
  */
 public class GameManager implements TimerCallback{
 
@@ -28,7 +28,6 @@ public class GameManager implements TimerCallback{
     private final String correctAnswerSound = "files/minecraft_hit.wav";
     private final String wrongAnswerSound = "files/runescape-hit.wav";
     private Difficulty difficulty;
-    private GameTimer timer;
 
     public GameManager(Player player, Difficulty difficulty) {
         this.player = player;
@@ -37,6 +36,7 @@ public class GameManager implements TimerCallback{
         initializeLevels(difficulty);
     }
 
+    // Creates the level objects, and adds them to the list containing the levels.
     private void initializeLevels(Difficulty difficulty) {
         Level level1 = new Level1("Level 1", this);
         level1.setMonster(new Monster("Chimera", difficulty.getMonsterHP()));
@@ -260,6 +260,7 @@ public class GameManager implements TimerCallback{
         }
     }
 
+    // Plays audio from a given file.
     public static void playSound(String fileName) {
         try {
             File url = new File(fileName);

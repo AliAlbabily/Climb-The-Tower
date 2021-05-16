@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 
 /**
- * @author Ardian
+ * @author Ardian Glamniki
  * @Version 1.1
  *
  * This class handles the highscores in a file.
@@ -18,7 +18,11 @@ public class HighscoreList {
         highscoreList = new LinkedList<>();
     }
 
-    // Adds a highscore to the file
+    /*
+     * Takes a highscore as parameter,
+     * checks if there contains a list in the file of highscores,
+     * if not, creates a new one and adds the highscore into that list, then writes it to the file.
+     */
     public void saveNewHighscore(Highscore highscore) {
         LinkedList<Highscore> highscores = null;
         try (ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(highscoreFile)))) {

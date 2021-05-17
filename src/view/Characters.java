@@ -4,5 +4,5 @@ public enum Characters
 {
     Soldier,
     Knight,
-    Spearman
+    Rogue_knight
 }

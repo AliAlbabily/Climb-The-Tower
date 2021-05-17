@@ -60,6 +60,8 @@ public class Controller implements TimerCallback, ActionListener {
         currentMonsterName = model.getCurrentMonster().getName();
         gameGUI.updateMonsterNameGUI(currentMonsterName);
 
+        // update score on GUI
+        gameGUI.updateScore(model.getPoints());
 
         //update player name on GUI
         currentPlayerName = model.getPlayer().getName();
@@ -121,6 +123,7 @@ public class Controller implements TimerCallback, ActionListener {
         gameGUI = new GameGUI(this);
         // TODO : call a method in gameGUI that changes background upon choice
         gameGUI.changeBackgroundOnCharacter(chosenCharacterName);
+        gameGUI.updateScore(model.getPoints());
 
         updateGamePlayInformation();
         startMenuGUI.closeStartMenuGUIWindow();
@@ -266,6 +269,11 @@ public class Controller implements TimerCallback, ActionListener {
         return Characters.values();
     }
 
+    public void updateScoreGUI(int score)
+    {
+        score = model.getPoints();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -306,6 +314,7 @@ public class Controller implements TimerCallback, ActionListener {
                 gameGUI.updateStreak(0);
             }
 
+            gameGUI.updateScore(model.getPoints());
             gameHasEnded = model.handleUserAnswer(userAnswer, currentCorrectAnswer);
 
             if(gameHasEnded)

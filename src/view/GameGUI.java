@@ -9,7 +9,7 @@ import java.awt.event.*;
 
 /**
  * @author Jagtej Sidhu, Hanis Saley
- * @version 1.6
+ * @version 1.7
  */
 public class GameGUI
 {
@@ -31,6 +31,7 @@ public class GameGUI
     private JLabel lblLevel;
     private JLabel enemyName;
     private JLabel lblPlayer;
+    private JLabel lblScore;
     private static JLabel streak;
 
     private JProgressBar playerHealthBar;
@@ -175,13 +176,19 @@ public class GameGUI
         playerHealthBarPanel.add(playerHealthBar);
 
         enemyHealthBarPanel = new JPanel();
-        enemyHealthBarPanel.setBounds(860,60, 100, 25);
+        enemyHealthBarPanel.setBounds(860,60, 100, 30);
         enemyHealthBarPanel.setBackground(Color.black);
         pnlSouth.add(enemyHealthBarPanel);
 
         enemyHealthBar = new JProgressBar();
         enemyHealthBar.setPreferredSize(new Dimension(100, 30));
         enemyHealthBarPanel.add(enemyHealthBar);
+
+        lblScore = new JLabel("Score: 0");
+        lblScore.setForeground(Color.white);
+        lblScore.setFont(font);
+        lblScore.setBounds(420,25,150, 100);
+        pnlSouth.add(lblScore);
 
         JLabel lblEnemy = new JLabel("Enemy:");
         lblEnemy.setForeground(Color.white);
@@ -195,20 +202,20 @@ public class GameGUI
         lblPlayer.setBounds(792,90, 100, 50);
         pnlSouth.add(lblPlayer);
 
-        enemyHealth = new JLabel();
-        enemyHealth.setFont(font);
-        enemyHealth.setBounds(860,50, 100, 50);
-        pnlSouth.add(enemyHealth);
-
-        playerHealth = new JLabel();
-        playerHealth.setFont(font);
-        playerHealth.setBounds(860,90, 100, 50);
-        pnlSouth.add(playerHealth);
+//        enemyHealth = new JLabel();
+//        enemyHealth.setFont(font);
+//        enemyHealth.setBounds(860,50, 100, 50);
+//        pnlSouth.add(enemyHealth);
+//
+//        playerHealth = new JLabel();
+//        playerHealth.setFont(font);
+//        playerHealth.setBounds(860,90, 100, 50);
+//        pnlSouth.add(playerHealth);
 
         lblLevel = new JLabel();
         lblLevel.setForeground(Color.white);
         lblLevel.setFont(font);
-        lblLevel.setBounds(433,85, 100, 50);
+        lblLevel.setBounds(433,105, 100, 50);
         pnlSouth.add(lblLevel);
 
         //TODO koppla denna jlabeln till streak nummer så att man kan se vilken streak man ligger på i GUI:t
@@ -221,7 +228,7 @@ public class GameGUI
         enemyName = new JLabel();
         enemyName.setForeground(Color.white);
         enemyName.setFont(font);
-        enemyName.setBounds(425,120, 250, 50);
+        enemyName.setBounds(425,140, 250, 50);
         pnlSouth.add(enemyName);
 
         frame.add(pnlSouth, BorderLayout.SOUTH);
@@ -242,6 +249,12 @@ public class GameGUI
     public void updateStreak(int count)
     {
         streak.setText("Streak: " + count + "");
+    }
+
+    public void updateScore(int scoreCount)
+    {
+        controller.updateScoreGUI(scoreCount);
+        lblScore.setText("Score: " + scoreCount);
     }
 
     public void updateCharactersHPGUI(int playerHP, int currentEnemyHP, int fullEnemyHP) {
@@ -465,7 +478,7 @@ public class GameGUI
             lblLevel10 = new JLabel(level10);
         }
 
-        else if(chosenCharacter.equals("Spearman")){
+        else if(chosenCharacter.equals("Rogue_knight")){
             level1 = new ImageIcon("files/levels/level1_spearman.png");
             level2 = new ImageIcon("files/levels/level2_spearman.png");
             level3 = new ImageIcon("files/levels/level3_spearman.png");

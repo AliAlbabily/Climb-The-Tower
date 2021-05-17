@@ -10,8 +10,8 @@ import java.io.FileNotFoundException;
 import java.util.LinkedList;
 
 /**
- * @author Ali, Hanis, Ardian Glamniki and Mads
- * @version 1.9
+ * @author Ali, Hanis, Ardian Glamniki, Mads, Jagtej
+ * @version 2.0
  */
 public class Controller implements TimerCallback, ActionListener {
 
@@ -60,6 +60,8 @@ public class Controller implements TimerCallback, ActionListener {
         currentMonsterName = model.getCurrentMonster().getName();
         gameGUI.updateMonsterNameGUI(currentMonsterName);
 
+        // update score on GUI
+        gameGUI.updateScore(model.getPoints());
 
         //update player name on GUI
         currentPlayerName = model.getPlayer().getName();
@@ -121,6 +123,8 @@ public class Controller implements TimerCallback, ActionListener {
         gameGUI = new GameGUI(this);
         // TODO : call a method in gameGUI that changes background upon choice
         gameGUI.changeBackgroundOnCharacter(chosenCharacterName);
+
+        gameGUI.updateScore(model.getPoints());
 
         updateGamePlayInformation();
         startMenuGUI.closeStartMenuGUIWindow();
@@ -266,6 +270,11 @@ public class Controller implements TimerCallback, ActionListener {
         return Characters.values();
     }
 
+    public void updateScoreGUI(int score)
+    {
+        score = model.getPoints();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -307,6 +316,7 @@ public class Controller implements TimerCallback, ActionListener {
             }
 
             gameHasEnded = model.handleUserAnswer(userAnswer, currentCorrectAnswer);
+            gameGUI.updateScore(model.getPoints());
 
             if(gameHasEnded)
             {

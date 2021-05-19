@@ -187,7 +187,7 @@ public class GameGUI
         lblScore = new JLabel("Score: 0");
         lblScore.setForeground(Color.white);
         lblScore.setFont(font);
-        lblScore.setBounds(420,25,150, 100);
+        lblScore.setBounds(425,25,150, 100);
         pnlSouth.add(lblScore);
 
         JLabel lblEnemy = new JLabel("Enemy:");
@@ -202,20 +202,10 @@ public class GameGUI
         lblPlayer.setBounds(792,90, 100, 50);
         pnlSouth.add(lblPlayer);
 
-//        enemyHealth = new JLabel();
-//        enemyHealth.setFont(font);
-//        enemyHealth.setBounds(860,50, 100, 50);
-//        pnlSouth.add(enemyHealth);
-//
-//        playerHealth = new JLabel();
-//        playerHealth.setFont(font);
-//        playerHealth.setBounds(860,90, 100, 50);
-//        pnlSouth.add(playerHealth);
-
         lblLevel = new JLabel();
         lblLevel.setForeground(Color.white);
         lblLevel.setFont(font);
-        lblLevel.setBounds(433,105, 100, 50);
+        lblLevel.setBounds(435,105, 100, 50);
         pnlSouth.add(lblLevel);
 
         //TODO koppla denna jlabeln till streak nummer så att man kan se vilken streak man ligger på i GUI:t
@@ -395,31 +385,31 @@ public class GameGUI
 
         if (currentMonsterName == "Gargamel")
         {
-            enemyName.setBounds(418,120, 250, 50);
+            enemyName.setBounds(418,140, 250, 50);
         }
         if (currentMonsterName == "Wyvern" || currentMonsterName == "Vorkath")
         {
-            enemyName.setBounds(430,120, 250, 50);
+            enemyName.setBounds(433,140, 250, 50);
         }
         if (currentMonsterName == "Valyei")
         {
-            enemyName.setBounds(440,120, 250, 50);
+            enemyName.setBounds(440,140, 250, 50);
         }
         if (currentMonsterName == "Berry The Cherry")
         {
-            enemyName.setBounds(380,120, 250, 50);
+            enemyName.setBounds(380,140, 250, 50);
         }
         if (currentMonsterName == "Nosferatu Zodd")
         {
-            enemyName.setBounds(390,120, 250, 50);
+            enemyName.setBounds(390,140, 250, 50);
         }
         if (currentMonsterName == "Chrollo")
         {
-            enemyName.setBounds(433,120, 250, 50);
+            enemyName.setBounds(433,140, 250, 50);
         }
         if (currentMonsterName == "Dahaka")
         {
-            enemyName.setBounds(436,120, 250, 50);
+            enemyName.setBounds(436,140, 250, 50);
         }
     }
 

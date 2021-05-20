@@ -39,7 +39,7 @@ public class GameGUI
 
     private ImageIcon level1 = new ImageIcon("files/levels/level1.png");
     private ImageIcon level2 = new ImageIcon("files/levels/level2.png");
-    private ImageIcon level3 = new ImageIcon("files/levels/level3");
+    private ImageIcon level3 = new ImageIcon("files/levels/level3.png");
     private ImageIcon level4 = new ImageIcon("files/levels/level4.png");
     private ImageIcon level5 = new ImageIcon("files/levels/level5.png");
     private ImageIcon level6 = new ImageIcon("files/levels/level6.png");
@@ -212,7 +212,7 @@ public class GameGUI
         streak = new JLabel("Streak: 0");
         streak.setForeground(Color.white);
         streak.setFont(font);
-        streak.setBounds(25, 140, 100, 50);
+        streak.setBounds(25, 140, 150, 50);
         pnlSouth.add(streak);
 
         enemyName = new JLabel();

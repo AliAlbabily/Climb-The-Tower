@@ -92,6 +92,7 @@ public class GameManager implements TimerCallback{
         return currentMonster.getBaseHitPoints();
     }
 
+    // Compares the users submitted answer with the correct answer
     private boolean checkUserAnswer(double correctAnswer, double userAnswer) {
         if(userAnswer == correctAnswer) {
             return true;
@@ -176,7 +177,7 @@ public class GameManager implements TimerCallback{
         lvls.removeLast();
         nextLevel();
 
-        // when there are no more levels available in the lvls-list
+        // When there are no more levels available in the lvls-list
         if(lvls.isEmpty()) {
             System.out.println("\nYou won!");
             System.out.println("A final reward of 100 bonus points for finishing the game. \nWell played warrior.");
@@ -213,7 +214,6 @@ public class GameManager implements TimerCallback{
         } else {
             handleWrongAnswer();
         }
-
         return gameHasEnded;
     }
 
@@ -263,6 +263,11 @@ public class GameManager implements TimerCallback{
         if (ifCharacterIsDead) {
             endGamePlayerDead();
         }
+    }
+
+    @Override
+    public void onTick(int seconds) {
+        // Empty for now
     }
 
     // Plays audio from a given file.

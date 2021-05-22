@@ -107,6 +107,7 @@ public class Controller implements TimerCallback, ActionListener {
             e.printStackTrace();
         }
     }
+
     // Initializes the player and timer object then starts starts the gameplay with a GUI.
     public void startGamePlay(DifficultyLevel difficultyLevel) {
         String playerName = startMenuGUI.getPlayerName();
@@ -165,8 +166,7 @@ public class Controller implements TimerCallback, ActionListener {
                 startNewGame();
                 streak = 0; // reset amount of streak
                 endGameGui.closeEndGameGUI(); // closes endGame window
-                endGameGui = null; 
-
+                endGameGui = null;
                 break;
             case Highscore:
                 displayHighscores();
@@ -184,23 +184,22 @@ public class Controller implements TimerCallback, ActionListener {
 
     // Initializes the timer by setting the contents and starting the countdown thread.
     private void setTimer(String lvl) {
-        timer.setTimeLeftLbl(gameGUI.getTimer());
         Difficulty difficulty = model.getDifficulty();
         switch (lvl) {
             case "Level 1":
             case "Level 4":
             case "Level 2":
             case "Level 3":
-                timer.setSeconds(difficulty.getCountDown());;
+                timer.setSeconds(difficulty.getCountDown());
                 break;
             case "Level 5":
             case "Level 6":
             case "Level 7":
-                timer.setSeconds((int) (difficulty.getCountDown() * 2));
+                timer.setSeconds(difficulty.getCountDown() * 2);
                 break;
             default:
                 if (difficulty == Difficulty.HARD) {
-                    timer.setSeconds(difficulty.getCountDown() * 4);
+                    timer.setSeconds(difficulty.getCountDown() * 5);
                 } else {
                     timer.setSeconds(difficulty.getCountDown() * 3);
                 }
@@ -208,24 +207,25 @@ public class Controller implements TimerCallback, ActionListener {
         timer.start();
     }
 
+    // Converts the list of highscore objects into a String representation containing name and points.
     private String[] convertToStringArray(LinkedList<Highscore> highscores) {
         String[] scores = new String[highscores.size()];
 
         for (int i = 0; i < highscores.size(); i++) {
             scores[i] = highscores.get(i).toString();
         }
-
         return scores;
     }
 
+    // Closes the game window, saves the highscore and opens the endgame window.
     private void endGame() {
         highscoreList.saveNewHighscore(new Highscore(model.getPlayer().getName(), model.getPlayer().getPoints()));
         System.out.println("\nGame Over!");
         gameGUI.closeGameGUI();
-        if(endGameGui == null){
+
+        if(endGameGui == null) {
             setupEndGameWindow();
         }
-
 
         boolean playerIsAlive = model.playerIsAliveStatus();
         if (playerIsAlive) { // if player is alive
@@ -248,7 +248,10 @@ public class Controller implements TimerCallback, ActionListener {
         endGameGui = new EndGameGUI(this);
     }
 
-    // Callback function that is invoked when the countdown timer is finished.
+    /*
+     * Callback function that is invoked when the countdown timer is finished.
+     * The player HP decreases, the streak resets to 0 and a new math question is presented.
+     */
     @Override
     public void timesUp() {
         if (!model.getGameHasEnded()) {
@@ -258,6 +261,11 @@ public class Controller implements TimerCallback, ActionListener {
         } else {
             endGame();
         }
+    }
+
+    @Override
+    public void onTick(int seconds) {
+        gameGUI.setLblTimerText(seconds);
     }
 
     public DifficultyLevel [] getDifficulty()

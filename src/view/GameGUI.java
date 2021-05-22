@@ -432,6 +432,10 @@ public class GameGUI
         frame.setLocation(x, y);
     }
 
+    public void setLblTimerText(int seconds) {
+        SwingUtilities.invokeLater(new Write(seconds));
+    }
+
     public JLabel getTimer()
     {
         return timer;
@@ -490,6 +494,31 @@ public class GameGUI
             lblLevel8 = new JLabel(level8);
             lblLevel9 = new JLabel(level9);
             lblLevel10 = new JLabel(level10);
+        }
+    }
+    // Sets the text for the timer JLabel.
+    private class Write implements Runnable {
+        private int seconds;
+
+        public Write(int seconds) {
+            this.seconds = seconds;
+        }
+
+        @Override
+        public void run() {
+            timer.setText(String.valueOf(seconds));
+
+            if (seconds <= 7) {
+                timer.setForeground(Color.orange);
+            }
+
+            if (seconds <= 4) {
+                timer.setForeground(Color.red);
+            }
+
+            if (seconds >= 8) {
+                timer.setForeground(Color.green);
+            }
         }
     }
 }

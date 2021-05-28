@@ -16,6 +16,7 @@ import java.io.File;
 public class BackgroundMusic {
 
     private Clip clip;
+    private long clipTimePosition;
 
    public void playMusic(String musicLocation){
 
@@ -40,6 +41,16 @@ public class BackgroundMusic {
        }catch (Exception ex){
            ex.printStackTrace();
        }
+   }
+
+   public void pauseMusic(){
+       clipTimePosition = clip.getMicrosecondPosition();
+       clip.stop();
+   }
+
+   public void resumeMusic(){
+       clip.setMicrosecondPosition(clipTimePosition);
+       clip.start();
    }
 
    public void stopMusic(){

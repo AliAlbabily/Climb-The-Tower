@@ -204,7 +204,7 @@ public class GameGUI
         btnSound.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO - lägg till kod där musiken stängs av eller mutas.
+                backgroundMusic.pauseMusic();
                 btnSound.setVisible(false);
                 btnSoundOFF.setVisible(true);
             }
@@ -220,7 +220,7 @@ public class GameGUI
         btnSoundOFF.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO - lägg till kod där musiken stängs av eller mutas.
+                backgroundMusic.resumeMusic();
                 btnSoundOFF.setVisible(false);
                 btnSound.setVisible(true);
 

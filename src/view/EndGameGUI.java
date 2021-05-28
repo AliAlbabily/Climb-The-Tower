@@ -21,6 +21,7 @@ public class EndGameGUI extends JPanel
     private JButton btnHighscore;
     private JButton btnPlayAgain;
 
+
     private ImageIcon trophyIcon = new ImageIcon("files/newTrophy.png");
     private ImageIcon graveIcon = new ImageIcon("files/rip.png");
     private JLabel trophyLabel;
@@ -28,6 +29,10 @@ public class EndGameGUI extends JPanel
     private JLabel gameOverlbl;
     private JLabel monstersDefeated;
     private JLabel performenceLbl;
+
+    private BackgroundMusic backgroundMusic;
+    private final String musicWin = "files/win_Menu.wav";
+    private final String musicLost = "files/lose_Menu.wav";
     /**
      * Constructor
      * @param controller
@@ -45,6 +50,8 @@ public class EndGameGUI extends JPanel
     {
         createMainFrame();
         createEndPanel();
+
+        backgroundMusic = new BackgroundMusic();
     }
 
     /**
@@ -138,14 +145,18 @@ public class EndGameGUI extends JPanel
     }
 
     public void displayYouWinMessage() {
+        backgroundMusic.playMusic(musicWin);
         monstersDefeated.setText("You defeated all the monsters!");
         performenceLbl.setText("Great work!");
         performenceLbl.setBounds(135, 140, 200, 100);
         monstersDefeated.setBounds(65, 100, 300, 100);
         mainPnl.add(trophyLabel);
+
+
     }
 
     public void displayYouLostMessage() {
+        backgroundMusic.playMusic(musicLost);
         monstersDefeated.setText("You lost against the monsters!");
         performenceLbl.setText("Better luck next time!");
         performenceLbl.setBounds(110, 140, 200, 100);
@@ -178,6 +189,7 @@ public class EndGameGUI extends JPanel
     public void closeEndGameGUI(){
         frame.setVisible(false);
         frame.dispose();
+        backgroundMusic.stopMusic();
     }
 
 }

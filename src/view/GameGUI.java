@@ -31,6 +31,8 @@ public class GameGUI
     private JLabel lblPlayer;
     private JLabel lblScore;
     private static JLabel streak;
+    private BackgroundMusic backgroundMusic;
+    private final String music = "files/gameplay_music.wav";
 
     private JProgressBar playerHealthBar;
     private JProgressBar enemyHealthBar;
@@ -102,6 +104,10 @@ public class GameGUI
         createMainFrame();
         northPanel();
         southPanel();
+
+
+        backgroundMusic = new BackgroundMusic();
+        backgroundMusic.playMusic(music);
     }
 
     /**
@@ -457,6 +463,7 @@ public class GameGUI
     public void closeGameGUI(){
         frame.setVisible(false);
         frame.dispose();
+        backgroundMusic.stopMusic();
     }
 
     /**

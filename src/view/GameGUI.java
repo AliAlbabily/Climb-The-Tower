@@ -25,8 +25,6 @@ public class GameGUI
     private JButton submitButton;
 
     private static JLabel timer;
-    private JLabel enemyHealth;
-    private JLabel playerHealth;
     private JLabel lblQuestion;
     private JLabel lblLevel;
     private JLabel enemyName;
@@ -47,6 +45,14 @@ public class GameGUI
     private ImageIcon level8 = new ImageIcon("files/levels/level8.png");
     private ImageIcon level9 = new ImageIcon("files/levels/level9.png");
     private ImageIcon level10 = new ImageIcon("files/levels/level10.png");
+
+    private ImageIcon soundOn = new ImageIcon("files/soundON.png");
+    private JButton btnSound = new JButton(soundOn);
+
+    private ImageIcon soundOff = new ImageIcon("files/soundOFF.png");
+    private JButton btnSoundOFF = new JButton(soundOff);
+
+
 
     private JLabel lblLevel1 = new JLabel(level1);
     private JLabel lblLevel2 = new JLabel(level2);
@@ -183,6 +189,38 @@ public class GameGUI
         enemyHealthBar = new JProgressBar();
         enemyHealthBar.setPreferredSize(new Dimension(100, 30));
         enemyHealthBarPanel.add(enemyHealthBar);
+
+        btnSound.setVisible(true);
+        btnSound.setBounds(925,150,40,40);
+        btnSound.setOpaque(false);
+        btnSound.setContentAreaFilled(false);
+        btnSound.setBorderPainted(false);
+        btnSound.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //TODO - lägg till kod där musiken stängs av eller mutas.
+                btnSound.setVisible(false);
+                btnSoundOFF.setVisible(true);
+            }
+        });
+        pnlSouth.add(btnSound);
+
+
+        btnSoundOFF.setVisible(false);
+        btnSoundOFF.setBounds(925,150,40,40);
+        btnSoundOFF.setOpaque(false);
+        btnSoundOFF.setContentAreaFilled(false);
+        btnSoundOFF.setBorderPainted(false);
+        btnSoundOFF.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //TODO - lägg till kod där musiken stängs av eller mutas.
+                btnSoundOFF.setVisible(false);
+                btnSound.setVisible(true);
+
+            }
+        });
+        pnlSouth.add(btnSoundOFF);
 
         lblScore = new JLabel("Score: 0");
         lblScore.setForeground(Color.white);

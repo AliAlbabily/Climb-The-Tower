@@ -127,11 +127,11 @@ public class StartMenuGUI extends JPanel {
         infoBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(frame, "You versus the monsters!\n You play the game by typing the the right mathematical answers for each question. \n" +
+                JOptionPane.showMessageDialog(frame, "You versus the monsters!\nYou play the game by typing the the right mathematical answers for each question. \n" +
                         "An amount of correct answers are required to defeat the monsters. \n" +
                         "The further you progress the harder the questions become. \n" +
                         "You can also get bonus hits and points if you answer quickly before the timer" +
-                        " runs out.\n" + "Good luck warrior!");
+                        " runs out.\n" + "\nTip: You can turn the volume on or off by clicking the volume icon while playing the game\n" + "\nGood luck warrior!");
             }
         });
         mainPnl.add(infoBtn);

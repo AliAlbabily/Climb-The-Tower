@@ -9,7 +9,7 @@ import java.awt.event.*;
 
 /**
  * @author Jagtej Sidhu, Hanis Saley
- * @version 1.7
+ * @version 1.8
  */
 public class GameGUI
 {

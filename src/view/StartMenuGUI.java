@@ -12,7 +12,7 @@ import java.awt.event.MouseEvent;
 
 /**
  * @author Jagtej Sidhu, Hanis Saley
- * @version 1.4
+ * @version 1.5
  */
 public class StartMenuGUI extends JPanel {
     //object of controller class

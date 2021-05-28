@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 /**
  * @author Jagtej Sidhu, Hanis Saley
- * @version 1.4
+ * @version 1.5
  */
 public class EndGameGUI extends JPanel
 {

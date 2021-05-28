@@ -43,14 +43,21 @@ public class BackgroundMusic {
        }
    }
 
+   public void loopAfterPause(){
+       clip.start();
+       clip.loop(Clip.LOOP_CONTINUOUSLY);
+   }
+
    public void pauseMusic(){
        clipTimePosition = clip.getMicrosecondPosition();
        clip.stop();
+
    }
 
    public void resumeMusic(){
        clip.setMicrosecondPosition(clipTimePosition);
        clip.start();
+       clip.loop(Clip.LOOP_CONTINUOUSLY);
    }
 
    public void stopMusic(){

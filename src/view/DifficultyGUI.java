@@ -78,6 +78,7 @@ public class DifficultyGUI {
     public void closeFrame() {
         frame.setVisible(false);
         frame.dispose();
+
     }
 
     /**

@@ -28,6 +28,8 @@ public class StartMenuGUI extends JPanel {
     private JButton infoBtn = new JButton();
     private String playerName;
     private JLabel chooseChar;
+    private final String music = "files/great_battle.wav";
+    private BackgroundMusic backgroundMusic;
   //  private JComboBox cmbDifficulty;
 
 
@@ -50,6 +52,9 @@ public class StartMenuGUI extends JPanel {
     public void initializeGUI() {
         createFrame();
         createMenuBox();
+
+        backgroundMusic = new BackgroundMusic();
+        backgroundMusic.playMusic(music);
     }
 
     public void createFrame() {
@@ -165,6 +170,7 @@ public class StartMenuGUI extends JPanel {
         public void closeStartMenuGUIWindow() {
             frame.setVisible(false); // hide window
             frame.dispose(); // Destroy the JFrame object, (close window)
+            backgroundMusic.stopMusic();
         }
 
         // get player name from user input (userTextField)

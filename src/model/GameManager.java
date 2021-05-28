@@ -47,41 +47,41 @@ public class GameManager implements TimerCallback{
         level1.setMonster(new Monster("Chimera", difficulty.getMonsterHP()));
         lvls.addFirst(level1);
 
-        Level level2 = new Level2("Level 2", this);
-        level2.setMonster(new Monster("Graardor", difficulty.getMonsterHP()));
-        lvls.addFirst(level2);
-
-        Level level3 = new Level3("Level 3", this);
-        level3.setMonster(new Monster("Gargamel", difficulty.getMonsterHP()));
-        lvls.addFirst(level3);
-
-        Level level4 = new Level4("Level 4", this);
-        level4.setMonster(new Monster("Wyvern", difficulty.getMonsterHP()));
-        lvls.addFirst(level4);
-
-        Level level5 = new Level5("Level 5", this);
-        level5.setMonster(new Monster("Valyei", (int) (difficulty.getMonsterHP() * 1.5)));
-        lvls.addFirst(level5);
-
-        Level level6 = new Level6("Level 6", this);
-        level6.setMonster(new Monster("Vorkath", (int) (difficulty.getMonsterHP() * 1.5)));
-        lvls.addFirst(level6);
-
-        Level level7 = new Level7("Level 7", this);
-        level7.setMonster(new Monster("Berry The Cherry", (int) (difficulty.getMonsterHP() * 1.5)));
-        lvls.addFirst(level7);
-
-        Level level8 = new Level8("Level 8", this);
-        level8.setMonster(new Monster("Nosferatu Zodd", difficulty.getMonsterHP() * 2));
-        lvls.addFirst(level8);
-
-        Level level9 = new Level9("Level 9", this);
-        level9.setMonster(new Monster("Chrollo", difficulty.getMonsterHP() * 2));
-        lvls.addFirst(level9);
-
-        Level level10 = new Level10("Level 10", this);
-        level10.setMonster(new Monster("Dahaka", difficulty.getMonsterHP() * 2));
-        lvls.addFirst(level10);
+//        Level level2 = new Level2("Level 2", this);
+//        level2.setMonster(new Monster("Graardor", difficulty.getMonsterHP()));
+//        lvls.addFirst(level2);
+//
+//        Level level3 = new Level3("Level 3", this);
+//        level3.setMonster(new Monster("Gargamel", difficulty.getMonsterHP()));
+//        lvls.addFirst(level3);
+//
+//        Level level4 = new Level4("Level 4", this);
+//        level4.setMonster(new Monster("Wyvern", difficulty.getMonsterHP()));
+//        lvls.addFirst(level4);
+//
+//        Level level5 = new Level5("Level 5", this);
+//        level5.setMonster(new Monster("Valyei", (int) (difficulty.getMonsterHP() * 1.5)));
+//        lvls.addFirst(level5);
+//
+//        Level level6 = new Level6("Level 6", this);
+//        level6.setMonster(new Monster("Vorkath", (int) (difficulty.getMonsterHP() * 1.5)));
+//        lvls.addFirst(level6);
+//
+//        Level level7 = new Level7("Level 7", this);
+//        level7.setMonster(new Monster("Berry The Cherry", (int) (difficulty.getMonsterHP() * 1.5)));
+//        lvls.addFirst(level7);
+//
+//        Level level8 = new Level8("Level 8", this);
+//        level8.setMonster(new Monster("Nosferatu Zodd", difficulty.getMonsterHP() * 2));
+//        lvls.addFirst(level8);
+//
+//        Level level9 = new Level9("Level 9", this);
+//        level9.setMonster(new Monster("Chrollo", difficulty.getMonsterHP() * 2));
+//        lvls.addFirst(level9);
+//
+//        Level level10 = new Level10("Level 10", this);
+//        level10.setMonster(new Monster("Dahaka", difficulty.getMonsterHP() * 2));
+//        lvls.addFirst(level10);
     }
 
     public Difficulty getDifficulty() {

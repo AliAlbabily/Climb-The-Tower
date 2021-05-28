@@ -7,6 +7,12 @@ import javax.sound.sampled.FloatControl;
 import javax.swing.*;
 import java.io.File;
 
+/**
+ * @author Hanis Saley
+ * @version 1.0
+ * This class contains music player.
+ */
+
 public class BackgroundMusic {
 
     private Clip clip;
@@ -23,7 +29,7 @@ public class BackgroundMusic {
                 clip = AudioSystem.getClip();
                 clip.open(audioInputStream);
                 FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-                gainControl.setValue(-10.0f);
+                gainControl.setValue(-20.0f);
                 clip.start();
                 clip.loop(Clip.LOOP_CONTINUOUSLY);
             }

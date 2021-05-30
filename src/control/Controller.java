@@ -10,6 +10,9 @@ import java.io.FileNotFoundException;
 import java.util.LinkedList;
 
 /**
+ * This class handles input from view and updates the model components.
+ * I.e it controls the flow of the data in the program.
+ *
  * @author Ali, Hanis, Ardian Glamniki, Mads, Jagtej
  * @version 2.0
  */
@@ -23,9 +26,7 @@ public class Controller implements TimerCallback, ActionListener {
     private EndGameGUI endGameGui;
     private HighscoreList highscoreList;
     private DifficultyGUI difficultyGUI;
-
     private final PlayersList playersList = new PlayersList();
-
     private double currentCorrectAnswer = 0;
     private int streak = 0;
     private boolean gameHasEnded = false;
@@ -71,14 +72,10 @@ public class Controller implements TimerCallback, ActionListener {
 
         generateMathQuestion();
 
-        // update math question on console
         updateMathQuestion();
-        // update math question on GUI
 
         System.out.println("\nAttack the enemy by entering the right number: ");
     }
-
-    // Updates the level, monster and player name on the GUI
 
     // Displays the current health of the characters on the GUI and prints it on the console.
     private void updateCharacterHP(int playerHP, int monsterHP, int monsterFullHP) {
@@ -263,6 +260,7 @@ public class Controller implements TimerCallback, ActionListener {
         }
     }
 
+    // For every second of the countdown timer, this callback method is invoked which updates the timer on the GUI.
     @Override
     public void onTick(int seconds) {
         gameGUI.setLblTimerText(seconds);
@@ -309,6 +307,8 @@ public class Controller implements TimerCallback, ActionListener {
         }
     }
 
+
+    // Receives input from the player and checks if it is correct.
     public void submitUserAnswer() {
         try {
             double userAnswer = Double.parseDouble(gameGUI.getUserAnswer());

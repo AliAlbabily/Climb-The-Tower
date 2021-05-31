@@ -10,13 +10,8 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 /**
-<<<<<<< Updated upstream
- * @author Ali-A, Ardian Glamniki and Mads
+ * @author Ali-A, Ardian Glamniki and Mads Nörklit Johansen
  * @version 1.7
-=======
- * @author Ali-A, Ardian Glamniki, Mads Nörklit Johansen
- * @version 1.3
->>>>>>> Stashed changes
  */
 public class GameManager implements TimerCallback{
 

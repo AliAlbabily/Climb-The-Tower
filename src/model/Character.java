@@ -1,6 +1,9 @@
 package model;
 
-
+/**
+ * @author Ali-A
+ * @version 1.2
+ */
 public class Character {
 
     private final int baseHitPoints;
@@ -13,10 +16,17 @@ public class Character {
         this.baseHitPoints = hitPoints;
     }
 
+    /**
+     * Decreases a certain amount of points from the character's hit points.
+     * @param damage the amount of points to be decreased.
+     */
     public void takeDamage(int damage) {
         hitPoints = hitPoints - damage;
     }
 
+    /**
+     * Checks if the character is still alive and returns a response on that.
+     */
     public boolean checkIfAlive() {
         boolean dead = false;
 

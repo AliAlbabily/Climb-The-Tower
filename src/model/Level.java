@@ -1,6 +1,5 @@
 package model;
 
-import javax.swing.*;
 import java.io.FileNotFoundException;
 
 /**
@@ -9,7 +8,6 @@ import java.io.FileNotFoundException;
  */
 public abstract class Level {
 
-    private ImageIcon image;
     private String lvlName;
     private Monster monster;
     private GameManager gameManager;
@@ -19,8 +17,16 @@ public abstract class Level {
         this.gameManager = gameManager;
     }
 
+    /**
+     * Generates a new math question depending on the level.
+     */
     public abstract double generateMathQuestion() throws FileNotFoundException;
 
+    /**
+     * Prints a message on the console indicating that the player has just entered a new level.
+     * @param lvlName the name of the entered level.
+     * @param monsterName the name of the monster to be seen at the entered level.
+     */
     public void newLvlMessage(String lvlName, String monsterName) {
         String mess = String.format("\n********** You entered %s, %s approaches! **********", lvlName, monsterName);
         System.out.println(mess);

@@ -9,5 +9,5 @@ För att kunna köra projektet via Intellij så behöver följande saker göras:
 
 ## Annat
 
-- Utvecklat i JDK 14.0.2
+- Utvecklat i Intellij med JDK 14.0.2
 
